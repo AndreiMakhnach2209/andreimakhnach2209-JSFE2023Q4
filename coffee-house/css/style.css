@@ -1,0 +1,107 @@
+/* inter-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inter-v13-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* inter-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/inter-v13-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+html{
+  box-sizing: border-box;
+  scroll-behavior: smooth; 
+}
+
+*, *::after, *::before{
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+
+:root{
+  font-family: Inter;
+  --text-dark: #403F3D;
+  --text-accent: #B0907A;
+  --text-ligth: #E1D4C9;
+  --background-body: #E1D4C9;
+  --background-container: #665F55;
+  --background-backdrop: #403F3DCC;
+  --border-ligth: #C1B6AD;
+  --border-dark: #665F55;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.body{
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: var(--background-body);
+  padding: 20px 0 40px 0;
+}
+
+.wrapper{
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Header styles start */
+
+.header{
+  padding-bottom: 20px;
+}
+
+.header-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  display: flex;
+}
+
+.nav-list{
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.nav__link, .menu-btn{
+  text-decoration: none;
+  color: var(--text-dark);
+  letter-spacing: 0.25px;
+}
+
+.menu-btn{
+  padding-bottom: 4px;
+}
+
+.menu-btn__text::after{
+  content: url(../img/svg/coffee-cup.svg);
+  position: relative;
+  top: 3px;
+  padding-left: 8px;
+}
+
+/* Header styles end */
+
+/* Intro styles start */
+
+
+
+/* Intro styles end */
