@@ -68,7 +68,7 @@ img{
   align-items: center;
 }
 
-.logo{
+.logo__link{
   display: flex;
 }
 
@@ -81,14 +81,19 @@ img{
   height: 100%;
 }
 
-.nav__link, .menu-btn{
+.nav-list__link, .menu-btn{
   text-decoration: none;
   color: var(--text-dark);
-  letter-spacing: 0.25px;
+  font-weight: 600;
 }
 
-.menu-btn{
-  padding-bottom: 4px;
+
+.nav-list__line{
+  width: 0;
+  height: 2px;
+  margin-top: 4px;
+  background: var(--text-dark);
+  transition: 0.8s all;
 }
 
 .menu-btn__text::after{
@@ -96,6 +101,17 @@ img{
   position: relative;
   top: 3px;
   padding-left: 8px;
+}
+
+.menu-btn-wrap, .nav-list__item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-btn-wrap:hover .nav-list__line,
+.nav-list__item:hover .nav-list__line{
+  width: 100%;
 }
 
 /* Header styles end */
