@@ -62,6 +62,11 @@ a{
   margin: 0 auto;
 }
 
+.section{
+  padding-bottom: 100px;
+}
+
+
 /* Header styles start */
 
 .header{
@@ -138,7 +143,7 @@ a{
 
 .intro-content{
   display: flex;
-  width: 530px;
+  max-width: 530px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -154,7 +159,6 @@ a{
 }
 
 .intro-content__title_accent{
-  font-style: italic;
   color: var(--text-accent);
 }
 
@@ -205,3 +209,122 @@ a{
 }
 
 /* Intro styles end */
+
+/* Favorites styles start */
+
+.section__title{
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+  color: var(--text-dark, #403F3D);
+}
+
+.section__title_accent{
+  color: var(--text-accent, #B0907A);
+}
+
+.section__title_align-center{
+  text-align: center;
+}
+
+.slider__wrap{
+  width: 100%;
+  padding: 40px 0;
+  display:flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.slider__btn {
+  height: 60px;
+  width: 60px;
+  margin: 4px;
+  border-radius: 50%;
+  border: 1px solid var(--border-dark);
+  cursor: pointer;
+  transition: 0.5s all;
+  flex-shrink: 0;
+}
+
+.slider__btn_left{
+  background: url(../img/svg/arrow-left.svg) no-repeat center;
+}
+
+.slider__btn_rigth{
+  background: url(../img/svg/arrow-right.svg) no-repeat center;
+}
+
+.slider__btn_left:hover{
+  background:url(../img/svg/arrow-left-ligth.svg) var(--background-container) no-repeat center;
+}
+
+.slider__btn_rigth:hover{
+  background: url(../img/svg/arrow-right-ligth.svg) var(--background-container) no-repeat center;
+}
+
+.slider__display-area{
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider__content{
+  display: flex;
+}
+
+.slider__item{
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.slide{
+  width: 480px;
+  margin: 0 auto;
+}
+
+.slide__pic{
+  padding-bottom: 20px;
+}
+
+.slide__desc-wrap{
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.slide__title{
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+  padding-bottom: 16px;
+}
+
+.slide__desc{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  padding-bottom: 16px;
+}
+
+.slide__price{
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+}
+
+.slider__controls-wrap{
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.slider__control{
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--border-ligth);
+}
+
+.slider__control_active{
+  background-color: var(--border-dark);
+}
+
+/* Favorites styles end */

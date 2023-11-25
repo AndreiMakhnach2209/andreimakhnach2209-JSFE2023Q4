@@ -22,7 +22,7 @@
         <nav class="nav">
           <ul class="nav-list">
             <li class="nav-list__item">
-              <a href="#!" class="nav-list__link">
+              <a href="#favorites" class="nav-list__link">
                 Favorite coffee
               </a>
               <div class="nav-list__line"></div>
@@ -61,12 +61,12 @@
   <main class="main">
 
     <!-- Intro start -->
-    <section class="intro">
+    <section class="section intro">
       <div class="wrapper">
         <div class="intro-background">
           <div class="intro-content">
             <h1 class="intro-content__title">
-              <span class="intro-content__title intro-content__title_accent">Enjoy</span>
+              <i class="intro-content__title intro-content__title_accent">Enjoy</i>
               premium coffee at our charming cafe
             </h1>
             <p class="intro-content__desc">
@@ -83,7 +83,89 @@
       </div>
     </section>
     <!-- Intro end -->
+
+    <!-- Favorites start -->
+    <section class="section favorites" id="favorites">
+      <div class="wrapper">
+        <h2 class="section__title section__title_align-center">
+          Choose your <i class="section__title section__title_accent">favorite</i> coffee
+        </h2>
+        <div class="slider">
+          <div class="slider__wrap">
+            <div class="slider__btn slider__btn_left">
+
+            </div>
+            <div class="slider__display-area">
+              <div class="slider__content">
+
+                <div class="slider__item">
+                  <div class="slide">
+                      <img src="./img/coffee-slider-1.png" alt="S’mores Frappuccino" class="slide__pic">
+                    <div class="slide__desc-wrap">
+                      <h3 class="slide__title">
+                        S’mores Frappuccino
+                      </h3>
+                      <p class="slide__desc">
+                        This new drink takes an espresso and mixes it with brown sugar and
+                         cinnamon before being topped with oat milk.
+                      </p>
+                      <span class="slide__price">
+                        $5.50
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slider__item">
+                  <div class="slide">
+                      <img src="./img/coffee-slider-2.png" alt="S’mores Frappuccino" class="slide__pic">
+                    <div class="slide__desc-wrap">
+                      <h3 class="slide__title">
+                        Caramel Macchiato
+                      </h3>
+                      <p class="slide__desc">
+                        Fragrant and unique classic espresso with rich caramel-peanut
+                         syrup, with cream under whipped thick foam.
+                      </p>
+                      <span class="slide__price">
+                        $5.00
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="slider__item">
+                  <div class="slide">
+                      <img src="./img/coffee-slider-3.png" alt="S’mores Frappuccino" class="slide__pic">
+                    <div class="slide__desc-wrap">
+                      <h3 class="slide__title">
+                        Ice coffee
+                      </h3>
+                      <p class="slide__desc">
+                        A popular summer drink that tones and invigorates. Prepared from coffee,
+                         milk and ice.                      </p>
+                      <span class="slide__price">
+                        $4.50
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="slider__btn slider__btn_rigth">
   
+            </div>
+          </div>
+          <div class="slider__controls-wrap">
+            <div class="slider__control slider__control_active"></div>
+            <div class="slider__control"></div>
+            <div class="slider__control"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Favorites end -->
 
   </main>
 
