@@ -1,0 +1,152 @@
+/* inter-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inter-v13-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* inter-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/inter-v13-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+html{
+  box-sizing: border-box;
+  scroll-behavior: smooth; 
+}
+
+*, *::after, *::before{
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+
+:root{
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  --text-dark: #403F3D;
+  --text-accent: #B0907A;
+  --text-ligth: #E1D4C9;
+  --background-body: #E1D4C9;
+  --background-container: #665F55;
+  --background-backdrop: #403F3DCC;
+  --border-ligth: #C1B6AD;
+  --border-dark: #665F55;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+a{
+  text-decoration: none;
+}
+
+.body{
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: var(--background-body);
+  padding: 20px 0 40px 0;
+}
+
+.wrapper{
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.section{
+  padding-bottom: 100px;
+}
+
+.section__title{
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 125%;
+  color: var(--text-dark, #403F3D);
+}
+
+.section__title_accent{
+  color: var(--text-accent, #B0907A);
+}
+
+.section__title_align-center{
+  text-align: center;
+}
+
+.section__title_ligth{
+  color: var(--text-ligth);
+}
+
+/* Header styles start */
+
+.header{
+  padding-bottom: 20px;
+}
+
+.header-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo__link{
+  display: flex;
+}
+
+.logo__link_disabled{
+  cursor: default;
+}
+
+.nav-list{
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-list__link, .menu-btn{
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+
+.nav-list__line{
+  width: 0;
+  height: 2px;
+  margin-top: 4px;
+  background: var(--text-dark);
+  transition: 0.5s all;
+}
+
+.menu-btn__text::after{
+  content: url(../../img/svg/coffee-cup.svg);
+  position: relative;
+  top: 3px;
+  padding-left: 8px;
+}
+
+.menu-btn-wrap, .nav-list__item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-btn-wrap .nav-list__line,
+.nav-list__item:hover .nav-list__line{
+  width: 100%;
+}
+
+.menu-btn{
+  cursor: default;
+}
+/* Header styles end */
