@@ -58,3 +58,6 @@ formCategories.addEventListener('change', (event) => {
   });
 });
 
+filterData('coffee').forEach((item, index) => {
+  createMenuCard(item, index);
+});
