@@ -331,6 +331,10 @@ a{
 
 /* About styles start */
 
+.about__title{
+  padding-bottom: 40px;
+}
+
 .photos{
   max-width: 100%;
   height: 1060px;
@@ -341,7 +345,7 @@ a{
 }
 
 .photos__item-wrap{
-  max-width: 660px;
+  max-width: calc(50% - 20px);
   overflow: hidden;
   border-radius: 20px;
   display: flex;
@@ -364,4 +368,96 @@ a{
 .photos__item-wrap_size_m{
   height: 430px;
 }
+
 /* About styles end */
+
+/* Mobile-up start */
+
+.mobile-up__wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobile-up__content{
+  width: calc(50% - 50px);
+  height: 630px;
+}
+
+.mobile-up__desc-wrap{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  gap: 40px;
+}
+
+.mobile-up__desc{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--text-dark);
+}
+
+.mobile-up__btn-wrap{
+  display: flex;
+  gap: 20px;
+}
+
+.btn-app{
+  display: flex;
+  gap: 8px;
+  width: 200px;
+  height: 64px;
+  padding: 12px 20px;
+  border: 1px solid var(--border-dark);
+  border-radius: 32px;
+  color: var(--text-dark);
+  transition: 0.5s all;
+  cursor: pointer;
+}
+
+.btn-app__ico{
+  width: 36px;
+  height: 36px;
+  transition: 0.5s all;
+}
+
+.btn-app__ico_app-store{
+  background: url(../img/svg/apple.svg);
+}
+
+.btn-app__ico_google-play{
+  background: url(../img/svg/google-play.svg);
+}
+
+.btn-app__desc{
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.btn-app__title{
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.btn-app__text-wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.btn-app:hover .btn-app__ico_app-store{
+  background: url(../img/svg/apple-ligth.svg);
+}
+
+.btn-app:hover .btn-app__ico_google-play{
+  background: url(../img/svg/google-play-ligth.svg);
+}
+
+.btn-app:hover{
+  background-color: var(--background-container);
+  color:var(--text-ligth);
+}
+/* Mobile-up end */
