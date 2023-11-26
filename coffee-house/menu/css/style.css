@@ -142,7 +142,8 @@ a{
 }
 
 .menu-btn-wrap .nav-list__line,
-.nav-list__item:hover .nav-list__line{
+.nav-list__item:hover .nav-list__line,
+.nav-list__link:focus + .nav-list__line{
   width: 100%;
 }
 
@@ -210,5 +211,11 @@ a{
 .menu-controls__radio:checked + .menu-controls__item,
 .menu-controls__item:focus{
   background-color: var(--background-container);
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: auto;
 }
 /* Menu styles end */
