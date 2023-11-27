@@ -103,6 +103,15 @@ a{
 
 .logo__link{
   display: flex;
+  border-radius: 30px;
+  transition: 0.5s all;
+}
+
+.logo__link:hover,
+.logo__link:focus{
+  background-color: var(--text-accent);
+  scale: 1.1;
+
 }
 
 .logo__link_disabled{
@@ -215,6 +224,10 @@ a{
   background-color: var(--background-container);
 }
 
+.menu-controls__radio:checked + .menu-controls__item{
+  cursor: default;
+}
+
 .menu__grid{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -228,6 +241,7 @@ a{
   border-radius: 40px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .menu-card__img-wrap{
@@ -238,7 +252,6 @@ a{
 
 .menu-card__img{
   scale: 1.1;
-  cursor: pointer;
   transition: 0.8s all;
 }
 
