@@ -189,7 +189,7 @@ a{
   transition: 0.5s all;
 }
 
-.menu-controls__ico-wrap{
+.menu-controls__ico{
   width: 30px;
   height: 30px;
   border: 1px solid var(--border-ligth);
@@ -198,8 +198,6 @@ a{
 }
 
 .menu-controls__ico{
-  height: 100%;
-  width: 100%;
   object-fit:none;
 }
 
