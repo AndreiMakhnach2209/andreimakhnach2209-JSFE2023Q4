@@ -233,6 +233,7 @@ a{
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   gap: 40px;
+  transition: 0.5s linear;
 }
 
 .menu-card{
