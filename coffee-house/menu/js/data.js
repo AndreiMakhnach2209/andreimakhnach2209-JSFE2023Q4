@@ -11,6 +11,7 @@ function resetMenu () {
   menuGrid.remove();
   menuGrid = document.createElement('div');
   menuGrid.classList.add('menu__grid');
+  menuGrid.classList.add('opacity');
   menu.append(menuGrid);
 }
 
@@ -52,10 +53,16 @@ function filterData (category) {
 }
 
 formCategories.addEventListener('change', (event) => {
-  resetMenu();
-  filterData(categoryChange(event)).forEach((item, index) => {
-    createMenuCard(item, index);
-  });
+  menuGrid.classList.add('opacity');
+  menuGrid.addEventListener('transitionend', () => {
+    resetMenu();
+    filterData(categoryChange(event)).forEach((item, index) => {
+      createMenuCard(item, index);
+    });
+    setTimeout(() => {
+      menuGrid.classList.remove('opacity')
+    }, 0);
+  }, {once: true});
 });
 
 filterData('coffee').forEach((item, index) => {
