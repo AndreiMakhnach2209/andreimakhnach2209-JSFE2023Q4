@@ -224,6 +224,18 @@ a{
   background-color: var(--background-container);
 }
 
+.menu-controls__item:hover .menu-controls__desc,
+.menu-controls__radio:checked + .menu-controls__item,
+.menu-controls__item:focus .menu-controls__item{
+  color: var(--text-ligth);
+}
+
+.menu-controls__item:hover .menu-controls__ico,
+.menu-controls__radio:checked + .menu-controls__ico,
+.menu-controls__item:focus .menu-controls__ico{
+  background-color: var(--background-body);
+}
+
 .menu-controls__radio:checked + .menu-controls__item{
   cursor: default;
 }
