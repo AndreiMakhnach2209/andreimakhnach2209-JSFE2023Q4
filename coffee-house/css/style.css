@@ -653,17 +653,13 @@ button{
 /* Media start */
 
 @media screen and (max-width: 768px) {
-  .wrapper{
-    padding: 0 40px;
-  }
-
   .nav,
   .menu-btn-wrap{
     display: none;
   }
 
   .burger-btn{
-    display: initial
+    display: initial;
   }
 
   .intro-background{
