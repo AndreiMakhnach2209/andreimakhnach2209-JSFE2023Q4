@@ -63,8 +63,7 @@ button{
 }
 
 .wrapper{
-  max-width: 1360px;
-  margin: 0 auto;
+  padding: 0 40px;
 }
 
 .section{
@@ -509,6 +508,10 @@ button{
 
 /* Footer styles start */
 
+.footer{
+  margin: 0 40px;
+}
+
 .footer__wrapper{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -707,11 +710,8 @@ button{
   }
 
   .mobile-up__pic{
-    padding: 0 29px;
-  }
-
-  .footer{
-    margin: 0 40px;
+    display: block;
+    margin: 0 auto;
   }
 
   .footer__wrapper{
