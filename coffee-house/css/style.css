@@ -701,6 +701,19 @@ button{
 
 }
 
+.header__wrap_burger .burger-btn__line{
+  inset: 50%;
+  left: 14px;
+}
+
+.header__wrap_burger .burger-btn__line:first-child{
+  transform: rotate(45deg);
+}
+
+.header__wrap_burger .burger-btn__line:last-child{
+  transform: rotate(-45deg);
+}
+
 /* Burger styles end */
 
 /* Media start */
@@ -815,6 +828,19 @@ button{
     padding: 60px 16px;
     gap: 40px;
   }
+
+  .header__wrap_burger .logo{
+    position: absolute;
+    top: 20px;
+    left: 16px;
+  }
+  
+  .header__wrap_burger .burger-btn{
+    position: absolute;
+    top: 28px;
+    right: 16px;
+  }
+  
 }
 
 /* Media end */
