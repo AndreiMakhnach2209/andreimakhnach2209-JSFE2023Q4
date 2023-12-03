@@ -651,6 +651,58 @@ button{
 
 /* Footer styles end */
 
+/* Burger styles start */
+
+.header__wrap_burger{
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: start;
+  gap: 85px;
+  padding: 160px 40px 60px 40px;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-body);
+  z-index: 10;
+  font-size: 32px;
+  line-height: 125%;
+}
+
+.header__wrap_burger .nav-list{
+  flex-direction: column;
+  gap: 54px;
+}
+
+.header__wrap_burger .nav{
+  display: initial;
+}
+
+.header__wrap_burger .menu-btn-wrap{
+  display: flex;
+}
+
+.header__wrap_burger .logo{
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}
+
+.header__wrap_burger .burger-btn{
+  position: absolute;
+  top: 28px;
+  right: 40px;
+}
+
+.header__wrap_burger .menu-btn__text::after{
+  content: url(../img/svg/coffee-cup-large.svg);
+  padding-left: 16px;
+  top: 9px;
+
+}
+
+/* Burger styles end */
+
 /* Media start */
 
 @media screen and (max-width: 768px) {
