@@ -337,6 +337,7 @@ a{
   background: url(../../img/svg/refresh.svg) no-repeat center;
   cursor: pointer;
   transition: 0.5s all;
+  display: none;
 }
 
 /* Menu styles end */
@@ -507,6 +508,10 @@ a{
     padding: 100px 60px;
     grid-template-columns: none;
     grid-template-rows: auto;
+  }
+
+  .refresh-btn{
+    display: block;
   }
 
   .contacts{
