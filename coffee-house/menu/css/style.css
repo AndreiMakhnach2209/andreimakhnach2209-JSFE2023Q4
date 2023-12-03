@@ -106,10 +106,14 @@ a{
   transition: 0.5s all;
 }
 
-.logo__link:hover,
-.logo__link:focus{
-  background-color: var(--text-accent);
-  scale: 1.1;
+@media (hover: hover){
+
+  .logo__link:hover,
+  .logo__link:focus{
+    background-color: var(--text-accent);
+    scale: 1.1;
+
+  }
 
 }
 
@@ -153,11 +157,20 @@ a{
   align-items: center;
 }
 
-.menu-btn-wrap .nav-list__line,
-.nav-list__item:hover .nav-list__line,
-.nav-list__link:focus + .nav-list__line{
+@media (hover: hover){
+
+  .menu-btn-wrap .nav-list__line,
+  .nav-list__item:hover .nav-list__line,
+  .nav-list__link:focus + .nav-list__line{
+    width: 100%;
+  }
+
+}
+
+.menu-btn-wrap .nav-list__line{
   width: 100%;
 }
+
 
 .menu-btn{
   cursor: default;
@@ -244,21 +257,34 @@ a{
   color: var(--text-dark);
 }
 
-.menu-controls__item:hover,
-.menu-controls__radio:checked + .menu-controls__item,
-.menu-controls__item:focus{
+@media (hover: hover){
+
+  .menu-controls__item:hover,
+  .menu-controls__item:focus{
+    background-color: var(--background-container);
+  }
+
+  .menu-controls__item:hover .menu-controls__desc,
+  .menu-controls__item:focus .menu-controls__desc{
+    color: var(--text-ligth);
+  }
+
+  .menu-controls__item:hover .menu-controls__ico,
+  .menu-controls__item:focus .menu-controls__ico{
+    background-color: var(--background-body);
+  }
+
+}
+
+.menu-controls__radio:checked + .menu-controls__item{
   background-color: var(--background-container);
 }
 
-.menu-controls__item:hover .menu-controls__desc,
-.menu-controls__radio:checked + * .menu-controls__item,
-.menu-controls__item:focus .menu-controls__desc{
+.menu-controls__radio:checked + * .menu-controls__item{
   color: var(--text-ligth);
 }
 
-.menu-controls__item:hover .menu-controls__ico,
-.menu-controls__radio:checked + .menu-controls__ico,
-.menu-controls__item:focus .menu-controls__ico{
+.menu-controls__radio:checked + .menu-controls__ico{
   background-color: var(--background-body);
 }
 
@@ -296,9 +322,12 @@ a{
   transition: 0.8s all;
 }
 
-.menu-card:focus .menu-card__img,
-.menu-card:hover .menu-card__img{
-  scale: 1;
+@media (hover: hover){
+
+  .menu-card:focus .menu-card__img,
+  .menu-card:hover .menu-card__img{
+    scale: 1;
+  }
 }
 
 .menu-card__desc-wrap{
@@ -387,11 +416,6 @@ a{
   transition: 0.5s all;
 }
 
-.socies-list__link:hover,
-.socies-list__link:focus{
-    background-color: var(--background-body);
-}
-
 .socies-list__link_twitter{
   background-image: url(../../img/svg/twitter.svg);
 }
@@ -404,19 +428,28 @@ a{
   background-image: url(../../img/svg/facebook.svg);
 }
 
-.socies-list__link_twitter:focus,
-.socies-list__link_twitter:hover{
-  background-image: url(../../img/svg/twitter-dark.svg);
-}
+@media (hover: hover){
 
-.socies-list__link_instagram:focus,
-.socies-list__link_instagram:hover{
-  background-image: url(../../img/svg/instagram-dark.svg);
-}
+  .socies-list__link:hover,
+  .socies-list__link:focus{
+      background-color: var(--background-body);
+  }
 
-.socies-list__link_facebook:hover,
-.socies-list__link_facebook:focus{
-  background-image: url(../../img/svg/facebook-dark.svg);
+  .socies-list__link_twitter:focus,
+  .socies-list__link_twitter:hover{
+    background-image: url(../../img/svg/twitter-dark.svg);
+  }
+
+  .socies-list__link_instagram:focus,
+  .socies-list__link_instagram:hover{
+    background-image: url(../../img/svg/instagram-dark.svg);
+  }
+
+  .socies-list__link_facebook:hover,
+  .socies-list__link_facebook:focus{
+    background-image: url(../../img/svg/facebook-dark.svg);
+  }
+
 }
 
 .footer__content_title{
@@ -479,9 +512,13 @@ a{
   transition: 0.5s all;
 }
 
-.contacts__item:hover .contacts__line,
-.contacts__link:focus + .contacts__line{
-  width: 100%;
+@media (hover: hover){
+
+  .contacts__item:hover .contacts__line,
+  .contacts__link:focus + .contacts__line{
+    width: 100%;
+  }
+
 }
 
 /* Footer styles end */
@@ -584,6 +621,13 @@ a{
   }
 }
 
+@media screen and (max-width: 400px) {
+  .menu__grid{
+    grid-template-columns: auto;
+    max-height: 2144px;
+  }
+}
+
 
 @media screen and (max-width: 380px) {
   .wrapper{
@@ -592,16 +636,11 @@ a{
 
   .section__title{
     font-size: 32px;
-  line-height: 125%;
+    line-height: 125%;
   }
 
   .menu-controls{
     gap: 8px;
-  }
-
-  .menu__grid{
-    grid-template-columns: auto;
-    max-height: 2144px;
   }
 
   .footer{
