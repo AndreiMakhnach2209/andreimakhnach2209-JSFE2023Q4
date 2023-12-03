@@ -513,4 +513,10 @@ a{
   }
 }
 
+
+@media screen and (max-width: 380px) {
+  .wrapper{
+    padding: 0 16px;
+  }
+}
 /* Media end */
