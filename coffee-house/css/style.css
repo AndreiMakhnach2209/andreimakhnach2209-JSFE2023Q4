@@ -781,8 +781,9 @@ button{
   }
 
   @media (hover: hover){
-    .photos__item:hover{
-    scale: 0.95;
+      .photos__item:hover{
+      scale: 0.95;
+    }
   }
 
   .photos__item-wrap:nth-child(3),
@@ -848,10 +849,10 @@ button{
   }
 
   @media (hover: hover){
-    .photos__item:hover{
-    scale: 1.1;
+      .photos__item:hover{
+      scale: 1.1;
+    }
   }
-}
 
 
   .mobile-up__wrapper{
