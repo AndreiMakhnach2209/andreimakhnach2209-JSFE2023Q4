@@ -396,19 +396,22 @@ button{
   overflow: hidden;
   border-radius: 20px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .photos__item{
-  scale: 1.1;
+  max-width: none;
+  min-height: 100%;
   transition: 0.5s;
 }
 
 @media (hover: hover){
     .photos__item:hover{
-    scale: 1;
+    scale: 0.9;
   }
 }
+
 .photos__item-wrap_size_l{
   height: 590px;
 }
@@ -777,13 +780,14 @@ button{
     min-width: 100%;
   }
 
+  @media (hover: hover){
+    .photos__item:hover{
+    scale: 0.95;
+  }
+
   .photos__item-wrap:nth-child(3),
   .photos__item-wrap:nth-child(2){
     display: none;
-  }
-
-  .photos__item{
-    scale: 1.05;
   }
 
   .mobile-up__wrapper{
@@ -842,6 +846,13 @@ button{
     object-fit: cover;
     scale: 1.23;
   }
+
+  @media (hover: hover){
+    .photos__item:hover{
+    scale: 1.1;
+  }
+}
+
 
   .mobile-up__wrapper{
     gap: 40px;
