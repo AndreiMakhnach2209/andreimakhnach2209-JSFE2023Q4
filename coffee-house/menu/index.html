@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="icon" href="../img/svg/favicon.svg">
   <title>Coffee menu</title>
@@ -48,10 +47,14 @@
           </ul>
         </nav>
         <div class="menu-btn-wrap">
-          <a href="#!" class="menu-btn">
+          <a href="#!" class="menu-btn" tabindex="-1">
             <span class="menu-btn__text">Menu</span>
           </a>
           <div class="nav-list__line"></div>
+        </div>
+        <div class="burger-btn">
+          <div class="burger-btn__line"></div>
+          <div class="burger-btn__line"></div>
         </div>
       </div>
     </div>
@@ -92,8 +95,11 @@
             
           </form>
 
-          <div class="menu__grid">
-          </div>
+          <div class="menu__grid"></div>
+
+          <button class="refresh-btn"></button>
+
+
         </div>
       </div>
     </section>
