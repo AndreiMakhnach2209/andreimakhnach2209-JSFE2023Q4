@@ -1,3 +1,7 @@
+.section_fixed{
+  position: fixed;
+}
+
 .burger-btn{
   width: 44px;
   height: 44px;
@@ -33,74 +37,85 @@
   bottom: 18px;
 }
 
+.header__menu{
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Burger styles start */
 
-.header__wrap_burger{
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  justify-content: start;
-  gap: 85px;
-  padding: 160px 40px 60px 40px;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--background-body);
-  z-index: 10;
-  font-size: 32px;
-  line-height: 125%;
-}
-
-.header__wrap_burger .nav-list{
-  flex-direction: column;
-  gap: 54px;
-}
-
-.header__wrap_burger .nav{
-  display: initial;
-}
-
-.header__wrap_burger .menu-btn-wrap{
-  display: flex;
-}
-
-.header__wrap_burger .logo{
-  position: absolute;
-  top: 20px;
-  left: 40px;
-}
-
-.header__wrap_burger .burger-btn{
-  position: absolute;
-  top: 28px;
-  right: 40px;
-}
-
-.header__wrap_burger .menu-btn__text::after{
-  content: url(../img/svg/coffee-cup-large.svg);
-  padding-left: 16px;
-  top: 9px;
-
-}
-
-.header__wrap_burger .burger-btn__line{
-  inset: 50%;
-  left: 14px;
-}
-
-.header__wrap_burger .burger-btn__line:first-child{
-  transform: rotate(45deg);
-}
-
-.header__wrap_burger .burger-btn__line:last-child{
-  transform: rotate(-45deg);
-}
-
-/* Burger styles end */
-
-/* Media start */
-
 @media screen and (max-width: 768px) {
+
+  .header__menu{
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 120vw;
+    justify-content: start;
+    gap: 85px;
+    padding: 80px 40px 60px 40px;
+    width: 100vw;
+    background-color: var(--background-body);
+    z-index: 9;
+    font-size: 32px;
+    line-height: 125%;
+    transition: 0.8s all;
+  }
+
+  .header__menu_visible{
+    left: 0;
+  }
+  .header__menu .nav-list{
+    flex-direction: column;
+    gap: 54px;
+  }
+
+  .header__menu .nav{
+    display: initial;
+  }
+
+  .header__menu .menu-btn-wrap{
+    display: flex;
+  }
+
+  /* .header__wrap_burger .logo{
+    position: absolute;
+    top: 20px;
+    left: 40px;
+  }
+
+  .header__wrap_burger .burger-btn{
+    position: absolute;
+    top: 28px;
+    right: 40px;
+  } */
+
+  .header__menu .menu-btn__text::after{
+    content: url(../img/svg/coffee-cup-large.svg);
+    padding-left: 16px;
+    top: 9px;
+
+  }
+
+  .burger-btn_active .burger-btn__line{
+    inset: 50%;
+    left: 33%;
+  }
+
+  .burger-btn_active .burger-btn__line:first-child{
+    transform: rotate(45deg);
+  }
+
+  .burger-btn_active .burger-btn__line:last-child{
+    transform: rotate(-45deg);
+  }
+
+  /* Burger styles end */
+
+  /* Media start */
+
 
   .burger-btn{
     display: initial;

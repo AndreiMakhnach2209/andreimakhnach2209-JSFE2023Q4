@@ -55,6 +55,7 @@ a{
   margin: 0 auto;
   background-color: var(--background-body);
   padding: 20px 0 40px 0;
+  overflow-x: hidden;
 }
 
 .wrapper{
