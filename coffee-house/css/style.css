@@ -291,6 +291,8 @@ button{
 
 .slider__content{
   display: flex;
+  position: relative;
+  transition: 0.5s all;
 }
 
 .slider__item{
