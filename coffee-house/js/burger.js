@@ -6,10 +6,15 @@ const footer  = document.querySelector('.footer');
 burgerBtn.addEventListener('click', () => {
   burgerBtn.classList.toggle('burger-btn_active');
   burgerMenu.classList.toggle('header__menu_visible');
-  burgerMenu.addEventListener('transitionend', () => {
+  if (burgerMenu.classList.contains('header__menu_visible')){
+    burgerMenu.addEventListener('transitionend', () => {
+      main.classList.toggle('section_fixed');
+      footer.classList.toggle('section_fixed');
+    }, {once:true});
+  }else{
     main.classList.toggle('section_fixed');
     footer.classList.toggle('section_fixed');
-  }, {once:true});
+  }
 })
 
 const navLinks = document.querySelectorAll('.nav-list__link');
@@ -18,5 +23,5 @@ navLinks.forEach((item) =>
     burgerBtn.classList.remove('burger-btn_active');
     burgerMenu.classList.remove('header__menu_visible');
     main.classList.remove('section_fixed');
-    footer.classList.remove('section_fixed');
+    // footer.classList.remove('section_fixed');
   }))

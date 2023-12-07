@@ -51,20 +51,24 @@
   .header__menu{
     flex-direction: column;
     position: absolute;
+    overflow: hidden;
     top: 80px;
     left: 120vw;
     justify-content: start;
     gap: 85px;
-    padding: 80px 40px 60px 40px;
-    width: 100vw;
+    padding: 0;
+    width: 0;
+    min-height: 150vw;
     background-color: var(--background-body);
     z-index: 9;
     font-size: 32px;
-    line-height: 125%;
-    transition: 0.8s all;
+    line-height: 105%;
+    transition: 0.5s all;
   }
 
   .header__menu_visible{
+    width: 100vw;
+    padding: 80px 40px 60px 40px;
     left: 0;
   }
   .header__menu .nav-list{
