@@ -25,3 +25,11 @@ navLinks.forEach((item) =>
     main.classList.remove('section_fixed');
     // footer.classList.remove('section_fixed');
   }))
+
+window.addEventListener('resize', (event) => {
+  if (event.target.screen.width > 768) {
+    burgerBtn.classList.remove('burger-btn_active');
+    burgerMenu.classList.remove('header__menu_visible');
+    main.classList.remove('section_fixed');
+  }
+})

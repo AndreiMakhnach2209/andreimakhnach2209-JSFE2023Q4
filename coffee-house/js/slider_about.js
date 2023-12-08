@@ -94,6 +94,5 @@ slides.forEach((item) => {
     if (downX < upX) prevSlide();
     clearInterval(fillingControl);
   });
-
 })
 
