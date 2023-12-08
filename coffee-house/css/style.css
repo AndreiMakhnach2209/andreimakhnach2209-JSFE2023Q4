@@ -272,13 +272,13 @@ button{
 
 @media (hover: hover){
 
-  .slider__btn_left:hover,
-  .slider__btn_left:focus{
+  .slider__btn_left:hover{
+  /* .slider__btn_left:focus{ */
       background:url(../img/svg/arrow-left-ligth.svg) var(--background-container) no-repeat center;
   }
 
-  .slider__btn_rigth:hover,
-  .slider__btn_rigth:focus{
+  .slider__btn_rigth:hover{
+  /* .slider__btn_rigth:focus{ */
       background: url(../img/svg/arrow-right-ligth.svg) var(--background-container) no-repeat center;
   }
 
@@ -303,6 +303,11 @@ button{
 .slide{
   max-width: 480px;
   margin: 0 auto;
+  user-select: none;
+}
+
+.slide *{
+  pointer-events: none;
 }
 
 .slide__pic{
@@ -344,11 +349,9 @@ button{
   width: 40px;
   height: 4px;
   border-radius: 2px;
-  background-color: var(--border-ligth);
-}
-
-.slider__control_active{
-  background-color: var(--border-dark);
+  background-image: linear-gradient(
+    to right, var(--border-dark) 0, var(--border-ligth) 0 100%
+  );
 }
 
 /* Favorites styles end */
