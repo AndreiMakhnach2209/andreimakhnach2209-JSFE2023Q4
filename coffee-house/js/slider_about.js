@@ -64,35 +64,36 @@ pagingInterval();
 let downX, upX;
 
 slides.forEach((item) => {
-  item.addEventListener('pointerover', (event) => {
+  item.addEventListener('mouseover', (event) => {
     clearInterval(fillingControl);
     downX = 0;
     upX = 0;
   });
-  item.addEventListener('pointerout', () => {
+  item.addEventListener('mouseout', () => {
     pagingInterval(progressValue);
   });
 
-  item.addEventListener('pointerdown', (event) => {
+  item.addEventListener('mousedown', (event) => {
     downX = event.clientX;
     clearInterval(fillingControl);
-    if (navigator.userAgent.toLowerCase().includes('mobile')) {
-      item.addEventListener('pointermove', (event) => {
-        if (event.movementX <= 0) nextSlide();
-        else prevSlide();
-        clearInterval(fillingControl);
-      }, {once: true});
-    }
   });
-  item.addEventListener('pointerup', (event) => {
+  item.addEventListener('mouseup', (event) => {
     upX = event.clientX;
     if (downX > upX) nextSlide();
     if (downX < upX) prevSlide();
     clearInterval(fillingControl);
   });
-  
+
+  item.addEventListener('touchstart', (event) => {
+    downX = event.touches[0].clientX;
+    clearInterval(fillingControl);
+  });
+  item.addEventListener('touchend', (event) => {
+    upX = event.changedTouches[0].clientX;
+    if (downX > upX) nextSlide();
+    if (downX < upX) prevSlide();
+    clearInterval(fillingControl);
+  });
 
 })
-const userAgent = navigator.userAgent;
-console.log(userAgent);
 
