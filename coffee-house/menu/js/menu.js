@@ -81,7 +81,6 @@ function displayingLoadMoreBtn () {
     loadMoreBtn.classList.remove('hidden');
   }
 
-  console.log(menu.lastChild.offsetTop + menu.lastChild.offsetHeight, menu.offsetHeight);
 }
 
 

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="../css/burger.css">
+  <link rel="stylesheet" href="./css/modal.css">
   <link rel="icon" href="../img/svg/favicon.svg">
   <title>Coffee menu</title>
 </head>
@@ -164,7 +165,98 @@
     </footer>
     <!-- Footer end -->
 
+    <div class="backdrop">
+      <div class="modal">
+        <div class="modal__pic-wrap">
+          <img src="./data/img/coffee-1.jpg" alt="" class="modal__pic">
+        </div>
+        <div class="modal__desc-wrap">
+          <div class="desc-wrap_item">
+            <h2 class="modal__coffee-title">
+              Irish coffee
+            </h2>
+            <div class="modal__coffee-desc">
+              Fragrant black coffee with Jameson Irish whiskey and whipped milk
+            </div>
+          </div>
+
+          <div class="modal__form-wrap">
+
+            <h2 class="modal-form__title">
+              Size
+            </h2>
+
+            <form class="modal__form modal-form" name="modal-form-size">
+              <input type="radio" class="modal-form__input" name="modal-input-size" id="size_s" checked>
+              <label for="size_s" class="modal-form__item">
+                <span class="modal-form__ico">S</span>
+                <span class="modal-form__text">200 ml</span>
+              </label>
+              
+              <input type="radio" class="modal-form__input" name="modal-input-size" id="size_m">
+              <label for="size_m" class="modal-form__item">
+                <span class="modal-form__ico">M</span>
+                <span class="modal-form__text">300 ml</span>
+              </label>
+
+              <input type="radio" class="modal-form__input" name="modal-input-size" id="size_l">
+              <label for="size_l" class="modal-form__item">
+                <span class="modal-form__ico">L</span>
+                <span class="modal-form__text">400 ml</span>
+              </label>
+            </form>
+
+          </div>
+
+          <div class="modal__form-wrap">
+
+            <h2 class="modal-form__title">
+              Additives
+            </h2>
+
+            <form class="modal__form modal-form" name="modal-form-additives">
+              <input type="checkbox" class="modal-form__input" name="modal-input-additive" id="additive_1">
+              <label for="additive_1" class="modal-form__item">
+                <span class="modal-form__ico">1</span>
+                <span class="modal-form__text">Sugar</span>
+              </label>
+              
+              <input type="checkbox" class="modal-form__input" name="modal-input-additive" id="additive_2">
+              <label for="additive_2" class="modal-form__item">
+                <span class="modal-form__ico">2</span>
+                <span class="modal-form__text">Cinnamon</span>
+              </label>
+
+              <input type="checkbox" class="modal-form__input" name="modal-input-additive" id="additive_3">
+              <label for="additive_3" class="modal-form__item">
+                <span class="modal-form__ico">3</span>
+                <span class="modal-form__text">Syrup</span>
+              </label>
+            </form>
+
+          </div>
+
+          <div class="modal__cost cost-wrap">
+            <p class="cost-wrap__tile">Total:</p>
+            <span class="cost-wrap__value">$7.00</span>
+          </div>
+
+          <p class="modal__alert">
+            The cost is not final. Download our mobile app to see the final price and
+            place your order. Earn loyalty points and enjoy your favorite coffee with
+            up to 20% discount.
+          </p>
+
+          <div class="modal__btn-close">
+            Close
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <script src="./js/menu.js" type="module"></script>
     <script src="../js/burger.js"></script>
+    <script src="./js/modal.js" type="module"></script>
 </body>
 </html>
