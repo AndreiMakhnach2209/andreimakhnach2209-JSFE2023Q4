@@ -258,8 +258,12 @@ a{
   color: var(--text-ligth);
 }
 
-.menu-controls__radio:checked + .menu-controls__ico{
+.menu-controls__radio:checked + .menu-controls__item .menu-controls__ico{
   background-color: var(--background-body);
+}
+
+.menu-controls__radio:checked + .menu-controls__item .menu-controls__desc{
+  color: var(--text-ligth);
 }
 
 .menu-controls__radio:checked + .menu-controls__item{
@@ -271,11 +275,13 @@ a{
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: auto;
   gap: 40px;
-  transition: 0.5s linear;
+  transition: 0.5s all;
+  position: relative;
 }
 
 .menu-card{
   max-width: 310px;
+  min-width: 100%;
   height: 506px;
   border: 1px solid var(--border-ligth);
   border-radius: 40px;
@@ -340,7 +346,14 @@ a{
   background: url(../../img/svg/refresh.svg) no-repeat center;
   cursor: pointer;
   transition: 0.5s all;
-  display: none;
+  visibility: hidden;;
+  margin: 0 auto;
+  margin-top: 40px;
+  display: block;
+}
+
+.refresh-btn:hover{
+  scale: 1.1;
 }
 
 /* Menu styles end */
@@ -510,7 +523,7 @@ a{
   }
 
   .menu__grid{
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
     max-height: 1052px;
     overflow: hidden;
   }
@@ -522,7 +535,11 @@ a{
   }
 
   .refresh-btn{
-    display: block;
+    visibility: initial;
+  }
+
+  .hidden{
+    visibility: hidden;
   }
 
   .contacts{
@@ -574,4 +591,9 @@ a{
   }
 
 }
+
+.menu__grid_full{
+  max-height: fit-content;
+}
+
 /* Media end */

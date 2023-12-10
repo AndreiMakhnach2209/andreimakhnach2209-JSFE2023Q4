@@ -1,12 +1,12 @@
 import menuData from '../data/products.json' assert {type: 'json'};
 const formCategories = document.forms.menuControls;
 console.log(menuData);
-let menuGrid = document.querySelector('.menu__grid');
 
 
 const categoryChange = (event) => event.target.attributes.id.value;
 
 function resetMenu () {
+  let menuGrid = document.querySelector('.menu__grid');
   const menu = document.querySelector('.menu');
   menuGrid.remove();
   menuGrid = document.createElement('div');
@@ -16,6 +16,7 @@ function resetMenu () {
 }
 
 function createMenuCard (item, index) {
+  const menuGrid = document.querySelector('.menu__grid');
   const menuCard = document.createElement('div');
   menuCard.classList.add('menu-card');
   menuCard.tabIndex = '0';
@@ -46,6 +47,7 @@ function createMenuCard (item, index) {
   price.classList.add('menu-card__price');
   price.innerHTML = '$' + item.price;
   descWrap.append(price);
+  initLoadMoreBtn();
 }
 
 function filterData (category) {
@@ -53,6 +55,7 @@ function filterData (category) {
 }
 
 formCategories.addEventListener('change', (event) => {
+  const menuGrid = document.querySelector('.menu__grid');
   menuGrid.classList.add('opacity');
   menuGrid.addEventListener('transitionend', () => {
     resetMenu();
@@ -60,6 +63,7 @@ formCategories.addEventListener('change', (event) => {
       createMenuCard(item, index);
     });
     setTimeout(() => {
+      const menuGrid = document.querySelector('.menu__grid');
       menuGrid.classList.remove('opacity')
     }, 0);
   }, {once: true});
@@ -68,3 +72,31 @@ formCategories.addEventListener('change', (event) => {
 filterData('coffee').forEach((item, index) => {
   createMenuCard(item, index);
 });
+
+function displayingLoadMoreBtn () {
+  const menu = document.querySelector('.menu__grid'),
+        loadMoreBtn = document.querySelector('.refresh-btn');
+
+  if (menu.lastChild.offsetTop + menu.lastChild.offsetHeight <= menu.offsetHeight) {
+    loadMoreBtn.classList.add('hidden');
+  }else{
+    loadMoreBtn.classList.remove('hidden');
+  }
+
+  console.log(menu.lastChild.offsetTop + menu.lastChild.offsetHeight, menu.offsetHeight);
+}
+
+
+function initLoadMoreBtn () {
+  const menu = document.querySelector('.menu__grid'),
+        loadMoreBtn = document.querySelector('.refresh-btn');
+
+    displayingLoadMoreBtn();
+
+  loadMoreBtn.addEventListener('click', () => {
+    menu.classList.add('menu__grid_full');
+    displayingLoadMoreBtn();
+  });
+}
+
+window.addEventListener('resize', displayingLoadMoreBtn);
