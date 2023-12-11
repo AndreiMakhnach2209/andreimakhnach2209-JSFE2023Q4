@@ -755,6 +755,11 @@ button{
     font-size: 32px;
     line-height: 125%;
   }
+
+  .slider__btn{
+    display: none;
+  }
+
 }
 
 @media screen and (max-width: 380px) {
@@ -764,10 +769,6 @@ button{
 
   .intro-background{
     padding: 60px 16px;
-  }
-
-  .slider__btn{
-    display: none;
   }
 
   .photos__item{
