@@ -18,7 +18,8 @@ burgerBtn.addEventListener('click', () => {
 })
 
 const navLinks = document.querySelectorAll('.nav-list__link');
-navLinks.forEach((item) =>
+const menuBtn = document.querySelector('.menu-btn');
+[menuBtn, ...navLinks].forEach((item) =>
   item.addEventListener('click',() => {
     burgerBtn.classList.remove('burger-btn_active');
     burgerMenu.classList.remove('header__menu_visible');
