@@ -93,6 +93,7 @@ slides.forEach((item) => {
     if (downX > upX) nextSlide();
     if (downX < upX) prevSlide();
     clearInterval(fillingControl);
+    pagingInterval(progressValue);
   });
 })
 
