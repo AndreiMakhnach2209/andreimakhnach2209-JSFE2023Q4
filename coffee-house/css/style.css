@@ -60,6 +60,7 @@ button{
   margin: 0 auto;
   background-color: var(--background-body);
   padding: 20px 0 40px 0;
+  overflow-x: hidden;
 }
 
 .wrapper{
@@ -154,32 +155,6 @@ button{
   }
 }
 
-.burger-btn{
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--border-dark);
-  border-radius: 50%;
-  position: relative;
-  display: none;
-}
-
-.burger-btn__line{
-  width: 16px;
-  border: 1px solid var(--border-dark);
-  border-radius: 1px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-}
-
-.burger-btn__line:first-child{
-  top: 18px;
-}
-
-.burger-btn__line:last-child{
-  bottom: 18px;
-}
-
 /* Header styles end */
 
 /* Intro styles start */
@@ -188,10 +163,24 @@ button{
   max-width: 100%;
   padding: 100px;
   border-radius: 40px;
-  background: url(../img/intro-pic.png), lightgray 50%;
+  /* background: url(../img/intro-pic.png), lightgray 50%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center; */
+  background-color: var(--background-container);
+  position: relative;
+  overflow: hidden;
+}
+
+.intro__video{
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .intro-content{
@@ -201,6 +190,8 @@ button{
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
+  position: relative;
+  z-index: 5;
 }
 
 .intro-content__title{
@@ -297,13 +288,13 @@ button{
 
 @media (hover: hover){
 
-  .slider__btn_left:hover,
-  .slider__btn_left:focus{
+  .slider__btn_left:hover{
+  /* .slider__btn_left:focus{ */
       background:url(../img/svg/arrow-left-ligth.svg) var(--background-container) no-repeat center;
   }
 
-  .slider__btn_rigth:hover,
-  .slider__btn_rigth:focus{
+  .slider__btn_rigth:hover{
+  /* .slider__btn_rigth:focus{ */
       background: url(../img/svg/arrow-right-ligth.svg) var(--background-container) no-repeat center;
   }
 
@@ -316,6 +307,8 @@ button{
 
 .slider__content{
   display: flex;
+  position: relative;
+  transition: 0.5s all;
 }
 
 .slider__item{
@@ -326,6 +319,11 @@ button{
 .slide{
   max-width: 480px;
   margin: 0 auto;
+  user-select: none;
+}
+
+.slide *{
+  pointer-events: none;
 }
 
 .slide__pic{
@@ -367,11 +365,9 @@ button{
   width: 40px;
   height: 4px;
   border-radius: 2px;
-  background-color: var(--border-ligth);
-}
-
-.slider__control_active{
-  background-color: var(--border-dark);
+  background-image: linear-gradient(
+    to right, var(--border-dark) 0, var(--border-ligth) 0 100%
+  );
 }
 
 /* Favorites styles end */
@@ -527,6 +523,7 @@ button{
 
 .footer{
   margin: 0 40px;
+  z-index: 0;
 }
 
 .footer__wrapper{
@@ -679,81 +676,12 @@ button{
 
 /* Footer styles end */
 
-/* Burger styles start */
-
-.header__wrap_burger{
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  justify-content: start;
-  gap: 85px;
-  padding: 160px 40px 60px 40px;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--background-body);
-  z-index: 10;
-  font-size: 32px;
-  line-height: 125%;
-}
-
-.header__wrap_burger .nav-list{
-  flex-direction: column;
-  gap: 54px;
-}
-
-.header__wrap_burger .nav{
-  display: initial;
-}
-
-.header__wrap_burger .menu-btn-wrap{
-  display: flex;
-}
-
-.header__wrap_burger .logo{
-  position: absolute;
-  top: 20px;
-  left: 40px;
-}
-
-.header__wrap_burger .burger-btn{
-  position: absolute;
-  top: 28px;
-  right: 40px;
-}
-
-.header__wrap_burger .menu-btn__text::after{
-  content: url(../img/svg/coffee-cup-large.svg);
-  padding-left: 16px;
-  top: 9px;
-
-}
-
-.header__wrap_burger .burger-btn__line{
-  inset: 50%;
-  left: 14px;
-}
-
-.header__wrap_burger .burger-btn__line:first-child{
-  transform: rotate(45deg);
-}
-
-.header__wrap_burger .burger-btn__line:last-child{
-  transform: rotate(-45deg);
-}
-
-/* Burger styles end */
-
 /* Media start */
 
 @media screen and (max-width: 768px) {
   .nav,
   .menu-btn-wrap{
     display: none;
-  }
-
-  .burger-btn{
-    display: initial;
   }
 
   .intro-background{
@@ -868,18 +796,6 @@ button{
     gap: 40px;
   }
 
-  .header__wrap_burger .logo{
-    position: absolute;
-    top: 20px;
-    left: 16px;
-  }
-  
-  .header__wrap_burger .burger-btn{
-    position: absolute;
-    top: 28px;
-    right: 16px;
-  }
-  
 }
 
 /* Media end */

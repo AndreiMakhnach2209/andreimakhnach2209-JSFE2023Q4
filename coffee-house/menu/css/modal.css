@@ -1,0 +1,231 @@
+.backdrop{
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  height: fit-content;
+  z-index: 20;
+  background-color: var(--background-backdrop);
+}
+
+.backdrop_visible{
+  display: flex;
+}
+
+.body_noscroll{
+  overflow: hidden;
+}
+
+.modal{
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  max-width: 800px;
+  padding: 16px;
+  gap: 20px;
+  /* position: absolute;
+  overflow: hidden;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+  background-color: var(--background-body);
+  border-radius: 40px;
+  z-index: 25;
+}
+
+.modal__pic-wrap{
+  flex-shrink: 0;
+  width: 310px;
+  overflow: hidden;
+  border-radius: 40px;
+  margin-bottom: auto;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal__pic{
+  min-width: 340px;
+}
+
+.modal__desc-wrap{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--text-dark);
+}
+
+.desc-wrap_item{
+  width: 100%;
+}
+
+.modal__coffee-title{
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
+  padding-bottom: 12px;
+}
+
+.modal__coffee-desc{
+  line-height: 150%;
+}
+
+.modal-form__title{
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  padding-bottom: 8px;
+}
+
+.modal-form__input{
+  display: none;
+}
+
+.modal-form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modal-form__item{
+  display: flex;
+  align-items: center;
+  padding: 8px 16px 8px 8px;
+  gap: 8px;
+  border: 1px solid var(--border-ligth);
+  border-radius: 23px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+
+.modal-form__ico{
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-ligth);
+  border-radius: 50%;
+  background-color: var(--border-ligth);
+  color: var(--text-dark, #403F3D);
+  text-align: center;
+  font-weight: 600;
+  line-height: 175%;
+}
+
+.modal-form__ico{
+  object-fit:none;
+}
+
+.modal-form__text{
+  height: fit-content;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  color: var(--text-dark);
+}
+
+@media (hover: hover){
+
+  .modal-form__item:hover,
+  .modal-form__item:focus{
+    background-color: var(--background-container);
+  }
+
+  .modal-form__item:hover .modal-form__text,
+  .modal-form__item:focus .modal-form__text{
+    color: var(--text-ligth);
+  }
+
+  .modal-form__item:hover .modal-form__ico,
+  .modal-form__item:focus .modal-form__ico{
+    background-color: var(--background-body);
+  }
+
+}
+
+.modal-form__input:checked + .modal-form__item{
+  background-color: var(--background-container);
+}
+
+.modal-form__input:active + .modal-form__item{
+  opacity: 0.5;
+}
+
+.modal-form__input:checked + .modal-form__item .modal-form__ico{
+  background-color: var(--background-body);
+}
+
+.modal-form__input:checked + .modal-form__item .modal-form__text{
+  color: var(--text-ligth);
+}
+
+.modal-form__input:checked + .modal-form__item{
+  cursor: default;
+}
+
+.cost-wrap{
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 125%;
+}
+
+.modal__alert{
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 140%;
+  padding: 12px 0 12px 24px;
+  position: relative;
+  border-top: 1px solid var(--border-dark);
+}
+
+.modal__alert::before{
+  content: 'i';
+  border-radius: 50%;
+  border: 1px solid var(--text-dark);
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  left: 0;
+}
+
+.modal__btn-close{
+  text-align: center;
+  padding: 10px 78px;
+  border: 1px solid var(--border-dark);
+  border-radius: 22px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%; 
+}
+
+.modal__btn-close:hover{
+  background-color: var(--background-container);
+  color: var(--text-ligth);
+}
+
+@media screen and (max-width: 768px) {
+  .modal{
+    max-width: 688px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .modal{
+    max-width: 342px;
+  }
+
+  .modal__pic-wrap{
+    display: none;
+  }
+}
