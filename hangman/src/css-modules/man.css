@@ -35,6 +35,8 @@
   top: calc(60% + 0.6vw);
 }
 
+/* TODO fix a man arms an leg position */
+
 .left{
   transform: rotate(20deg) translateX(-27q);
 }

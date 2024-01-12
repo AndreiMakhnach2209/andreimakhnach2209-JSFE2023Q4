@@ -1,4 +1,4 @@
-import styles from '../css-modules/gallow-styles.css';
+import styles from '../css-modules/gallow.css';
 import man from './man.js';
 const container = document.createElement('div');
 container.className = styles.container;

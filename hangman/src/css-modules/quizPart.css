@@ -1,0 +1,40 @@
+
+.container{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-rows: 2fr 2fr 1fr 3fr;
+
+  /* FOR TEST */
+  background-color: cornflowerblue;
+}
+
+.quizWordWrap{
+  /* FOR TEST */
+  border: 2px solid red;
+    height: 100%;
+    width: 100%;
+}
+
+.hintWrap{
+  /* FOR TEST */
+  border: 2px solid red;
+    height: 100%;
+    width: 100%;
+}
+
+.countWrap{
+  /* FOR TEST */
+  border: 2px solid red;
+    height: 100%;
+    width: 100%;
+}
+
+.keyboardWrap{
+  /* FOR TEST */
+  border: 2px solid red;
+    height: 100%;
+    width: 100%;
+}
