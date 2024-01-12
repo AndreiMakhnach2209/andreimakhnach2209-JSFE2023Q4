@@ -1,0 +1,35 @@
+
+.container{
+  position: relative;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallow{
+  width: 50%;
+  height: 70%;
+  position: relative;
+  background-color: var(--background);
+  border: 1vw solid var(--gallow);
+  border-right-width: 0.3vw;
+}
+
+.manWrap{
+  height: 80%;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateX(50%);
+  background-color: var(--background);
+  border: 1px dashed var(--gallow);
+}
+
+.title{
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 3vh;
+}

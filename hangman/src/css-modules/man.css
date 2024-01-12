@@ -1,0 +1,48 @@
+.container{
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.head{
+  height: 20%;
+  aspect-ratio: 1 / 1;
+  border: 0.6vw solid var(--man);
+  border-radius: 50%;
+}
+
+.body{
+  height: 40%;
+  border: 0.3vw solid var(--man);
+  width: 0;
+}
+
+.limb{
+  height: 35%;
+  border: 0.3vw solid var(--man);
+  width: 0;
+  position:absolute;
+}
+
+.arm{
+  top: 25%;
+}
+
+.leg{
+  top: calc(60% + 0.6vw);
+}
+
+.left{
+  transform: rotate(20deg) translateX(-27q);
+}
+
+.right{
+  transform: rotate(-20deg) translateX(27q);
+}
+
+.hidden{
+  visibility: hidden;;
+}
