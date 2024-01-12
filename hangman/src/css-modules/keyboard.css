@@ -1,0 +1,15 @@
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  background-color: var(--key);
+  color: var(--keyChar);
+  aspect-ratio: 1;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 10px;
+}

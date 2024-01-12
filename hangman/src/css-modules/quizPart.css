@@ -6,9 +6,6 @@
   display: grid;
   align-items: center;
   grid-template-rows: 2fr 2fr 1fr 3fr;
-
-  /* FOR TEST */
-  background-color: cornflowerblue;
 }
 
 .quizWordWrap{
@@ -33,8 +30,6 @@
 }
 
 .keyboardWrap{
-  /* FOR TEST */
-  border: 2px solid red;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  align-items: center;
 }

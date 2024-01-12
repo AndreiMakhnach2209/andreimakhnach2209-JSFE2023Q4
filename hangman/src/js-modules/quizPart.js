@@ -1,4 +1,5 @@
-import styles from '../css-modules/quizPart.css'
+import styles from '../css-modules/quizPart.css';
+import { container as keyboard } from './keyboard.js';
 
 const container = document.createElement('div'),
       keyboardWrap = document.createElement('div'),
@@ -16,5 +17,7 @@ container.append(quizWordWrap);
 container.append(hintWrap);
 container.append(countWrap);
 container.append(keyboardWrap);
+
+keyboardWrap.append(keyboard);
 
 export default () => container;
