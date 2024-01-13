@@ -22,5 +22,6 @@ leftArm.classList.add(styles.arm, styles.left);
 leftLeg.classList.add(styles.leg, styles.left);
 rightArm.classList.add(styles.arm, styles.right);
 rightLeg.classList.add(styles.leg, styles.right);
+container.classList.add(styles.hidden);
 export default () => container;
 
