@@ -16,10 +16,10 @@
 }
 
 .hintWrap{
-  /* FOR TEST */
-  border: 2px solid red;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .countWrap{
@@ -32,4 +32,5 @@
 .keyboardWrap{
   display: flex;
   align-items: center;
+  font-size: x-large;
 }
