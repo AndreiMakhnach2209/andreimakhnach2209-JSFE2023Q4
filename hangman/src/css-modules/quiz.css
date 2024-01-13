@@ -1,21 +1,36 @@
 .wordWrap{
-  
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .hintWrap{
-
+  height: 100%;
+  width: 100%;
 }
 
 .hint{
-
+  width: 100%;
+  margin: 5px;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .charCard{
-
+  border: 2px solid var(--border);
+  background-color: var(--card);
+  border-radius: 10px;
+  transition: 0.5s all;
 }
 
 .charText{
-
+  margin: 5px;
+  text-align: center;
+  font-size: 3rem;
+  color: var(--textLigth);
 }
 
 .hidden{

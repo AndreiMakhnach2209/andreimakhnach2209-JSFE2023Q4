@@ -22,15 +22,15 @@ function quizGen (oldquiz) {
 };
 
 function addingQuiz(quizCurrent, wrapper) {
-  hint.innerText(quizCurrent.hint);
-  const charsOfQuiz  = quizCurrent.answer.split('');
+  hint.innerText = quizCurrent.hint;
+  const charsOfQuiz  = quizCurrent.answer.toUpperCase().split('');
   charsOfQuiz.forEach(item => {
     const charCard = document.createElement('div'),
           char = document.createElement('p');
     charCard.className = styles.charCard;
     char.className = styles.charText;
     char.innerText = item;
-    // charCard.classList.add(styles.hidden);
+    charCard.classList.add(styles.hidden);
     charCard.append(char);
     wrapper.append(charCard);
   });

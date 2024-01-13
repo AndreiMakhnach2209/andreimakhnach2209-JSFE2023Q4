@@ -6,6 +6,7 @@
 }
 
 .key {
+  font-size: 3rem;
   background-color: var(--key);
   color: var(--keyChar);
   aspect-ratio: 1;

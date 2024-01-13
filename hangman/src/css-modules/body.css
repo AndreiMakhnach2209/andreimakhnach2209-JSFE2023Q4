@@ -6,8 +6,7 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--background);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
 }
 
 ::-webkit-scrollbar{
