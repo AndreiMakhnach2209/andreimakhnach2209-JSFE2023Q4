@@ -8,6 +8,8 @@ wordWrap.className = styles.wordWrap;
 export const hintWrap = document.createElement('div');
 hintWrap.className = styles.hintWrap;
 
+export const countWrap = counter(0);
+
 const hint = document.createElement('p');
 hint.className = styles.hint;
 hintWrap.append(hint);
@@ -34,6 +36,23 @@ function addingQuiz(quizCurrent, wrapper) {
     charCard.append(char);
     wrapper.append(charCard);
   });
+}
+
+function counter(n) {
+  const wrapper = document.createElement('div');
+  wrapper.className = styles.countWrap;
+
+  const countText = document.createElement('span');
+  countText.className = styles.countText;
+  countText.innerText = 'Использовано попыток: ';
+  wrapper.append(countText);
+
+  const countValue = document.createElement('span');
+  countValue.className = styles.countValue;
+  countValue.innerText = `${n}/6`;
+  wrapper.append(countValue);
+
+  return wrapper;
 }
 
 quizGen(quiz);

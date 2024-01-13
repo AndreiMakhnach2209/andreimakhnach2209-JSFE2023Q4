@@ -16,7 +16,7 @@
   width: 100%;
   margin: 5px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .charCard{
@@ -35,4 +35,21 @@
 
 .hidden{
   height: 0;
+}
+
+.countWrap{
+  height: 100%;
+  width: 100%;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countText{
+  color: var(--textDark);
+}
+
+.countValue{
+  color: var(--accent);
 }

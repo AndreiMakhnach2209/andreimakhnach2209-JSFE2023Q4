@@ -20,7 +20,7 @@
 
 .shadow{
   width: 100%;
-  box-shadow: 0 20px 20px 10px #08080852 ;
+  box-shadow: 0 20px 20px 10px var(--shadow);
 }
 
 .manWrap{
@@ -34,7 +34,9 @@
 
 .title{
   display: block;
+  font-size: 3rem;
   text-transform: uppercase;
   position: absolute;
   bottom: 0;
+  color: var(--textDark);
 }
