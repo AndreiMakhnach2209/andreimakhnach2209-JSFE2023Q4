@@ -10,19 +10,21 @@
 .head{
   height: 20%;
   aspect-ratio: 1 / 1;
-  border: 0.6vw solid var(--man);
+  border: 4px solid var(--man);
   border-radius: 50%;
 }
 
 .body{
   height: 40%;
-  border: 0.3vw solid var(--man);
+  border: 4px solid var(--man);
+  border-radius: 4px;
   width: 0;
 }
 
 .limb{
   height: 35%;
-  border: 0.3vw solid var(--man);
+  border: 4px solid var(--man);
+  border-radius: 4px;
   width: 0;
   position:absolute;
 }
@@ -32,17 +34,19 @@
 }
 
 .leg{
-  top: calc(60% + 0.6vw);
+  top: calc(60% - 18px);
 }
 
 /* TODO fix a man arms an leg position */
 
 .left{
-  transform: rotate(20deg) translateX(-27q);
+  transform: rotate(30deg);
+  left: 0;
 }
 
 .right{
-  transform: rotate(-20deg) translateX(27q);
+  transform: rotate(-30deg);
+  right: 0;
 }
 
 .hidden{
