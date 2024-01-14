@@ -24,4 +24,4 @@ hintWrap.append(hint);
 quizWordWrap.append(word);
 countWrap.append(counter);
 
-export {container};
+export {container, quizWordWrap};

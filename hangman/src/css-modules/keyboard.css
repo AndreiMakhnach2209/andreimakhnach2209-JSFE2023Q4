@@ -6,14 +6,14 @@
 }
 
 .key {
-  font-size: 3rem;
+  font-size: var(--textKeySize);
   background-color: var(--key);
   color: var(--keyChar);
   aspect-ratio: 1;
   margin: 2px;
   padding: 10px;
   border-radius: 10px;
-  transition: 0.5s all;
+  transition: 0.5s linear;
 }
 
 .key:disabled{

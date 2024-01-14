@@ -33,7 +33,7 @@
 
 .title{
   display: block;
-  font-size: 3rem;
+  font-size: var(--titleSize);
   text-transform: uppercase;
   position: absolute;
   bottom: 0;
