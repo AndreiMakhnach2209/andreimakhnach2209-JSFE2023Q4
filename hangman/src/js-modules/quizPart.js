@@ -24,4 +24,4 @@ hintWrap.append(hint);
 quizWordWrap.append(word);
 countWrap.append(counter);
 
-export default () => container;
+export {container};

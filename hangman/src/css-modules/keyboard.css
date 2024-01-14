@@ -13,4 +13,14 @@
   margin: 2px;
   padding: 10px;
   border-radius: 10px;
+  transition: 0.5s all;
+}
+
+.key:disabled{
+  background-color: var(--keyDisabled);
+}
+
+.key:hover:enabled {
+  background-color: var(--keyHover);
+  scale: 1.05;
 }

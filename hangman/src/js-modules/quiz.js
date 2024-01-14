@@ -8,13 +8,14 @@ wordWrap.className = styles.wordWrap;
 export const hintWrap = document.createElement('div');
 hintWrap.className = styles.hintWrap;
 
-export const countWrap = counter(0);
+export let countCurrent = 0;
+export let countWrap = counter(countCurrent);
 
 const hint = document.createElement('p');
 hint.className = styles.hint;
 hintWrap.append(hint);
 
-let quiz = questions[Math.floor(Math.random()*questions.length)];
+export let quiz = questions[Math.floor(Math.random()*questions.length)];
 
 function quizGen (oldquiz) {
   while (quiz.answer === oldquiz.answer) {
@@ -36,15 +37,16 @@ function addingQuiz(quizCurrent, wrapper) {
     charCard.append(char);
     wrapper.append(charCard);
   });
+  console.log(quizCurrent.answer);
 }
 
-function counter(n) {
+export function counter(n) {
   const wrapper = document.createElement('div');
   wrapper.className = styles.countWrap;
 
   const countText = document.createElement('span');
   countText.className = styles.countText;
-  countText.innerText = 'Использовано попыток: ';
+  countText.innerText = `Использовано попыток: `;
   wrapper.append(countText);
 
   const countValue = document.createElement('span');
