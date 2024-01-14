@@ -4,6 +4,7 @@ import {container as man} from './man.js';
 import manStyles from '../css-modules/man.css';
 import { wordWrap, countWrap, countCurrent, quiz } from './quiz.js';
 import quizPartStyles from '../css-modules/quiz.css';
+import { endGame } from './modale.js';
 
 
 export default function () {
@@ -40,7 +41,7 @@ function inputCharChecker (input) {
     };
     if (!wordWrap.querySelectorAll('.' + quizPartStyles.hidden).length) {
       wordWrap.addEventListener('transitionend',
-                                () => alert('ГАМОВЕР!!!'), 
+                                endGame(), 
                                 {once: true});
     }
   } else {
@@ -49,7 +50,7 @@ function inputCharChecker (input) {
     countValue.innerText = `${countCurrent}/6`;
     man.children[countCurrent - 1].classList.remove(manStyles.hidden);
     if ( countCurrent === 6) man.addEventListener('transitionend',
-                                                  () => alert('ГАМОВЕР!!!'),
+                                                  endGame(),
                                                   {once: true}
     );
   };
