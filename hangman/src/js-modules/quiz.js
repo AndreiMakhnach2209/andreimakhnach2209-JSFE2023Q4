@@ -17,7 +17,7 @@ hintWrap.append(hint);
 
 export let quiz = questions[Math.floor(Math.random()*questions.length)];
 
-function quizGen (oldquiz) {
+export function quizGen (oldquiz) {
   while (quiz.answer === oldquiz.answer) {
     quiz = questions[Math.floor(Math.random()*questions.length)]
   }

@@ -2,7 +2,7 @@ import styles from '../css-modules/man.css';
 const container = document.createElement('div');
 container.className = styles.container;
 
-export const head = document.createElement('div');
+const head = document.createElement('div');
 head.className = styles.head;
 head.classList.add(styles.hidden);
 container.append(head);

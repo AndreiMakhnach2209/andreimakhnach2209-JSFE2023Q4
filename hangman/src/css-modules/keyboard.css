@@ -9,6 +9,7 @@
   font-size: var(--textKeySize);
   background-color: var(--key);
   color: var(--keyChar);
+  font-family: monospace;
   aspect-ratio: 1;
   margin: 2px;
   padding: 10px;

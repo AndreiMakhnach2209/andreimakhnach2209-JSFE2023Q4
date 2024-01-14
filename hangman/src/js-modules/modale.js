@@ -5,12 +5,13 @@ import { countCurrent } from './quiz.js';
 import { quizWordWrap } from './quizPart.js';
 import manStyles from '../css-modules/man.css';
 import quizWordstyles from '../css-modules/quiz.css';
+import newGame from './newGame.js';
 
-const backdrop = document.createElement('div');
+export const backdrop = document.createElement('div');
 backdrop.className = styles.backdrop;
 backdrop.classList.add(styles.hidden);
 
-const modale = document.createElement('div');
+export const modale = document.createElement('div');
 modale.className = styles.modale;
 backdrop.append(modale);
 
@@ -43,7 +44,6 @@ export function endGame() {
   againBtn.innerText = 'Попробовать снова!';
   resGameWrap.append(againBtn);
 
-
   if (countCurrent < 6) {
     const manModale = man.cloneNode(true);
     modale.append(manModale);
@@ -56,8 +56,8 @@ export function endGame() {
     modale.append(gallowModale);
     selectorRemove(manStyles.hidden, gallowModale);
     resGame.innerText = 'Вы не смогли угадать слово. Попробуйте еще раз.';
-  };  
+  };
+
+  againBtn.addEventListener('click', newGame);
 }
 
-
-export { backdrop };

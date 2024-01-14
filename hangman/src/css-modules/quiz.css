@@ -1,9 +1,9 @@
 .wordWrap{
-  height: 100%;
   width: 100%;
+  height: calc(var(--textCardSize) + 1.5rem);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   gap: 5px;
 }
 
@@ -26,6 +26,7 @@
   border-radius: 10px;
   transition: 0.5s linear;
   color: var(--textLigth);
+  font-family: monospace;
 }
 
 .charText{

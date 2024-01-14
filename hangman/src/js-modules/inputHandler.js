@@ -10,7 +10,7 @@ import { endGame } from './modale.js';
 export default function () {
   const keys = keyboard.getElementsByTagName('button');
   for (let key of keys) {
-    key.addEventListener('click', virtualKeyboardHandler, {once: true});
+    key.addEventListener('click', virtualKeyboardHandler);
     window.addEventListener('keyup', physicalKeyboardHandler);
   }
 }
@@ -22,14 +22,28 @@ function virtualKeyboardHandler (event) {
 
 function physicalKeyboardHandler (event) {
   const inputChar = event.key.toUpperCase();
+  if (inputChar.charCodeAt(0) < 1040 || inputChar.charCodeAt(0) > 1071) {
+    alert('Неверный символ!\nВозможно стоит сменить раскладку клавиатуры!');
+    return;
+  };
   inputCharChecker(inputChar);
 }
 
+export const changedChars = [];
+
 function inputCharChecker (input) {
+  console.log(changedChars);
+
+  if (changedChars.includes(input)) return;
+  changedChars.push(input);
+
   const charsOfKeys = keyboard.querySelectorAll('.' + keyboardStyles.key);
 
   for (let key of charsOfKeys) {
-    if (key.innerText === input) key.disabled = true;
+    if (key.innerText === input) {
+      key.disabled = true;
+      break;
+    }
   }
 
   if (quiz.answer.toUpperCase().includes(input)) {
