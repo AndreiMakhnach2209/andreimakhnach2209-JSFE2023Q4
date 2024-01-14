@@ -20,6 +20,7 @@
 }
 
 .charCard{
+  height: calc(var(--textCardSize) + 1.5rem);
   border: 2px solid var(--border);
   background-color: var(--card);
   border-radius: 10px;
@@ -30,7 +31,7 @@
 .charText{
   margin: 5px;
   text-align: center;
-  font-size: 3rem;
+  font-size: var(--textCardSize);
   user-select: none;
 }
 

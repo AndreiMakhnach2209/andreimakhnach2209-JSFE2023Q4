@@ -19,3 +19,9 @@
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --textSize: 2.5rem;
+  --textKeySize: 3rem;
+  --textCardSize: 3rem;
+}

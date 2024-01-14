@@ -7,7 +7,6 @@ import quizPartStyles from '../css-modules/quiz.css';
 
 
 export default function () {
-  // console.log(man.querySelectorAll('.' + manStyles.hidden));
   const keys = keyboard.getElementsByTagName('button');
   for (let key of keys) {
     key.addEventListener('click', virtualKeyboardHandler, {once: true});
@@ -22,7 +21,17 @@ function virtualKeyboardHandler (event) {
 
 function inputCharChecker (input) {
   if (quiz.answer.toUpperCase().includes(input)) {
-    console.log(quiz.answer, input);
+    const charCards = wordWrap.querySelectorAll('.' + quizPartStyles.charCard);
+    for (let card of charCards) {
+      if (input === card.innerText){
+        card.classList.remove(quizPartStyles.hidden);
+      };
+    };
+    if (!wordWrap.querySelectorAll('.' + quizPartStyles.hidden).length) {
+      wordWrap.addEventListener('transitionend',
+                                () => alert('ГАМОВЕР!!!'), 
+                                {once: true});
+    }
   } else {
     const countValue = countWrap.querySelector('.' + quizPartStyles.countValue);
     countCurrent++;
