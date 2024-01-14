@@ -13,9 +13,8 @@
   width: 50%;
   height: 70%;
   position: relative;
-  background-color: var(--background);
-  border: 1vw solid var(--gallow);
-  border-right-width: 0.3vw;
+  border: 20px solid var(--gallow);
+  border-right-width: 5px;
 }
 
 .shadow{

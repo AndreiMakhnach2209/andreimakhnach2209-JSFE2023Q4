@@ -24,17 +24,19 @@
   background-color: var(--card);
   border-radius: 10px;
   transition: 0.5s all;
+  color: var(--textLigth);
 }
 
 .charText{
   margin: 5px;
   text-align: center;
   font-size: 3rem;
-  color: var(--textLigth);
+  user-select: none;
 }
 
 .hidden{
   height: 0;
+  color: transparent;
 }
 
 .countWrap{
