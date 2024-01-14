@@ -10,16 +10,27 @@ export default function () {
   const keys = keyboard.getElementsByTagName('button');
   for (let key of keys) {
     key.addEventListener('click', virtualKeyboardHandler, {once: true});
+    window.addEventListener('keyup', physicalKeyboardHandler);
   }
 }
 
 function virtualKeyboardHandler (event) {
-  event.currentTarget.disabled = true;
   const inputChar = event.currentTarget.innerText;
   inputCharChecker(inputChar);
 };
 
+function physicalKeyboardHandler (event) {
+  const inputChar = event.key.toUpperCase();
+  inputCharChecker(inputChar);
+}
+
 function inputCharChecker (input) {
+  const charsOfKeys = keyboard.querySelectorAll('.' + keyboardStyles.key);
+
+  for (let key of charsOfKeys) {
+    if (key.innerText === input) key.disabled = true;
+  }
+
   if (quiz.answer.toUpperCase().includes(input)) {
     const charCards = wordWrap.querySelectorAll('.' + quizPartStyles.charCard);
     for (let card of charCards) {
