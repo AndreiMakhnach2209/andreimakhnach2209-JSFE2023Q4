@@ -36,5 +36,11 @@ function inputCharChecker (input) {
     const countValue = countWrap.querySelector('.' + quizPartStyles.countValue);
     countCurrent++;
     countValue.innerText = `${countCurrent}/6`;
+    man.children[countCurrent - 1].classList.remove(manStyles.hidden);
+    if ( countCurrent === 6) man.addEventListener('transitionend',
+                                                  () => alert('ГАМОВЕР!!!'),
+                                                  {once: true}
+    );
   };
 };
+
