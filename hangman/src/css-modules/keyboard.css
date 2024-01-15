@@ -25,3 +25,18 @@
   background-color: var(--keyHover);
   scale: 1.05;
 }
+
+@media screen and (max-width: 1024px) {
+  .key{
+    padding: 5px;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .key{
+    padding: 2px;
+    border-radius: 5px;
+  }
+}
+

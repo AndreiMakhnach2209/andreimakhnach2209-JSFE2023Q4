@@ -4,7 +4,8 @@
 /* TODO kill scroll */
 .body{
   width: 100vw;
-  height: 100vh;
+  min-width: min-content;
+  min-height: 100vh;
   padding: 20px;
   background-color: var(--background);
   display: flex;
@@ -21,9 +22,44 @@
 }
 
 :root {
-  --textSize: 2.5rem;
-  --textKeySize: 3rem;
-  --textCardSize: 3rem;
-  --titleSize: 3rem;
+  --textSize: 2rem;
+  --textKeySize: 2.5rem;
+  --textCardSize: 2.5rem;
+  --titleSize: 2rem;
 }
 
+@media screen and (max-width: 1200px) {
+  :root {
+    --textSize: 1.5rem;
+    --textKeySize: 2rem;
+    --textCardSize: 2rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    --textSize: 1.5rem;
+    --textKeySize: 1.5rem;
+    --textCardSize: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .body{
+    padding: 10px;
+  }
+  :root {
+    --textSize: 1rem;
+    --textKeySize: 1rem;
+    --textCardSize: 1rem;
+    --titleSize: 1rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+  .body{
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    padding: 5px;
+  }
+}

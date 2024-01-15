@@ -1,6 +1,6 @@
 .wordWrap{
   width: 100%;
-  height: calc(var(--textCardSize) + 1.5rem);
+  height: calc(var(--textCardSize) + 1.25rem);
   display: flex;
   justify-content: center;
   align-items: end;
@@ -20,13 +20,15 @@
 }
 
 .charCard{
-  height: calc(var(--textCardSize) + 1.5rem);
+  height: calc(var(--textCardSize) + 1.25rem);
   border: 2px solid var(--border);
   background-color: var(--card);
   border-radius: 10px;
   transition: 0.5s linear;
   color: var(--textLigth);
   font-family: monospace;
+  display: flex;
+  align-items: center;
 }
 
 .charText{
@@ -56,4 +58,16 @@
 
 .countValue{
   color: var(--accent);
+}
+
+@media screen and (max-width: 1024px) {
+  .charCard{
+    border-radius: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .charCard{
+    border-radius: 5px;
+  }
 }

@@ -15,8 +15,9 @@
 }
 
 .modale {
-  width: 60%;
-  height: 60%;
+  min-width: 60%;
+  min-height: 60%;
+  min-height: max-content;
   background-color: var(--background);
   display: flex;
   border: 10px solid var(--borderPage);
@@ -52,3 +53,10 @@
   background-color: var(--keyHover);
   scale: 1.05;
 }
+
+@media screen and (max-width: 800px) {
+  .adaptive{
+    display: none;
+  }
+}
+

@@ -1,7 +1,7 @@
 
 .container{
   position: relative;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,11 +10,13 @@
 }
 
 .gallow{
+  --borderLineBold: 20px;
+  --borderLineThin: 5px;
   width: 50%;
   height: 70%;
   position: relative;
-  border: 20px solid var(--gallow);
-  border-right-width: 5px;
+  border: var(--borderLineBold) solid var(--gallow);
+  border-right-width: var(--borderLineThin);
 }
 
 .shadow{
@@ -38,4 +40,27 @@
   position: absolute;
   bottom: 0;
   color: var(--textDark);
+}
+
+@media screen and (max-width: 1024px) {
+  .title{
+    margin: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gallow{
+    --borderLineBold: 10px;
+    --borderLineThin: 2px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+  .gallow{
+    width: 30%;
+    height: 20cqh;
+  }
+  .title{
+    display: none;
+  }
 }

@@ -32,11 +32,8 @@ function physicalKeyboardHandler (event) {
 export const changedChars = [];
 
 function inputCharChecker (input) {
-  console.log(changedChars);
-
   if (changedChars.includes(input)) return;
   changedChars.push(input);
-
   const charsOfKeys = keyboard.querySelectorAll('.' + keyboardStyles.key);
 
   for (let key of charsOfKeys) {

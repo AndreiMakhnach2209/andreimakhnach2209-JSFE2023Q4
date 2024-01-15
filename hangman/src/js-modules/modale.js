@@ -5,6 +5,7 @@ import { countCurrent } from './quiz.js';
 import { quizWordWrap } from './quizPart.js';
 import manStyles from '../css-modules/man.css';
 import quizWordstyles from '../css-modules/quiz.css';
+import gallowStyles from '../css-modules/gallow.css';
 import newGame from './newGame.js';
 
 export const backdrop = document.createElement('div');
@@ -46,18 +47,20 @@ export function endGame() {
 
   if (countCurrent < 6) {
     const manModale = man.cloneNode(true);
+    manModale.classList.add(styles.adaptive);
     modale.append(manModale);
     selectorRemove(manStyles.hidden, manModale);
-    manModale.style = 'margin: 2% 10%';
-    resGame.innerText = 'Поздравляю!\n Вы угадали слово!\n Попробуйте еще раз!';
 
+    manModale.style = 'margin: 2% 10%; min-height: 100%';
+    resGame.innerText = 'Поздравляю!\nВы угадали слово!\nПопробуйте еще раз!';
   } else {
     const gallowModale = gallow.cloneNode(true);
+    gallowModale.classList.add(styles.adaptive);
+    gallowModale.querySelector('.' + gallowStyles.title).remove();
     modale.append(gallowModale);
     selectorRemove(manStyles.hidden, gallowModale);
-    resGame.innerText = 'Вы не смогли угадать слово. Попробуйте еще раз.';
+    resGame.innerText = 'Вы не смогли угадать слово.\nПопробуйте еще раз.';
   };
-
   againBtn.addEventListener('click', newGame);
 }
 

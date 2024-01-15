@@ -9,7 +9,7 @@
 
 .quizWordWrap{
     height: 100%;
-    width: 100%;
+    max-width: 100%;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -29,4 +29,10 @@
 .keyboardWrap{
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .container{
+    grid-template-rows: 1fr 1fr 1fr 3fr;
+  }
 }
