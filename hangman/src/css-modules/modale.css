@@ -1,0 +1,62 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--backdrop);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.modale {
+  min-width: 60%;
+  min-height: 60%;
+  min-height: max-content;
+  background-color: var(--background);
+  display: flex;
+  border: 10px solid var(--borderPage);
+  box-shadow: 0 0 100px 30px var(--shadow) inset;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+}
+
+.resGameWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.resGame {
+  font-size: var(--textSize);
+  text-align: center;  
+}
+
+.againBtn {
+  width: fit-content;
+  font-size: var(--textSize);
+  background-color: var(--key);
+  color: var(--keyChar);
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.5s linear;
+}
+
+.againBtn:hover {
+  background-color: var(--keyHover);
+  scale: 1.05;
+}
+
+@media screen and (max-width: 800px) {
+  .adaptive{
+    display: none;
+  }
+}
+
