@@ -1,0 +1,17 @@
+:root{
+  --background: #fafafa;
+  --gallow: #000;
+  --man: #584c18;
+  --key: #392929;
+  --keyChar: #fafafa;
+  --border: #050505;
+  --keyDisabled: #bfbfbf;
+  --keyHover: #5c4242;
+  --card: #5c5c5c;
+  --textLigth: #fafafa;
+  --textDark: #000;
+  --accent: #ff0000;
+  --shadow: #08080852;
+  --borderPage: #050505;
+  --backdrop: #050505b0;
+}
