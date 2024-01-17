@@ -1,0 +1,70 @@
+.container{
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  --lineWidth: 8px;
+  --borderWidth: calc(var(--lineWidth) / 2);
+}
+
+.container * {
+  transition: 1s linear;
+}
+
+.head{
+  height: 20%;
+  aspect-ratio: 1 / 1;
+  border: var(--lineWidth) solid var(--man);
+  border-radius: 50%;
+}
+
+.body{
+  height: 40%;
+  border: var(--borderWidth) solid var(--man);
+  border-radius: 4px;
+  width: 0;
+}
+
+.limb{
+  height: 35%;
+  border: var(--borderWidth) solid var(--man);
+  border-radius: 4px;
+  width: 0;
+  position:absolute;
+}
+
+.arm{
+  top: 20%;
+}
+
+.leg{
+  top: calc(60% - 16px);
+}
+
+.left{
+  transform: rotate(30deg);
+  left: 0;
+}
+
+.right{
+  transform: rotate(-30deg);
+  right: 0;
+}
+
+.hidden{
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container{
+    --lineWidth: 4px;
+    height: 80%;
+  }
+
+  .leg{
+    top: calc(60% - 10px)
+  }
+}

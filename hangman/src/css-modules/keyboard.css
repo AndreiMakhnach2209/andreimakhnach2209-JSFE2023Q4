@@ -1,0 +1,42 @@
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  font-size: var(--textKeySize);
+  background-color: var(--key);
+  color: var(--keyChar);
+  font-family: monospace;
+  aspect-ratio: 1;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.2s linear;
+}
+
+.key:disabled{
+  background-color: var(--keyDisabled);
+}
+
+.key:hover:enabled {
+  background-color: var(--keyHover);
+  scale: 1.05;
+}
+
+@media screen and (max-width: 1024px) {
+  .key{
+    padding: 5px;
+    border-radius: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .key{
+    padding: 2px;
+    border-radius: 5px;
+  }
+}
+
