@@ -50,14 +50,14 @@ export function endGame() {
     manModale.classList.add(styles.adaptive);
     modale.append(manModale);
     selectorRemove(manStyles.hidden, manModale);
-
-    manModale.style = 'margin: 2% 10%; min-height: 100%';
+    manModale.style = 'margin: 2% 10%; min-height: 100%;';
     resGame.innerText = 'Поздравляю!\nВы угадали слово!\nПопробуйте еще раз!';
   } else {
     const gallowModale = gallow.cloneNode(true);
     gallowModale.classList.add(styles.adaptive);
     gallowModale.querySelector('.' + gallowStyles.title).remove();
     modale.append(gallowModale);
+    gallowModale.style = 'min-height: 80%;'
     selectorRemove(manStyles.hidden, gallowModale);
     resGame.innerText = 'Вы не смогли угадать слово.\nПопробуйте еще раз.';
   };

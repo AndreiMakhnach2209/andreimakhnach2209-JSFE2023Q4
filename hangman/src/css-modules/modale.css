@@ -16,8 +16,8 @@
 
 .modale {
   min-width: 60%;
-  min-height: 60%;
-  min-height: max-content;
+  height: 60%;
+  min-height: 400px;
   background-color: var(--background);
   display: flex;
   border: 10px solid var(--borderPage);
@@ -59,4 +59,3 @@
     display: none;
   }
 }
-
