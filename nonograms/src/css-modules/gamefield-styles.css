@@ -1,19 +1,14 @@
 .container {
-  width:100%;
-  height: 100%;
-  position: relative;
   display: grid;
-  justify-items: start;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 3fr 5fr;
+  grid-template-rows: 3fr 5fr;
   grid-template-areas: ". header-field"
                        "aside-field field";
 }
 
 .field {
-  aspect-ratio: 1;
   grid-area: field;
-  border: 3px solid var(--border-dark);
+  border: 5px solid var(--border-dark);
   display: grid;
 }
 
@@ -35,6 +30,7 @@
   align-items: center;
   aspect-ratio: 1;
   border: 1px solid var(--border-dark);
+  font-size: 3vh;
 }
 
 .black {
@@ -42,17 +38,21 @@
 }
 
 .header_field {
+  border: 10px solid var(--border-dark);
   display: flex;
   grid-area: header-field;
+
 }
 
 .aside_field {
+  border: 10px solid var(--border-dark);
   display: flex;
   flex-direction: column;
   grid-area: aside-field;
 }
 
 .clue_row {
+  flex-grow: 1;
   display: flex;
   justify-content: end;
   background-color: var(--background-clue-light);
@@ -60,4 +60,11 @@
 
 .header_field .clue_row {
   flex-direction: column;
+}
+
+.unit span {
+}
+
+.aside_field .clue_row .unit {
+  
 }

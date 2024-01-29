@@ -17,7 +17,7 @@ export default function () {
     for (let j = 0; j < range; j++) {
       const unit = document.createElement('div');
       unit.className = styles.unit;
-      if (currentMatrix[i][j]) unit.classList.add(styles.black); // FOR TEST
+      // if (currentMatrix[i][j]) unit.classList.add(styles.black); // FOR TEST
       field.append(unit);
     }
   }
