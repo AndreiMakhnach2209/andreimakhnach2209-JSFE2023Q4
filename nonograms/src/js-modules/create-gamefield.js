@@ -1,5 +1,6 @@
 import styles from '../css-modules/gamefield-styles.css';
 import missions from '../assets/missions/missions.js';
+import { timer } from './control-panel.js';
 
 export default function () {
   const container = document.createElement('div');
@@ -12,6 +13,8 @@ export default function () {
   field.className = styles.field;
   field.classList.add(styles.field_easy);
   container.append(field);
+  field.addEventListener('mousedown', timer.start.bind(timer));
+  field.addEventListener('mouseup', timer.pause.bind(timer));
 
   for (let i = 0; i < range; i++) {
     for (let j = 0; j < range; j++) {
