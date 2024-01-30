@@ -44,6 +44,7 @@ export default function () {
   ];
 
   container.append(aside, header);
+  gameHandler(field);
 
   return container;
 }
@@ -72,4 +73,18 @@ function createClue(matrix) {
     wrap.append(row);
   }
   return wrap;
+}
+
+function gameHandler(parrent) {
+  let mouseIsDown = false;
+  parrent.addEventListener('mousedown', (event) => {
+    event.target.classList.toggle(styles.black);
+    mouseIsDown = true;
+  });
+  parrent.addEventListener('mouseover', (event) => {
+    if (mouseIsDown) event.target.classList.toggle(styles.black);
+  });
+  parrent.addEventListener('mouseup', () => {
+    mouseIsDown = false;
+  });
 }
