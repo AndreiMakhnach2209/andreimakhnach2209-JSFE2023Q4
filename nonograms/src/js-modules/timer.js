@@ -12,13 +12,13 @@ export class Timer {
   }
   // use '.bind'
   start() {
-    this.id = setInterval(() => {
+    this._id = setInterval(() => {
       this.value++;
       this.node.innerText = 'Time : ' + this._secToMMSS(this.value);
     }, 1000);
   }
 
   pause() {
-    clearInterval(this.id);
+    clearInterval(this._id);
   }
 }

@@ -13,17 +13,27 @@
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: var(--background-light, #cfcfcf);
   padding: 30px;
+  gap: 30px;
+  background-color: var(--background-light, #cfcfcf);
+  --background-light: #efdfcf;
+  --background-clue-light: #aaa5a5;
+  --border-dark: #000;
+  user-select: none;
 }
 
 .field_wrap {
   flex-grow: 1;
   max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .control_wrap {
   flex-grow: 0;
   max-height: 100%;
   flex-basis: 40%;
+  display: flex;
+  align-items: center;
 }
