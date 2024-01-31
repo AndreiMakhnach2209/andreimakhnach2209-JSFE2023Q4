@@ -11,7 +11,7 @@
 
 .field {
   grid-area: field;
-  border: 5px solid var(--border-dark);
+  border: 5px solid var(--border-dark, #000000);
   display: grid;
 }
 
@@ -32,11 +32,11 @@
   justify-content: center;
   align-items: center;
   aspect-ratio: 1;
-  border: 1px solid var(--border-dark);
+  border: 1px solid var(--border-dark, #000000);
 }
 
 [data-black = "true"] {
-  background-color: var(--border-dark);
+  background-color: var(--cell-black, #000000);
 }
 
 [data-crossed = "true"]{
@@ -44,14 +44,14 @@
 }
 
 .header_field {
-  border: 5px solid var(--border-dark);
+  border: 5px solid var(--border-dark, #000000);
   border-bottom: 0;
   display: flex;
   grid-area: header-field;
 }
 
 .aside_field {
-  border: 5px solid var(--border-dark);
+  border: 5px solid var(--border-dark, #000000);
   border-right: 0;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@
   flex-grow: 1;
   display: flex;
   justify-content: end;
-  background-color: var(--background-clue-light);
+  background-color: var(--background-clue, #aaaaaa);
 }
 
 .header_field .clue_row {

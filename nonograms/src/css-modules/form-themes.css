@@ -1,0 +1,31 @@
+.radio {
+  display: none;
+}
+
+.btns_row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.label_radio {
+  text-transform: capitalize;
+}
+.radio:checked + .label_radio {
+  font-weight: bolder;
+}
+
+.title_radio {
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.themes_box {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (hover: hover) {
+  .label_radio:hover {
+  color: var(--text-hover, #999999);
+}
+}

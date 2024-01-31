@@ -16,31 +16,7 @@
 
 }
 
-.btns_row {
-  display: flex;
-  justify-content: space-between;
-}
-
 .btn {
   max-width: 400px;
   text-transform: capitalize;
-}
-
-.radio {
-
-}
-
-.label_radio {
-  text-transform: capitalize;
-}
-
-.title_radio {
-  font-size: unset;
-  font-style: italic;
-  margin: 0;
-}
-
-.themes_box {
-  display: flex;
-  flex-direction: column;
 }

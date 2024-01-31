@@ -1,5 +1,5 @@
 @import "~normalize.css";
-@import "./colors.css";
+@import "./form-themes.css";
 
 * {
   box-sizing: border-box;
@@ -15,11 +15,16 @@
   display: flex;
   padding: 30px;
   gap: 30px;
-  background-color: var(--background-light, #cfcfcf);
-  --background-light: #efdfcf;
-  --background-clue-light: #aaa5a5;
-  --border-dark: #000;
+  background-color: var(--background, #cfcfcf);
   user-select: none;
+  color: var(--text-color, #000);
+  transition: color 1s linear;
+  transition: background 1s linear;
+}
+
+button{
+  background-color: transparent;
+  border: none;
 }
 
 .field_wrap {

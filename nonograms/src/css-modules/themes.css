@@ -1,0 +1,29 @@
+.light {
+  --background: #ffffff;
+  --background-clue-light: #909090;
+  --border-dark: #000;
+  --text-hover: #636363;
+  --text-color: #000;
+}
+.dark {
+  --background: #484848;
+  --background-clue: #8c7e73;
+  --border-dark: #000;
+  --text-hover: #9b9b9b;
+  --text-color: #dddddd;
+}
+.warm {
+  --background: #e4c9ad;
+  --background-clue: #aaa5a5;
+  --border-dark: #000000;
+  --text-hover: #413028e8;
+  --text-color: #322f2a;
+}
+.cold {
+  --background: #b2c7e9;
+  --background-clue: #5e8393;
+  --border-dark: #000;
+  --text-hover: #264961;
+  --text-color: #182c2e;
+}
+
