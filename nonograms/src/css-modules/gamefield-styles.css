@@ -35,8 +35,12 @@
   border: 1px solid var(--border-dark);
 }
 
-.black {
+[data-black = "true"] {
   background-color: var(--border-dark);
+}
+
+[data-crossed = "true"]{
+  background-color: #888888;
 }
 
 .header_field {
@@ -63,11 +67,4 @@
 
 .header_field .clue_row {
   flex-direction: column;
-}
-
-.unit span {
-}
-
-.aside_field .clue_row .unit {
-  
 }

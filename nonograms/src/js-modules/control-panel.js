@@ -1,5 +1,5 @@
 import styles from '../css-modules/control-panel.css';
-import { Timer } from './timer.js';
+import Timer from './timer.js';
 
 const container = document.createElement('div');
 container.className = styles.container;

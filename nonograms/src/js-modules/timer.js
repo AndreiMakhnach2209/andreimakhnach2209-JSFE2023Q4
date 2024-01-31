@@ -1,4 +1,4 @@
-export class Timer {
+export default class {
   constructor(initValue = 0) {
     this.value = initValue;
     this.node = document.createElement('span');

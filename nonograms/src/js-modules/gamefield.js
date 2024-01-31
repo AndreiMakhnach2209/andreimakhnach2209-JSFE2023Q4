@@ -13,14 +13,20 @@ export default function () {
   field.className = styles.field;
   field.classList.add(styles.field_easy);
   container.append(field);
-  field.addEventListener('mousedown', timer.start.bind(timer));
-  field.addEventListener('mouseup', timer.pause.bind(timer));
+  field.addEventListener('pointerdown', timer.start.bind(timer), {
+    once: true,
+  });
 
   for (let i = 0; i < range; i++) {
     for (let j = 0; j < range; j++) {
       const unit = document.createElement('div');
       unit.className = styles.unit;
-      // if (currentMatrix[i][j]) unit.classList.add(styles.black); // FOR TEST
+      unit.setAttribute(
+        'data-solution',
+        currentMatrix[i][j] ? 'true' : 'false'
+      );
+      unit.setAttribute('data-black', 'false');
+      unit.setAttribute('data-crossed', 'false');
       field.append(unit);
     }
   }
@@ -79,15 +85,50 @@ function createClue(matrix) {
 }
 
 function gameHandler(parrent) {
-  let mouseIsDown = false;
-  parrent.addEventListener('mousedown', (event) => {
-    event.target.classList.toggle(styles.black);
-    mouseIsDown = true;
+  let pointerIsDown = false;
+  let firstTargetIsMarked = false;
+  parrent.addEventListener('pointerdown', (event) => {
+    switch (event.button) {
+      case 0:
+        if (event.target.hasAttribute('data-black')) {
+          firstTargetIsMarked =
+            event.target.dataset.black === 'true' ? true : false;
+          event.target.dataset.black = firstTargetIsMarked ? 'false' : 'true';
+          event.target.dataset.crossed = 'false';
+          pointerIsDown = true;
+        }
+        break;
+      case 2:
+        if (event.target.hasAttribute('data-crossed')) {
+          firstTargetIsMarked =
+            event.target.dataset.crossed === 'true' ? true : false;
+          event.target.dataset.crossed = firstTargetIsMarked ? 'false' : 'true';
+          event.target.dataset.black = 'false';
+          pointerIsDown = true;
+        }
+        break;
+    }
   });
-  parrent.addEventListener('mouseover', (event) => {
-    if (mouseIsDown) event.target.classList.toggle(styles.black);
+  parrent.addEventListener('pointerover', (event) => {
+    switch (event.buttons) {
+      case 1:
+        if (pointerIsDown && event.target.hasAttribute('data-black')) {
+          event.target.dataset.black = firstTargetIsMarked ? 'false' : 'true';
+          event.target.dataset.crossed = 'false';
+        }
+        break;
+      case 2:
+        if (pointerIsDown && event.target.hasAttribute('data-crossed')) {
+          event.target.dataset.crossed = firstTargetIsMarked ? 'false' : 'true';
+          event.target.dataset.black = 'false';
+        }
+        break;
+    }
   });
-  parrent.addEventListener('mouseup', () => {
-    mouseIsDown = false;
+  parrent.addEventListener('pointerup', () => {
+    pointerIsDown = false;
+  });
+  parrent.addEventListener('pointerout', (event) => {
+    pointerIsDown = event.target === parrent ? false : pointerIsDown;
   });
 }
