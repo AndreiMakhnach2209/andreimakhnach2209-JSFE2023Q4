@@ -19,4 +19,17 @@
 .btn {
   max-width: 400px;
   text-transform: capitalize;
+  color: var(--text-color, #000);
+  border: 2px solid var(--border-dark, #000);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor:not-allowed
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    color: var(--text-hover, #999999);
+  }
 }
