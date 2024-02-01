@@ -1,5 +1,4 @@
 import styles from '../css-modules/control-panel.css';
-import stylesField from '../css-modules/gamefield-styles.css';
 import Timer from './timer.js';
 import themes from './themes.js';
 
@@ -29,8 +28,7 @@ container.append(themesForm);
   btn.className = styles.btn;
   btn.value = item;
   btn.innerText = item.split('_').join(' ');
-  // btn.setAttribute('id', item);
-  btn.id = item;
+  btn.setAttribute('id', item);
   container.append(btn);
 });
 
@@ -42,11 +40,16 @@ setTimeout(() => {
 function showSolution() {
   timer.pause();
   for (let cell of document.querySelectorAll('[data-solution]')) {
-    cell.dataset.crossed = 'false';
-    cell.dataset.black = 'false';
+    cell.dataset.crossed = false;
+    cell.dataset.black = false;
+    cell.classList.add(styles.unit_disabled);
+    cell.addEventListener('pointerout', (event) => {
+      event.currentTarget.dataset.black = event.currentTarget.dataset.solution;
+      event.currentTarget.dataset.crossed = false;
+    });
   }
   for (let cell of document.querySelectorAll('[data-solution = true]')) {
-    cell.dataset.black = 'true';
+    cell.dataset.black = true;
   }
   document.getElementById('save_game').disabled = true;
 }

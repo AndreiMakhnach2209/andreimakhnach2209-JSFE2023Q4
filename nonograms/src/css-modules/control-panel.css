@@ -28,6 +28,10 @@
   cursor:not-allowed
 }
 
+.unit_disabled {
+  cursor: not-allowed;
+}
+
 @media (hover: hover) {
   .btn:hover {
     color: var(--text-hover, #999999);
