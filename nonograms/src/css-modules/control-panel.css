@@ -28,6 +28,13 @@
   cursor:not-allowed
 }
 
+.btn[data-active = "true" ]::before {
+  content: "🔉";
+}
+.btn[data-active = "false" ]::before {
+  content: "🔇";
+}
+
 .unit_disabled {
   cursor: not-allowed;
 }

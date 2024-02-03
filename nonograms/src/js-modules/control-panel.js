@@ -15,26 +15,38 @@ timerWrap.append(timer.node);
 const themesForm = themes.create();
 container.append(themesForm);
 
-[
-  'score',
-  'sound',
-  'save_game',
-  'load_game',
-  'new_game',
-  'random_game',
-  'solution',
-].forEach((item) => {
-  const btn = document.createElement('button');
-  btn.className = styles.btn;
-  btn.value = item;
-  btn.innerText = item.split('_').join(' ');
-  btn.setAttribute('id', item);
-  container.append(btn);
-});
+['score', 'sound', 'save_game', 'load_game', 'new_game', 'random_game', 'solution'].forEach(
+  (item) => {
+    const btn = document.createElement('button');
+    btn.className = styles.btn;
+    btn.value = item;
+    btn.innerText = item.split('_').join(' ');
+    btn.setAttribute('id', item);
+    container.append(btn);
+  }
+);
+
+let isSound = true;
+const soundClick = document.createElement('audio');
+soundClick.setAttribute('src', '../src/assets/audio/click.wav');
+const soundLong = document.createElement('audio');
+soundLong.setAttribute('src', '../src/assets/audio/stroke_long.wav');
 
 setTimeout(() => {
   const btnSolution = document.getElementById('solution');
-  btnSolution.addEventListener('click', showSolution);
+  btnSolution.addEventListener('click', () => {
+    if (isSound) soundLong.play();
+    showSolution();
+    btnSolution.disabled = true;
+  });
+
+  const btnSound = document.getElementById('sound');
+  btnSound.dataset.active = isSound;
+  btnSound.addEventListener('click', () => {
+    isSound = isSound ? false : true;
+    btnSound.dataset.active = isSound;
+    if (isSound) soundClick.play();
+  });
 }, 0);
 
 function showSolution() {
@@ -44,8 +56,11 @@ function showSolution() {
     cell.dataset.black = false;
     cell.classList.add(styles.unit_disabled);
     cell.addEventListener('pointerout', (event) => {
+      let isSoundTemp = isSound;
+      isSound = false;
       event.currentTarget.dataset.black = event.currentTarget.dataset.solution;
       event.currentTarget.dataset.crossed = false;
+      setTimeout(() => (isSound = isSoundTemp), 0);
     });
   }
   for (let cell of document.querySelectorAll('[data-solution = true]')) {
@@ -54,4 +69,4 @@ function showSolution() {
   document.getElementById('save_game').disabled = true;
 }
 
-export { container, timer };
+export { container, timer, isSound };
