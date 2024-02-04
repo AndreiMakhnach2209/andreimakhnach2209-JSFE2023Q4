@@ -92,6 +92,7 @@ function createSketch(level, i) {
 }
 
 function resetGame(level, index) {
+  timer.reset();
   const oldGamefield = document.querySelector('.' + stylesSketch.container);
   const newGamefield = createGamefield(level, index);
   oldGamefield.replaceWith(newGamefield);
@@ -107,7 +108,9 @@ function closeModale(event = null) {
 }
 
 function refreshBtns() {
-  ['score', 'save_game', 'load_game', 'new_game', 'random_game', 'solution'].forEach((item) => {
-    document.getElementById(item).disabled = false;
-  });
+  ['score', 'save_game', 'load_game', 'new_game', 'random_game', 'solution', 'reset_game'].forEach(
+    (item) => {
+      document.getElementById(item).disabled = false;
+    }
+  );
 }

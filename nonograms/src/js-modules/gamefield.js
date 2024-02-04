@@ -24,7 +24,8 @@ export default function (level, index) {
   audioStroke.setAttribute('src', '../src/assets/audio/click.wav');
   let observer = new MutationObserver(() => {
     if (isSound) audioStroke.play();
-    if (gameOver()) container.after(gameOver());
+    if (gameOver() && document.getElementById('solution').disabled === false)
+      container.after(gameOver());
   });
 
   for (let i = 0; i < range; i++) {
@@ -97,7 +98,6 @@ function gameHandler(parrent) {
   let firstTargetIsMarked = false;
   parrent.addEventListener('pointerdown', (event) => {
     const target = event.target.closest('.' + styles.unit);
-    console.log(target);
     switch (event.button) {
       case 0:
         if (target) {
@@ -144,5 +144,11 @@ function gameHandler(parrent) {
 
 function gameOver() {
   const correctCells = Array.from(document.querySelectorAll('[data-solution = true]'));
-  if (correctCells.every((item) => item.dataset.black === 'true')) return openModale('game_over');
+  if (correctCells.every((item) => item.dataset.black === 'true')) {
+    timer.pause();
+    ['solution', 'save_game', 'reset_game'].forEach(
+      (item) => (document.getElementById(item).disabled = true)
+    );
+    return openModale('game_over');
+  }
 }

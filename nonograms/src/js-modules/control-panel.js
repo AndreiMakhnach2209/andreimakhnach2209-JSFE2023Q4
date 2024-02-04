@@ -16,16 +16,23 @@ timerWrap.append(timer.node);
 const themesForm = themes.create();
 container.append(themesForm);
 
-['score', 'sound', 'save_game', 'load_game', 'new_game', 'random_game', 'solution'].forEach(
-  (item) => {
-    const btn = document.createElement('button');
-    btn.className = styles.btn;
-    btn.value = item;
-    btn.innerText = item.split('_').join(' ');
-    btn.setAttribute('id', item);
-    container.append(btn);
-  }
-);
+[
+  'score',
+  'sound',
+  'save_game',
+  'load_game',
+  'new_game',
+  'random_game',
+  'solution',
+  'reset_game',
+].forEach((item) => {
+  const btn = document.createElement('button');
+  btn.className = styles.btn;
+  btn.value = item;
+  btn.innerText = item.split('_').join(' ');
+  btn.setAttribute('id', item);
+  container.append(btn);
+});
 
 let isSound = true;
 const soundClick = document.createElement('audio');
@@ -36,9 +43,9 @@ soundLong.setAttribute('src', '../src/assets/audio/stroke_long.wav');
 setTimeout(() => {
   const btnSolution = document.getElementById('solution');
   btnSolution.addEventListener('click', () => {
+    btnSolution.disabled = true;
     if (isSound) soundLong.play();
     showSolution();
-    btnSolution.disabled = true;
   });
 
   const btnSound = document.getElementById('sound');
@@ -49,13 +56,16 @@ setTimeout(() => {
     if (isSound) soundClick.play();
   });
 
-  ['score', 'save_game', 'load_game', 'new_game', 'random_game'].forEach((btnId) => {
+  ['score', 'new_game'].forEach((btnId) => {
     const btn = document.getElementById(btnId);
     btn.addEventListener('click', (event) => {
       if (isSound) soundLong.play();
       container.after(modale(event.target.id));
     });
   });
+
+  const resetBtn = document.getElementById('reset_game');
+  resetBtn.addEventListener('click', resetGame);
 }, 0);
 
 function showSolution() {
@@ -76,6 +86,13 @@ function showSolution() {
     cell.dataset.black = true;
   }
   document.getElementById('save_game').disabled = true;
+}
+
+function resetGame() {
+  for (let cell of document.querySelectorAll('[data-black = true]')) cell.dataset.black = false;
+  for (let cell of document.querySelectorAll('[data-crossed = true]')) cell.dataset.crossed = false;
+  timer.pause();
+  timer.start();
 }
 
 export { container, timer, isSound };

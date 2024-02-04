@@ -21,4 +21,10 @@ export default class {
   pause() {
     clearInterval(this._id);
   }
+
+  reset() {
+    this.pause();
+    this.value = 0;
+    this.node.innerText = 'Time : ' + this.secToMMSS(this.value);
+  }
 }

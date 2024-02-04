@@ -20,7 +20,7 @@
 .container_hard{
   grid-template-columns: 8fr 15fr;
   grid-template-rows: 8fr 15fr;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .field {
