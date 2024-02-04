@@ -1,6 +1,7 @@
 import styles from '../css-modules/gamefield-styles.css';
 import missions from '../assets/missions/missions.js';
 import { timer, isSound } from './control-panel.js';
+import openModale from './modale.js';
 
 export default function (level, index) {
   const container = document.createElement('div');
@@ -22,6 +23,7 @@ export default function (level, index) {
   audioStroke.setAttribute('src', '../src/assets/audio/click.wav');
   let observer = new MutationObserver(() => {
     if (isSound) audioStroke.play();
+    if (gameOver()) container.after(gameOver());
   });
 
   for (let i = 0; i < range; i++) {
@@ -127,15 +129,13 @@ function gameHandler(parrent) {
   });
   parrent.addEventListener('pointerup', () => {
     pointerIsDown = false;
-    gameOver();
   });
   parrent.addEventListener('pointerout', (event) => {
     pointerIsDown = event.target === parrent ? false : pointerIsDown;
-    gameOver();
   });
 }
 
 function gameOver() {
   const correctCells = Array.from(document.querySelectorAll('[data-solution = true]'));
-  if (correctCells.every((item) => item.dataset.black === 'true')) alert('GAMOVER!');
+  if (correctCells.every((item) => item.dataset.black === 'true')) return openModale('game_over');
 }

@@ -53,7 +53,7 @@ setTimeout(() => {
     const btn = document.getElementById(btnId);
     btn.addEventListener('click', (event) => {
       if (isSound) soundLong.play();
-      container.after(modale(event));
+      container.after(modale(event.target.id));
     });
   });
 }, 0);

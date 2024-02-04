@@ -2,15 +2,16 @@ import styles from '../css-modules/modale.css';
 import stylesSketch from '../css-modules/gamefield-styles.css';
 import missions from '../assets/missions/missions.js';
 import createGamefield from './gamefield.js';
+import { timer } from './control-panel.js';
 
-export default function (event) {
+export default function (id) {
   const container = document.createElement('div');
   container.className = styles.backdrop;
 
   const modale = document.createElement('div');
   modale.className = styles.modale;
   container.append(modale);
-  switch (event.target.id) {
+  switch (id) {
     case 'new_game':
       {
         const chooseLevelGameForm = document.createElement('form');
@@ -42,6 +43,14 @@ export default function (event) {
             sketchsWrap.append(createSketch(level, index));
           });
         });
+      }
+      break;
+    case 'game_over':
+      {
+        const congrat = document.createElement('p');
+        congrat.className = styles.modale_text;
+        congrat.innerText = `Great! You have solved the nonogram in ${timer.value} seconds!`;
+        modale.append(congrat);
       }
       break;
 
