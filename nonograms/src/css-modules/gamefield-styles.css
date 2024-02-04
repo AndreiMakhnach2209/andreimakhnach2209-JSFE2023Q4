@@ -2,11 +2,25 @@
   width: 100%;
   max-width: 100cqh;
   display: grid;
-  grid-template-columns: 3fr 5fr;
-  grid-template-rows: 3fr 5fr;
   grid-template-areas: ". header-field"
                        "aside-field field";
+}
+
+.container_easy{
+  grid-template-columns: 3fr 5fr;
+  grid-template-rows: 3fr 5fr;
   font-size: 2rem;
+
+}
+.container_normal{
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 2fr;
+  font-size: 1.5rem;
+}
+.container_hard{
+  grid-template-columns: 8fr 15fr;
+  grid-template-rows: 8fr 15fr;
+  font-size: 1.5rem;
 }
 
 .field {
@@ -65,6 +79,21 @@
   background-color: var(--background-clue, #aaaaaa);
 }
 
-.header_field .clue_row {
+.aside_field .clue_row:nth-child(5n),
+.field_hard .unit:nth-child(n+61):nth-child(-n+75),
+.field_hard .unit:nth-child(n+136):nth-child(-n+150),
+.field_normal .unit:nth-child(n+41):nth-child(-n+50)
+                            /* n+75n-14          -n + 75n */
+{
+  border-bottom: 5px solid var(--border-dark, #000000);
+}
+
+.header_field .clue_row{
   flex-direction: column;
+  flex-basis: 100%;
+}
+
+.header_field .clue_row:nth-child(5n),
+.field .unit:nth-child(5n) {
+  border-right: 5px solid var(--border-dark, #000000);
 }

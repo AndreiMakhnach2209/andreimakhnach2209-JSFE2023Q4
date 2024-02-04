@@ -2,16 +2,17 @@ import styles from '../css-modules/gamefield-styles.css';
 import missions from '../assets/missions/missions.js';
 import { timer, isSound } from './control-panel.js';
 
-export default function () {
+export default function (level, index) {
   const container = document.createElement('div');
   container.className = styles.container;
+  container.classList.add(styles[`container_${level}`]);
 
-  const currentMatrix = missions.easy[Math.floor(Math.random() * 5)];
+  const currentMatrix = missions[level][index];
   let range = currentMatrix.length;
 
   const field = document.createElement('div');
   field.className = styles.field;
-  field.classList.add(styles.field_easy);
+  field.classList.add(styles[`field_${level}`]);
   container.append(field);
   field.addEventListener('pointerdown', timer.start.bind(timer), {
     once: true,
