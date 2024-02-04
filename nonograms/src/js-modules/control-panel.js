@@ -1,6 +1,7 @@
 import styles from '../css-modules/control-panel.css';
 import Timer from './timer.js';
 import themes from './themes.js';
+import modale from './modale.js';
 
 const container = document.createElement('div');
 container.className = styles.container;
@@ -46,6 +47,12 @@ setTimeout(() => {
     isSound = isSound ? false : true;
     btnSound.dataset.active = isSound;
     if (isSound) soundClick.play();
+  });
+
+  const btnNewGame = document.getElementById('new_game');
+  btnNewGame.addEventListener('click', () => {
+    if (isSound) soundLong.play();
+    container.after(modale());
   });
 }, 0);
 

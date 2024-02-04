@@ -16,7 +16,6 @@
   padding: 30px;
   gap: 30px;
   background-color: var(--background, #cfcfcf);
-  user-select: none;
   color: var(--text-color, #000);
   transition: color 1s linear;
   transition: background 1s linear;

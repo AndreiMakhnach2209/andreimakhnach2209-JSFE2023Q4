@@ -1,0 +1,53 @@
+.backdrop {
+  background-color: #000000aa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top:0;
+  left: 0;
+}
+
+.modale {
+  width: 80%;
+  height: 60%;
+  background-color: var(--background, #fff);
+  font-size: 2rem;
+}
+
+.level_form {
+  display: flex;
+  justify-content: space-around;
+  position:relative;
+}
+
+.form_title {
+
+}
+
+.btn_level {
+  display: none;
+}
+
+.label_level {
+
+}
+
+.sketchs_wrap{
+  display: none;
+}
+.btn_level:checked + .label_level .sketchs_wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  position: absolute;
+  top:100%;
+  left:10%;
+}
+
+.sketch {
+  min-width: 10cqw;
+  aspect-ratio: 1;
+}

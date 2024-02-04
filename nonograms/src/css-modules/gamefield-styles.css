@@ -15,11 +15,11 @@
   display: grid;
 }
 
-.field-hard {
+.field_hard {
   grid-template: repeat(15, 1fr) / repeat(15, 1fr);
 }
 
-.field-normal {
+.field_normal {
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
 }
 

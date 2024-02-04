@@ -6,7 +6,7 @@ export default function () {
   const container = document.createElement('div');
   container.className = styles.container;
 
-  const currentMatrix = missions.easy[0];
+  const currentMatrix = missions.easy[Math.floor(Math.random() * 5)];
   let range = currentMatrix.length;
 
   const field = document.createElement('div');
