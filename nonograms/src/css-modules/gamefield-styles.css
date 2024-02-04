@@ -83,7 +83,6 @@
 .field_hard .unit:nth-child(n+61):nth-child(-n+75),
 .field_hard .unit:nth-child(n+136):nth-child(-n+150),
 .field_normal .unit:nth-child(n+41):nth-child(-n+50)
-                            /* n+75n-14          -n + 75n */
 {
   border-bottom: 5px solid var(--border-dark, #000000);
 }

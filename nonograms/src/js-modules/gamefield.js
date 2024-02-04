@@ -46,8 +46,8 @@ export default function (level, index) {
       row.push(currentMatrix[i][j]);
       coloumn.push(currentMatrix[j][i]);
     }
-    clueVerticale.push(fillClueRow(coloumn));
-    clueHorizontale.push(fillClueRow(row));
+    clueVerticale.push(fillClueRow(coloumn).length ? fillClueRow(coloumn) : [0]);
+    clueHorizontale.push(fillClueRow(row).length ? fillClueRow(row) : [0]);
   }
 
   const aside = createClue(clueHorizontale);
