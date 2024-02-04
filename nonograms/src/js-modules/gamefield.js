@@ -127,8 +127,15 @@ function gameHandler(parrent) {
   });
   parrent.addEventListener('pointerup', () => {
     pointerIsDown = false;
+    gameOver();
   });
   parrent.addEventListener('pointerout', (event) => {
     pointerIsDown = event.target === parrent ? false : pointerIsDown;
+    gameOver();
   });
+}
+
+function gameOver() {
+  const correctCells = Array.from(document.querySelectorAll('[data-solution = true]'));
+  if (correctCells.every((item) => item.dataset.black === 'true')) alert('GAMOVER!');
 }

@@ -89,6 +89,5 @@ function closeModale() {
 function refreshBtns() {
   ['score', 'save_game', 'load_game', 'new_game', 'random_game', 'solution'].forEach((item) => {
     document.getElementById(item).disabled = false;
-    console.log(document.getElementById(item));
   });
 }
