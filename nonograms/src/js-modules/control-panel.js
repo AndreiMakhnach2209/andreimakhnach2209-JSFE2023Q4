@@ -49,10 +49,12 @@ setTimeout(() => {
     if (isSound) soundClick.play();
   });
 
-  const btnNewGame = document.getElementById('new_game');
-  btnNewGame.addEventListener('click', () => {
-    if (isSound) soundLong.play();
-    container.after(modale());
+  ['score', 'save_game', 'load_game', 'new_game', 'random_game'].forEach((btnId) => {
+    const btn = document.getElementById(btnId);
+    btn.addEventListener('click', (event) => {
+      if (isSound) soundLong.play();
+      container.after(modale(event));
+    });
   });
 }, 0);
 

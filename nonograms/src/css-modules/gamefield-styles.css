@@ -15,12 +15,12 @@
 .container_normal{
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 2fr;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 .container_hard{
   grid-template-columns: 8fr 15fr;
   grid-template-rows: 8fr 15fr;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .field {
