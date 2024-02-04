@@ -2,6 +2,7 @@ import styles from '../css-modules/gamefield-styles.css';
 import missions from '../assets/missions/missions.js';
 import { timer, isSound } from './control-panel.js';
 import openModale from './modale.js';
+import addCross from './close-button.js';
 
 export default function (level, index) {
   const container = document.createElement('div');
@@ -33,6 +34,9 @@ export default function (level, index) {
       unit.setAttribute('data-solution', currentMatrix[i][j] ? 'true' : 'false');
       unit.setAttribute('data-black', 'false');
       unit.setAttribute('data-crossed', 'false');
+      const cross = addCross();
+      cross.classList.add(styles.cross);
+      unit.append(cross);
       observer.observe(unit, { attributes: true });
       field.append(unit);
     }
@@ -92,37 +96,40 @@ function gameHandler(parrent) {
   let pointerIsDown = false;
   let firstTargetIsMarked = false;
   parrent.addEventListener('pointerdown', (event) => {
+    const target = event.target.closest('.' + styles.unit);
+    console.log(target);
     switch (event.button) {
       case 0:
-        if (event.target.hasAttribute('data-black')) {
-          firstTargetIsMarked = event.target.dataset.black === 'true' ? true : false;
-          event.target.dataset.black = firstTargetIsMarked ? 'false' : 'true';
-          event.target.dataset.crossed = 'false';
+        if (target) {
+          firstTargetIsMarked = target.dataset.black === 'true' ? true : false;
+          target.dataset.black = firstTargetIsMarked ? 'false' : 'true';
+          target.dataset.crossed = 'false';
           pointerIsDown = true;
         }
         break;
       case 2:
-        if (event.target.hasAttribute('data-crossed')) {
-          firstTargetIsMarked = event.target.dataset.crossed === 'true' ? true : false;
-          event.target.dataset.crossed = firstTargetIsMarked ? 'false' : 'true';
-          event.target.dataset.black = 'false';
+        if (target) {
+          firstTargetIsMarked = target.dataset.crossed === 'true' ? true : false;
+          target.dataset.crossed = firstTargetIsMarked ? 'false' : 'true';
+          target.dataset.black = 'false';
           pointerIsDown = true;
         }
         break;
     }
   });
   parrent.addEventListener('pointerover', (event) => {
+    const target = event.target.closest('.' + styles.unit);
     switch (event.buttons) {
       case 1:
-        if (pointerIsDown && event.target.hasAttribute('data-black')) {
-          event.target.dataset.black = firstTargetIsMarked ? 'false' : 'true';
-          event.target.dataset.crossed = 'false';
+        if (pointerIsDown && target) {
+          target.dataset.black = firstTargetIsMarked ? 'false' : 'true';
+          target.dataset.crossed = 'false';
         }
         break;
       case 2:
-        if (pointerIsDown && event.target.hasAttribute('data-crossed')) {
-          event.target.dataset.crossed = firstTargetIsMarked ? 'false' : 'true';
-          event.target.dataset.black = 'false';
+        if (pointerIsDown && target) {
+          target.dataset.crossed = firstTargetIsMarked ? 'false' : 'true';
+          target.dataset.black = 'false';
         }
         break;
     }

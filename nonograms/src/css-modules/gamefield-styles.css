@@ -47,14 +47,21 @@
   align-items: center;
   aspect-ratio: 1;
   border: 1px solid var(--border-dark, #000000);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cross {
+  height: 100%;
+  display: none;
 }
 
 [data-black = "true"] {
   background-color: var(--cell-black, #000000);
 }
 
-[data-crossed = "true"]{
-  background-color: #888888;
+[data-crossed = "true"] .cross {
+  display: initial;
 }
 
 .header_field {

@@ -8,13 +8,17 @@
   position: fixed;
   top:0;
   left: 0;
+  z-index: 1;
 }
 
 .modale {
   width: 80%;
   height: 60%;
+  padding: 3%;
   background-color: var(--background, #fff);
   font-size: 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 .level_form {
@@ -53,5 +57,16 @@
 }
 
 .modale_text {
-  
+
+}
+
+.close_btn {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  height: 10%;
+}
+
+.close_btn div {
+  top: 0;
 }

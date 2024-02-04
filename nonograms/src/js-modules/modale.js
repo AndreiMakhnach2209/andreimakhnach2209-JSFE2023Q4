@@ -3,14 +3,20 @@ import stylesSketch from '../css-modules/gamefield-styles.css';
 import missions from '../assets/missions/missions.js';
 import createGamefield from './gamefield.js';
 import { timer } from './control-panel.js';
+import createCloseBtn from './close-button.js';
 
 export default function (id) {
   const container = document.createElement('div');
   container.className = styles.backdrop;
+  container.addEventListener('click', closeModale);
 
   const modale = document.createElement('div');
   modale.className = styles.modale;
   container.append(modale);
+  const closeBtn = createCloseBtn('button');
+  closeBtn.classList.add(styles.close_btn);
+  closeBtn.addEventListener('click', closeModale);
+  modale.append(closeBtn);
   switch (id) {
     case 'new_game':
       {
@@ -27,6 +33,7 @@ export default function (id) {
           btnLevel.setAttribute('type', 'radio');
           btnLevel.setAttribute('id', `${level}_level`);
           btnLevel.setAttribute('name', `level`);
+          btnLevel.setAttribute('checked', 'true');
           btnLevel.className = styles.btn_level;
           chooseLevelGameForm.append(btnLevel);
           const labelLevel = document.createElement('label');
@@ -90,9 +97,13 @@ function resetGame(level, index) {
   oldGamefield.replaceWith(newGamefield);
 }
 
-function closeModale() {
+function closeModale(event = null) {
   const modale = document.querySelector('.' + styles.backdrop);
-  modale.remove();
+  if (event) {
+    if (event.target === event.currentTarget) modale.remove();
+  } else {
+    modale.remove();
+  }
 }
 
 function refreshBtns() {
