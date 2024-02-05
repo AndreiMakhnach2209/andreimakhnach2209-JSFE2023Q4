@@ -16,7 +16,43 @@ module.exports = {
           }
         ]
       },
-      { test: /\.(js)$/, use: 'babel-loader' }
+      { test: /\.(js)$/, use: 'babel-loader' },
+      {
+        test: /\.(png|svg|jpe?g|webp|avif|gif|ico)$/i,
+        type: 'asset',
+        generator: {
+          filename: 'images/[name][ext]',
+        },
+        parser: {
+          dataUrlCondition: { 
+            maxSize: 10 * 1024,
+          },
+        },
+      },
+      {
+        test: /\.(mp3?4|ogg|wav|flac|aac|mp4|webm)$/i,
+        type: 'asset',
+        generator: {
+          filename: 'assets/audio/[name][ext]',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024,
+          },
+        },
+      },
     ]
   },
   output: {

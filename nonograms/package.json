@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
-    "deploy": "npm run build && npx gh-pages -d dist -e hangman"
+    "deploy": "npm run build && npx gh-pages -d dist -e nonograms"
   },
   "author": "Andrei Makhnach",
   "license": "ISC",

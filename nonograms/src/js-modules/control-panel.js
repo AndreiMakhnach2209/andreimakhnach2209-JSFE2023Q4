@@ -2,6 +2,8 @@ import styles from '../css-modules/control-panel.css';
 import Timer from './timer.js';
 import themes from './themes.js';
 import modale from './modale.js';
+import click from '../assets/audio/click.wav';
+import stroke from '../assets/audio/stroke_long.wav';
 
 const container = document.createElement('div');
 container.className = styles.container;
@@ -36,9 +38,9 @@ container.append(themesForm);
 
 let isSound = true;
 const soundClick = document.createElement('audio');
-soundClick.setAttribute('src', '../src/assets/audio/click.wav');
+soundClick.setAttribute('src', './assets/audio/click.wav');
 const soundLong = document.createElement('audio');
-soundLong.setAttribute('src', '../src/assets/audio/stroke_long.wav');
+soundLong.setAttribute('src', './assets/audio/stroke_long.wav');
 
 setTimeout(() => {
   const btnSolution = document.getElementById('solution');

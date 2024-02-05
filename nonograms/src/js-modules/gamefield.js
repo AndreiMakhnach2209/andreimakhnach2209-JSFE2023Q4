@@ -166,7 +166,10 @@ function gameHandler(parrent) {
 
 function gameOver() {
   const correctCells = Array.from(document.querySelectorAll('[data-solution = true]'));
-  if (correctCells.every((item) => item.dataset.black === 'true')) {
+  if (
+    correctCells.every((item) => item.dataset.black === 'true') &&
+    correctCells.length === document.querySelectorAll('[data-black = true]').length
+  ) {
     timer.pause();
     setTimeout(() => {
       ['solution', 'save_game', 'reset_game'].forEach(
