@@ -3,6 +3,7 @@ import missions from '../assets/missions/missions.js';
 import { timer, isSound } from './control-panel.js';
 import openModale from './modale.js';
 import addCross from './close-button.js';
+import click from '../assets/audio/click.wav';
 
 export default function (level, index, matrix = missions[level][index], isSaved = false) {
   const container = document.createElement('div');
@@ -19,8 +20,8 @@ export default function (level, index, matrix = missions[level][index], isSaved 
     once: true,
   });
 
-  const audioStroke = document.createElement('audio');
-  audioStroke.setAttribute('src', '../src/assets/audio/click.wav');
+  const audioStroke = new Audio(click);
+  // audioStroke.setAttribute('src', '../src/assets/audio/click.wav');
   let observer = new MutationObserver(() => {
     if (isSound) audioStroke.play();
     if (gameOver() && document.getElementById('solution').disabled === false)

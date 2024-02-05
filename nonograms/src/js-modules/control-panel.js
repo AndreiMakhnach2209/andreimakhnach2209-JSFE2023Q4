@@ -37,10 +37,10 @@ container.append(themesForm);
 });
 
 let isSound = true;
-const soundClick = document.createElement('audio');
-soundClick.setAttribute('src', './assets/audio/click.wav');
-const soundLong = document.createElement('audio');
-soundLong.setAttribute('src', './assets/audio/stroke_long.wav');
+const soundClick = new Audio(click);
+// soundClick.setAttribute('src', './assets/audio/click.wav');
+const soundLong = new Audio(stroke);
+// soundLong.setAttribute('src', './assets/audio/stroke_long.wav');
 
 setTimeout(() => {
   const btnSolution = document.getElementById('solution');

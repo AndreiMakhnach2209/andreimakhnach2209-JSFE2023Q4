@@ -33,7 +33,7 @@ module.exports = {
         test: /\.(mp3?4|ogg|wav|flac|aac|mp4|webm)$/i,
         type: 'asset',
         generator: {
-          filename: 'assets/audio/[name][ext]',
+          filename: 'audio/[name][ext]',
         },
         parser: {
           dataUrlCondition: {
