@@ -4,13 +4,12 @@ import { timer, isSound } from './control-panel.js';
 import openModale from './modale.js';
 import addCross from './close-button.js';
 
-export default function (level, index) {
+export default function (level, index, matrix = missions[level][index], isSaved = false) {
   const container = document.createElement('div');
   container.className = styles.container;
   container.classList.add(styles[`container_${level}`]);
 
-  const currentMatrix = missions[level][index];
-  let range = currentMatrix.length;
+  let range = isSaved ? matrix.range : matrix.length;
 
   const field = document.createElement('div');
   field.className = styles.field;
@@ -32,9 +31,12 @@ export default function (level, index) {
     for (let j = 0; j < range; j++) {
       const unit = document.createElement('div');
       unit.className = styles.unit;
-      unit.setAttribute('data-solution', currentMatrix[i][j] ? 'true' : 'false');
-      unit.setAttribute('data-black', 'false');
-      unit.setAttribute('data-crossed', 'false');
+      unit.setAttribute(
+        'data-solution',
+        isSaved ? matrix.matrix[i][j].solution : matrix[i][j] ? 'true' : 'false'
+      );
+      unit.setAttribute('data-black', isSaved ? matrix.matrix[i][j].black : 'false');
+      unit.setAttribute('data-crossed', isSaved ? matrix.matrix[i][j].crossed : 'false');
       const cross = addCross();
       cross.classList.add(styles.cross);
       unit.append(cross);
@@ -50,8 +52,8 @@ export default function (level, index) {
     const row = [];
     const coloumn = [];
     for (let j = 0; j < range; j++) {
-      row.push(currentMatrix[i][j]);
-      coloumn.push(currentMatrix[j][i]);
+      row.push(matrix[i][j]);
+      coloumn.push(matrix[j][i]);
     }
     clueVerticale.push(fillClueRow(coloumn).length ? fillClueRow(coloumn) : [0]);
     clueHorizontale.push(fillClueRow(row).length ? fillClueRow(row) : [0]);
@@ -63,6 +65,26 @@ export default function (level, index) {
 
   container.append(aside, header);
   gameHandler(field);
+
+  setTimeout(() => {
+    document.getElementById('save_game').addEventListener('click', () => {
+      if (isSound) audioStroke.play();
+      const units = document.querySelectorAll('.' + styles.unit);
+      const saveMatrix = [];
+      for (let i = 0; i < range; i++) {
+        const row = [];
+        for (let j = 0; j < range; j++) {
+          const unit = units[i * range + j];
+          row.push(unit.dataset);
+        }
+        saveMatrix.push(row);
+      }
+      localStorage.setItem(
+        'save',
+        JSON.stringify({ matrix: saveMatrix, time: timer.value, range: range })
+      );
+    });
+  }, 0);
 
   return container;
 }
