@@ -66,6 +66,12 @@ setTimeout(() => {
 
   const resetBtn = document.getElementById('reset_game');
   resetBtn.addEventListener('click', resetGame);
+
+  const randomBtn = document.getElementById('random_game');
+  randomBtn.addEventListener('click', () => {
+    if (isSound) soundLong.play();
+    modale('random_game');
+  });
 }, 0);
 
 function showSolution() {
@@ -89,6 +95,7 @@ function showSolution() {
 }
 
 function resetGame() {
+  if (isSound) soundLong.play();
   for (let cell of document.querySelectorAll('[data-black = true]')) cell.dataset.black = false;
   for (let cell of document.querySelectorAll('[data-crossed = true]')) cell.dataset.crossed = false;
   timer.pause();

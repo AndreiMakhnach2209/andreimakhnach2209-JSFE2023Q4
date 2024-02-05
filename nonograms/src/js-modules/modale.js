@@ -60,6 +60,15 @@ export default function (id) {
         modale.append(congrat);
       }
       break;
+    case 'random_game':
+      {
+        const levels = Object.keys(missions);
+        const level = levels[Math.floor(Math.random() * levels.length)];
+        const i = Math.floor(Math.random() * missions[level].length);
+        resetGame(level, i);
+        refreshBtns();
+      }
+      break;
 
     default:
       break;

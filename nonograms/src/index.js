@@ -4,7 +4,7 @@ import { container as controlPanel } from './js-modules/control-panel.js';
 import themes from './js-modules/themes.js';
 
 const body = document.getElementsByTagName('body')[0];
-const gamefield = createGamefield('easy', Math.round(Math.random() * 5));
+const gamefield = createGamefield('easy', Math.floor(Math.random() * 5));
 const gamefieldWrap = document.createElement('div');
 
 gamefieldWrap.className = styles.field_wrap;

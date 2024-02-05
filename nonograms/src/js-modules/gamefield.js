@@ -146,9 +146,11 @@ function gameOver() {
   const correctCells = Array.from(document.querySelectorAll('[data-solution = true]'));
   if (correctCells.every((item) => item.dataset.black === 'true')) {
     timer.pause();
-    ['solution', 'save_game', 'reset_game'].forEach(
-      (item) => (document.getElementById(item).disabled = true)
-    );
+    setTimeout(() => {
+      ['solution', 'save_game', 'reset_game'].forEach(
+        (item) => (document.getElementById(item).disabled = true)
+      );
+    }, 0);
     return openModale('game_over');
   }
 }
