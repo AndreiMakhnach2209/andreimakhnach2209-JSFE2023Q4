@@ -12,7 +12,7 @@ const timerWrap = document.createElement('div');
 timerWrap.className = styles.timer_wrap;
 container.append(timerWrap);
 
-const timer = new Timer();
+let timer = new Timer();
 timer.node.className = styles.timer;
 timerWrap.append(timer.node);
 const themesForm = themes.create();
@@ -38,9 +38,7 @@ container.append(themesForm);
 
 let isSound = true;
 const soundClick = new Audio(click);
-// soundClick.setAttribute('src', './assets/audio/click.wav');
 const soundLong = new Audio(stroke);
-// soundLong.setAttribute('src', './assets/audio/stroke_long.wav');
 
 setTimeout(() => {
   const btnSolution = document.getElementById('solution');
@@ -73,6 +71,13 @@ setTimeout(() => {
   randomBtn.addEventListener('click', () => {
     if (isSound) soundLong.play();
     modale('random_game');
+  });
+
+  const loadBtn = document.getElementById('load_game');
+  if (!localStorage.save) loadBtn.disabled = true;
+  loadBtn.addEventListener('click', () => {
+    if (isSound) soundLong.play();
+    modale('load_game');
   });
 }, 0);
 

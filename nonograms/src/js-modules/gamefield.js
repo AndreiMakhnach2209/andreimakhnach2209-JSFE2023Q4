@@ -5,12 +5,12 @@ import openModale from './modale.js';
 import addCross from './close-button.js';
 import click from '../assets/audio/click.wav';
 
-export default function (level, index, matrix = missions[level][index], isSaved = false) {
+export default function (level, index, savedData, isSaved = false) {
   const container = document.createElement('div');
   container.className = styles.container;
   container.classList.add(styles[`container_${level}`]);
-
-  let range = isSaved ? matrix.range : matrix.length;
+  const matrix = missions[level][index];
+  const range = matrix.length;
 
   const field = document.createElement('div');
   field.className = styles.field;
@@ -21,7 +21,6 @@ export default function (level, index, matrix = missions[level][index], isSaved 
   });
 
   const audioStroke = new Audio(click);
-  // audioStroke.setAttribute('src', '../src/assets/audio/click.wav');
   let observer = new MutationObserver(() => {
     if (isSound) audioStroke.play();
     if (gameOver() && document.getElementById('solution').disabled === false)
@@ -32,12 +31,9 @@ export default function (level, index, matrix = missions[level][index], isSaved 
     for (let j = 0; j < range; j++) {
       const unit = document.createElement('div');
       unit.className = styles.unit;
-      unit.setAttribute(
-        'data-solution',
-        isSaved ? matrix.matrix[i][j].solution : matrix[i][j] ? 'true' : 'false'
-      );
-      unit.setAttribute('data-black', isSaved ? matrix.matrix[i][j].black : 'false');
-      unit.setAttribute('data-crossed', isSaved ? matrix.matrix[i][j].crossed : 'false');
+      unit.setAttribute('data-solution', matrix[i][j] ? 'true' : 'false');
+      unit.setAttribute('data-black', isSaved ? savedData[i][j].black : 'false');
+      unit.setAttribute('data-crossed', isSaved ? savedData[i][j].crossed : 'false');
       const cross = addCross();
       cross.classList.add(styles.cross);
       unit.append(cross);
@@ -82,8 +78,9 @@ export default function (level, index, matrix = missions[level][index], isSaved 
       }
       localStorage.setItem(
         'save',
-        JSON.stringify({ matrix: saveMatrix, time: timer.value, range: range })
+        JSON.stringify({ matrix: saveMatrix, time: timer.value, level: level, index: index })
       );
+      document.getElementById('load_game').disabled = false;
     });
   }, 0);
 

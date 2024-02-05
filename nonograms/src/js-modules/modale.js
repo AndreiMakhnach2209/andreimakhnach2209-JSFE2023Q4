@@ -69,6 +69,13 @@ export default function (id) {
         refreshBtns();
       }
       break;
+    case 'load_game':
+      {
+        const saving = JSON.parse(localStorage.getItem('save'));
+        resetGame(null, null, saving, true);
+        refreshBtns();
+      }
+      break;
 
     default:
       break;
@@ -100,10 +107,12 @@ function createSketch(level, i) {
   return field;
 }
 
-function resetGame(level, index) {
-  timer.reset();
+function resetGame(level, index, saving, isSaved) {
+  timer.reset(saving ? saving.time : 0);
   const oldGamefield = document.querySelector('.' + stylesSketch.container);
-  const newGamefield = createGamefield(level, index);
+  const newGamefield = saving
+    ? createGamefield(saving.level, saving.index, saving.matrix, isSaved)
+    : createGamefield(level, index);
   oldGamefield.replaceWith(newGamefield);
 }
 
@@ -117,9 +126,7 @@ function closeModale(event = null) {
 }
 
 function refreshBtns() {
-  ['score', 'save_game', 'load_game', 'new_game', 'random_game', 'solution', 'reset_game'].forEach(
-    (item) => {
-      document.getElementById(item).disabled = false;
-    }
-  );
+  ['score', 'save_game', 'new_game', 'random_game', 'solution', 'reset_game'].forEach((item) => {
+    document.getElementById(item).disabled = false;
+  });
 }
