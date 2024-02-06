@@ -4,6 +4,7 @@ import { timer, isSound } from './control-panel.js';
 import openModale from './modale.js';
 import addCross from './close-button.js';
 import click from '../assets/audio/click.wav';
+import win from '../assets/audio/win.wav';
 
 export default function (level, index, savedData, isSaved = false) {
   const container = document.createElement('div');
@@ -23,8 +24,12 @@ export default function (level, index, savedData, isSaved = false) {
   const audioStroke = new Audio(click);
   let observer = new MutationObserver(() => {
     if (isSound) audioStroke.play();
-    if (gameOver() && document.getElementById('solution').disabled === false)
+    if (gameOver() && document.getElementById('solution').disabled === false) {
       container.after(gameOver());
+      const audioWin = new Audio(win);
+      if (isSound) audioWin.play();
+      saveResult(level, timer.value);
+    }
   });
 
   for (let i = 0; i < range; i++) {
@@ -176,4 +181,14 @@ function gameOver() {
     }, 0);
     return openModale('game_over');
   }
+}
+
+function saveResult(level, time) {
+  const date = new Date();
+  if (!localStorage.last) localStorage.setItem('last', JSON.stringify([]));
+  const table = JSON.parse(localStorage.getItem('last'));
+  table.push([date, level, time]);
+  while (table.length > 5) table.shift();
+  localStorage.setItem('last', JSON.stringify(table));
+  document.getElementById('latest_wins').disabled = false;
 }

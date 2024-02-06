@@ -14,7 +14,7 @@
 .modale {
   width: 80%;
   height: 60%;
-  padding: 3%;
+  padding: 5%;
   background-color: var(--background, #fff);
   font-size: 2rem;
   position: relative;
@@ -69,4 +69,9 @@
 
 .close_btn div {
   top: 0;
+}
+
+.table_win{
+  width: 100%;
+  border: 1px solid var(--border-dark, #000000);
 }

@@ -19,7 +19,7 @@ const themesForm = themes.create();
 container.append(themesForm);
 
 [
-  'score',
+  'latest_wins',
   'sound',
   'save_game',
   'continue_last_game',
@@ -55,8 +55,9 @@ setTimeout(() => {
     btnSound.dataset.active = isSound;
     if (isSound) soundClick.play();
   });
-
-  ['score', 'new_game'].forEach((btnId) => {
+  const latestBtn = document.getElementById('latest_wins');
+  if (!localStorage.last) latestBtn.disabled = true;
+  ['latest_wins', 'new_game'].forEach((btnId) => {
     const btn = document.getElementById(btnId);
     btn.addEventListener('click', (event) => {
       if (isSound) soundLong.play();

@@ -4,6 +4,10 @@ import missions from '../assets/missions/missions.js';
 import createGamefield from './gamefield.js';
 import { timer } from './control-panel.js';
 import createCloseBtn from './close-button.js';
+import stroke from '../assets/audio/stroke_long.wav';
+import click from '../assets/audio/click.wav';
+import { isSound } from './control-panel.js';
+import Timer from './timer.js';
 
 export default function (id) {
   const container = document.createElement('div');
@@ -21,6 +25,9 @@ export default function (id) {
     case 'new_game':
       {
         const chooseLevelGameForm = document.createElement('form');
+        chooseLevelGameForm.addEventListener('change', () => {
+          if (isSound) new Audio(click).play();
+        });
         chooseLevelGameForm.className = styles.level_form;
         chooseLevelGameForm.setAttribute('name', 'choosing_level');
         modale.append(chooseLevelGameForm);
@@ -76,6 +83,41 @@ export default function (id) {
         refreshBtns();
       }
       break;
+    case 'latest_wins':
+      {
+        const tableWinsNode = document.createElement('table');
+        tableWinsNode.className = styles.table_win;
+        const tableHead = document.createElement('thead');
+        const tableHeadRow = document.createElement('tr');
+        tableHead.append(tableHeadRow);
+        tableWinsNode.append(tableHead);
+        ['Position', 'Date', 'Level', 'Time'].forEach((item) => {
+          const tableHeadItem = document.createElement('th');
+          tableHeadItem.innerText = item;
+          tableHeadRow.append(tableHeadItem);
+        });
+
+        const tableBody = document.createElement('tbody');
+        tableWinsNode.append(tableBody);
+        const tableWin = JSON.parse(localStorage.getItem('last'));
+        tableWin
+          .sort((a, b) => a[2] - b[2])
+          .map((item, index) => [index + 1].concat(item))
+          .forEach((item) => {
+            const tableBodyRow = document.createElement('tr');
+            tableBody.append(tableBodyRow);
+            let [position, date, level, time] = item;
+            [position, new Date(date).toLocaleString(), level, new Timer().secToMMSS(time)].forEach(
+              (data) => {
+                const tableBodyItem = document.createElement('td');
+                tableBodyItem.innerText = data;
+                tableBodyRow.append(tableBodyItem);
+              }
+            );
+          });
+        modale.append(tableWinsNode);
+      }
+      break;
 
     default:
       break;
@@ -91,6 +133,9 @@ function createSketch(level, i) {
   field.className = stylesSketch.field;
   field.classList.add(stylesSketch[`field_${level}`], styles.sketch);
   field.addEventListener('click', () => {
+    if (isSound) {
+      new Audio(stroke).play();
+    }
     resetGame(level, i);
     refreshBtns();
     closeModale();
@@ -126,7 +171,9 @@ function closeModale(event = null) {
 }
 
 function refreshBtns() {
-  ['score', 'save_game', 'new_game', 'random_game', 'solution', 'reset_game'].forEach((item) => {
-    document.getElementById(item).disabled = false;
-  });
+  ['latest_wins', 'save_game', 'new_game', 'random_game', 'solution', 'reset_game'].forEach(
+    (item) => {
+      document.getElementById(item).disabled = false;
+    }
+  );
 }
