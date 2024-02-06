@@ -80,7 +80,7 @@ export default function (level, index, savedData, isSaved = false) {
         'save',
         JSON.stringify({ matrix: saveMatrix, time: timer.value, level: level, index: index })
       );
-      document.getElementById('load_game').disabled = false;
+      document.getElementById('continue_last_game').disabled = false;
     });
   }, 0);
 

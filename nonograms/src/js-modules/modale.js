@@ -69,7 +69,7 @@ export default function (id) {
         refreshBtns();
       }
       break;
-    case 'load_game':
+    case 'continue_last_game':
       {
         const saving = JSON.parse(localStorage.getItem('save'));
         resetGame(null, null, saving, true);

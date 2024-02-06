@@ -22,7 +22,7 @@ container.append(themesForm);
   'score',
   'sound',
   'save_game',
-  'load_game',
+  'continue_last_game',
   'new_game',
   'random_game',
   'solution',
@@ -73,11 +73,11 @@ setTimeout(() => {
     modale('random_game');
   });
 
-  const loadBtn = document.getElementById('load_game');
+  const loadBtn = document.getElementById('continue_last_game');
   if (!localStorage.save) loadBtn.disabled = true;
   loadBtn.addEventListener('click', () => {
     if (isSound) soundLong.play();
-    modale('load_game');
+    modale('continue_last_game');
   });
 }, 0);
 
