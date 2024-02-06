@@ -16,7 +16,7 @@
   height: 60%;
   padding: 5%;
   background-color: var(--background, #fff);
-  font-size: 2rem;
+  font-size: var(--text-size-m, 2rem);
   position: relative;
   z-index: 10;
 }

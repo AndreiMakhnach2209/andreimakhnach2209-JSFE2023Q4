@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: 100cqh;
+  max-width: 90cqh;
   display: grid;
   grid-template-areas: ". header-field"
                        "aside-field field";
@@ -9,18 +9,18 @@
 .container_easy{
   grid-template-columns: 3fr 5fr;
   grid-template-rows: 3fr 5fr;
-  font-size: 2rem;
+  font-size: var(--text-size-l, 2.5rem);
 
 }
 .container_normal{
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 2fr;
-  font-size: 2rem;
+  font-size: var(--text-size-m, 2.5rem);
 }
 .container_hard{
   grid-template-columns: 8fr 15fr;
   grid-template-rows: 8fr 15fr;
-  font-size: 1.5rem;
+  font-size: var(--text-size-s, 1.5rem);
 }
 
 .field {
