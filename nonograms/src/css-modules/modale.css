@@ -35,8 +35,13 @@
   display: none;
 }
 
-.label_level {
+.btn_level:checked + .label_level {
+  font-weight: 700;
+}
 
+.label_level {
+  border-radius: 5px;
+  background-color: var(--background-clue, #aaaaaa);
 }
 
 .sketchs_wrap{
@@ -44,20 +49,22 @@
 }
 .btn_level:checked + .label_level .sketchs_wrap {
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
   position: absolute;
-  top:100%;
-  left:10%;
+  top:200%;
+  left:0;
 }
 
 .sketch {
-  min-width: 10cqw;
+  min-width: 12cqw;
   aspect-ratio: 1;
+  transition: 0.5s;
 }
 
 .modale_text {
-
+  font-size: var(--text-size-m);
 }
 
 .close_btn {
@@ -74,4 +81,30 @@
 .table_win{
   width: 100%;
   border: 1px solid var(--border-dark, #000000);
+  text-align: center;
+}
+
+@media (hover:hover) {
+  .label_level:hover span {
+    color: var(--text-hover);
+  }
+
+  .sketch:hover {
+    scale: 1.1;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .sketch * {
+    border-width: 0px;
+  }
+
+  .sketchs_wrap {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .sketch {
+    min-width: 15cqw;
+  }
 }

@@ -48,9 +48,17 @@
     }
 }
 
+@media screen and (max-width: 800px) {
+  :root {
+    --text-size-l: 28px;
+    --text-size-m: 20px;
+    --text-size-s: 12px;
+    }
+}
+
 .light {
   --background: #ffffff;
-  --background-clue-light: #909090;
+  --background-clue: #909090;
   --border-dark: #000;
   --text-hover: #636363;
   --text-color: #000;

@@ -60,7 +60,12 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(
+      {
+        title: 'Nonograms',
+        favicon: 'src/assets/img/free-icon-crossword-4928876.svg'
+      }
+    )
   ],
-  mode: 'development'
+  mode: 'production'
 }

@@ -5,10 +5,15 @@
 .btns_row {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 
 .label_radio {
   text-transform: capitalize;
+  background-color: var(--background-clue);
+  border-radius: 7px;
+  transition: 0.5s;
+  padding: 5px;
 }
 .radio:checked + .label_radio {
   font-weight: bolder;
@@ -22,10 +27,12 @@
 .themes_box {
   display: flex;
   flex-direction: column;
+  max-width: 600px;
 }
 
 @media (hover: hover) {
   .label_radio:hover {
-  color: var(--text-hover, #999999);
-}
+    color: var(--text-hover, #999999);
+    scale: 1.05;
+  }
 }

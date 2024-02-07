@@ -1,6 +1,6 @@
 .container {
-  width: 100%;
-  max-width: 90cqh;
+  min-width: 100%;
+  max-height: 90cqh;
   display: grid;
   grid-template-areas: ". header-field"
                        "aside-field field";
@@ -102,4 +102,19 @@
 .header_field .clue_row:nth-child(5n),
 .field .unit:nth-child(5n) {
   border-right: 5px solid var(--border-dark, #000000);
+}
+
+@media screen and (max-width: 800px) {
+  .aside_field .clue_row:nth-child(5n),
+  .field_hard .unit:nth-child(n+61):nth-child(-n+75),
+  .field_hard .unit:nth-child(n+136):nth-child(-n+150),
+  .field_normal .unit:nth-child(n+41):nth-child(-n+50)
+  {
+    border-bottom: 2px solid var(--border-dark, #000000);
+  }
+
+  .header_field .clue_row:nth-child(5n),
+  .field .unit:nth-child(5n) {
+    border-right: 2px solid var(--border-dark, #000000);
+  }
 }

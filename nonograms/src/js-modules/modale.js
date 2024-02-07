@@ -164,7 +164,7 @@ function resetGame(level, index, saving, isSaved) {
 function closeModale(event = null) {
   const modale = document.querySelector('.' + styles.backdrop);
   if (event) {
-    if (event.target === event.currentTarget) modale.remove();
+    if (event.target.closest('.' + styles.close_btn)) modale.remove();
   } else {
     modale.remove();
   }

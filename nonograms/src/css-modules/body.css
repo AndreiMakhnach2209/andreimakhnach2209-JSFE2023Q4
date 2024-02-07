@@ -38,7 +38,7 @@ button{
 .control_wrap {
   flex-grow: 0;
   max-height: 100%;
-  flex-basis: 40%;
+  flex-basis: 50%;
   display: flex;
   align-items: center;
 }
@@ -50,6 +50,7 @@ button{
     left: -100%;
     top: 20%;
     transition: 0.5s;
+    border: 3px solid var(--border-dark, #000000);
   }
 
   .control_wrap_opened {
