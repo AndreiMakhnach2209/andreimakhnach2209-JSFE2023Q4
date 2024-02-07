@@ -9,7 +9,7 @@ const gamefieldWrap = document.createElement('div');
 
 gamefieldWrap.className = styles.field_wrap;
 body.className = styles.body;
-body.oncontextmenu = () => false;
+// body.oncontextmenu = () => false;
 gamefieldWrap.append(gamefield);
 body.append(gamefieldWrap);
 

@@ -39,6 +39,7 @@ export default function (level, index, savedData, isSaved = false) {
       unit.setAttribute('data-solution', matrix[i][j] ? 'true' : 'false');
       unit.setAttribute('data-black', isSaved ? savedData[i][j].black : 'false');
       unit.setAttribute('data-crossed', isSaved ? savedData[i][j].crossed : 'false');
+      unit.oncontextmenu = () => false;
       const cross = addCross();
       cross.classList.add(styles.cross);
       unit.append(cross);
