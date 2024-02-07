@@ -4,6 +4,7 @@ import themes from './themes.js';
 import modale from './modale.js';
 import click from '../assets/audio/click.wav';
 import stroke from '../assets/audio/stroke_long.wav';
+import burgerBtn from './burger-btn.js';
 
 const container = document.createElement('div');
 container.className = styles.container;
@@ -15,6 +16,11 @@ container.append(timerWrap);
 let timer = new Timer();
 timer.node.className = styles.timer;
 timerWrap.append(timer.node);
+
+const burgerButton = burgerBtn();
+burgerButton.classList.add(styles.burger_btn);
+timerWrap.append(burgerButton);
+
 const themesForm = themes.create();
 container.append(themesForm);
 

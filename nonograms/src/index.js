@@ -18,6 +18,13 @@ controlWrap.className = styles.control_wrap;
 body.prepend(controlWrap);
 controlWrap.append(controlPanel);
 
+setTimeout(() => {
+  const burgerBtn = document.getElementById('burger_btn');
+  burgerBtn.addEventListener('click', () => {
+    controlWrap.classList.toggle(styles.control_wrap_opened);
+  });
+}, 0);
+
 themes.init(body);
 // alert(
 //   `Доброго времени суток!

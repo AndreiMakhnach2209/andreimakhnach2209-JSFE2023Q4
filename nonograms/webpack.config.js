@@ -62,5 +62,5 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin()
   ],
-  mode: 'production'
+  mode: 'development'
 }

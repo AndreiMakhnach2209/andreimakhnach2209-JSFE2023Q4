@@ -12,6 +12,11 @@
 
 }
 
+.burger_btn {
+  display: none;
+  width: 50px;
+}
+
 .timer {
   font-size: var(--text-size-l);
   font-weight: 700;
@@ -49,5 +54,20 @@
 @media screen and (max-width: 1200px) {
   .btn {
     max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .timer_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    position: fixed;
+    top: 3%;
+    left: 5%;
+  }
+  
+  .burger_btn {
+    display: flex;
   }
 }

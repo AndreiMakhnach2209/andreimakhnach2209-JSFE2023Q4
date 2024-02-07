@@ -19,6 +19,7 @@
   color: var(--text-color, #000);
   transition: color 1s linear;
   transition: background 1s linear;
+  position: relative;
 }
 
 button{
@@ -40,4 +41,18 @@ button{
   flex-basis: 40%;
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .control_wrap {
+    background-color: var(--background, #cfcfcf);
+    position: absolute;
+    left: -100%;
+    top: 20%;
+    transition: 0.5s;
+  }
+
+  .control_wrap_opened {
+    left: 0;
+  }
 }
