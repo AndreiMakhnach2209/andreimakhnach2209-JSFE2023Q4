@@ -168,6 +168,7 @@ function closeModale(event = null) {
   } else {
     modale.remove();
   }
+  if (isSound) new Audio(click).play();
 }
 
 function refreshBtns() {

@@ -17,3 +17,9 @@
 .line:last-child {
   transform: rotate(-45deg);
 }
+
+@media (hover:hover) {
+  .container:hover * {
+    border-width: 2px;
+  }
+}

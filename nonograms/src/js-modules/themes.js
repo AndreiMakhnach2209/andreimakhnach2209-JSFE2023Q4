@@ -1,5 +1,7 @@
 import styles from '../css-modules/themes.css';
 import formStyles from '../css-modules/form-themes.css';
+import { isSound } from './control-panel';
+import click from '../assets/audio/click.wav';
 
 export default {
   list: new (function () {
@@ -42,6 +44,7 @@ export default {
         page.classList.remove(styles[item]);
         page.classList.add(styles[event.target.id]);
       });
+      if (isSound) new Audio(click).play();
     });
   },
 };
