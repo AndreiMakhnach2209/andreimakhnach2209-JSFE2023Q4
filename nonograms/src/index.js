@@ -9,10 +9,8 @@ const gamefieldWrap = document.createElement('div');
 
 gamefieldWrap.className = styles.field_wrap;
 body.className = styles.body;
-// body.oncontextmenu = () => false;
 gamefieldWrap.append(gamefield);
 body.append(gamefieldWrap);
-
 const controlWrap = document.createElement('div');
 controlWrap.className = styles.control_wrap;
 body.prepend(controlWrap);
