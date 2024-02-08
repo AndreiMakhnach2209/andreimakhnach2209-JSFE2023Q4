@@ -135,6 +135,9 @@ function gameHandler(parrent) {
     }
   });
 
+  // TODO understand why it works on Linux but does not work on Windows
+  //                                ||
+  //                                \/
   // let pointerIsDown = false;
   // let firstTargetIsMarked = false;
   // parrent.addEventListener('pointerdown', (event) => {

@@ -3,6 +3,7 @@ export default class {
     this.value = initValue;
     this.node = document.createElement('span');
     this.node.innerText = 'Time : ' + this.secToMMSS(this.value);
+    this.isStarted = false;
   }
 
   secToMMSS(s) {
@@ -12,14 +13,18 @@ export default class {
   }
   // use '.bind'
   start() {
-    this._id = setInterval(() => {
-      this.value++;
-      this.node.innerText = 'Time : ' + this.secToMMSS(this.value);
-    }, 1000);
+    if (!this.isStarted) {
+      this._id = setInterval(() => {
+        this.value++;
+        this.node.innerText = 'Time : ' + this.secToMMSS(this.value);
+      }, 1000);
+      this.isStarted = true;
+    }
   }
 
   pause() {
     clearInterval(this._id);
+    this.isStarted = false;
   }
 
   reset(newValue = 0) {

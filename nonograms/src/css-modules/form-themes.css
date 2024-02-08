@@ -22,6 +22,7 @@
 .title_radio {
   font-style: italic;
   font-weight: bolder;
+  margin-bottom: 10px;
 }
 
 .themes_box {
@@ -34,5 +35,15 @@
   .label_radio:hover {
     color: var(--text-hover, #999999);
     scale: 1.05;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .btns_row {
+    justify-content: center;
+  }
+  
+  .title_radio {
+    text-align: center;
   }
 }

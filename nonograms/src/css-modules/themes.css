@@ -35,14 +35,14 @@
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: 400;
-  --text-size-l: 40px;
-  --text-size-m: 32px;
-  --text-size-s: 20px;
+  --text-size-l: 36px;
+  --text-size-m: 28px;
+  --text-size-s: 18px;
 }
 
 @media screen and (max-width: 1200px) {
   :root {
-    --text-size-l: 36px;
+    --text-size-l: 32px;
     --text-size-m: 24px;
     --text-size-s: 16px;
     }
