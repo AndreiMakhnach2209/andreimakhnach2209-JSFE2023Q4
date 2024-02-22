@@ -1,11 +1,13 @@
-interface Sources {
+type Status = 'ok' | 'error';
+
+interface Source {
   id: string;
   name: string;
-  description: string;
-  url: string;
-  category: 'business' | 'entertainment' | 'general' | 'health' | 'science' | 'sports' | 'technology';
-  language: 'ar' | 'de' | 'en' | 'es' | 'fr' | 'he' | 'it' | 'nl' | 'no' | 'pt' | 'ru' | 'sv' | 'ud' | 'zh';
-  country:
+  description?: string;
+  url?: string;
+  category?: 'business' | 'entertainment' | 'general' | 'health' | 'science' | 'sports' | 'technology';
+  language?: 'ar' | 'de' | 'en' | 'es' | 'fr' | 'he' | 'it' | 'nl' | 'no' | 'pt' | 'ru' | 'sv' | 'ud' | 'zh';
+  country?:
     | 'ae'
     | 'ar'
     | 'at'
@@ -62,9 +64,25 @@ interface Sources {
     | 'za';
 }
 
-export interface Response {
-  status: 'ok' | 'error';
+interface Article {
+  source: Source;
+  author: string;
+  title: string;
+  description: string;
+  url: string;
+  urlToImage: string;
+  publishedAt: Date;
+  content: string;
+}
+
+export interface ResponseMinorEndpoint {
+  status: Status;
   code?: string; // in case of request error
   message?: string; // in case of request error
-  sources?: Sources[]; // in case of correct request
+  sources?: Source[]; // in case of correct request
+}
+
+export interface ResponseEndpoint extends ResponseMinorEndpoint {
+  totalResults: number;
+  articles: Article[];
 }
