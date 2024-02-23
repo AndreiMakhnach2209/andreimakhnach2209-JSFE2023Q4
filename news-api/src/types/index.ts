@@ -64,14 +64,14 @@ interface Source {
     | 'za';
 }
 
-interface Article {
+export interface Article {
   source: Source;
   author: string;
   title: string;
   description: string;
   url: string;
   urlToImage: string;
-  publishedAt: Date;
+  publishedAt: string;
   content: string;
 }
 
