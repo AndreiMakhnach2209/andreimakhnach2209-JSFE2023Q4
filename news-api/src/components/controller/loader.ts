@@ -6,8 +6,8 @@ class Loader {
         private options: OptionsForLoader
     ) {}
 
-    public getResp(
-        { endpoint, options = {} }: { endpoint: string; options: OptionsForLoader },
+    protected getResp(
+        { endpoint, options = {} }: { endpoint: string; options?: OptionsForLoader },
         callback: <T>(data?: T) => void = () => {
             console.error('No callback for GET response');
         }

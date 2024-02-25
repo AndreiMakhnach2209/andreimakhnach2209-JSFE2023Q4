@@ -87,4 +87,4 @@ export interface ResponseEndpoint extends ResponseMinorEndpoint {
     articles?: Article[];
 }
 
-export type OptionsForLoader = Record<string, string | undefined>;
+export type OptionsForLoader = Record<string, string | undefined | null>;
