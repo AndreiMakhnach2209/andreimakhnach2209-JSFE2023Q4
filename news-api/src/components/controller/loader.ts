@@ -1,13 +1,13 @@
-import { ResponseEndpoint, ResponseMinorEndpoint, optionsForLoader } from '../../types/index';
+import { ResponseEndpoint, ResponseMinorEndpoint, OptionsForLoader } from '../../types/index';
 
 class Loader {
     constructor(
-        private baseLink: string,
-        private options: optionsForLoader
+        private baseLink: string | undefined,
+        private options: OptionsForLoader
     ) {}
 
     public getResp(
-        { endpoint, options = {} }: { endpoint: string; options: optionsForLoader },
+        { endpoint, options = {} }: { endpoint: string; options: OptionsForLoader },
         callback: <T>(data?: T) => void = () => {
             console.error('No callback for GET response');
         }
@@ -25,7 +25,7 @@ class Loader {
         return res;
     }
 
-    private makeUrl(options: optionsForLoader, endpoint: string): string {
+    private makeUrl(options: OptionsForLoader, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -36,7 +36,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: <T>(data: T) => void, options: optionsForLoader = {}) {
+    private load(method: string, endpoint: string, callback: <T>(data: T) => void, options: OptionsForLoader = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
