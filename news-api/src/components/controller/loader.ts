@@ -1,8 +1,8 @@
 import { ResponseEndpoint, ResponseMinorEndpoint, OptionsForLoader, ResponseEndpointTypes } from '../../types/index';
-
+import { assertVariable } from '../../modules/assertions';
 class Loader {
     constructor(
-        private baseLink: string | undefined,
+        private baseLink: string,
         private options: OptionsForLoader
     ) {}
 
@@ -26,11 +26,11 @@ class Loader {
     }
 
     private makeUrl(options: OptionsForLoader, endpoint: string): string {
-        const urlOptions = { ...this.options, ...options };
+        const urlOptions: OptionsForLoader = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${urlOptions[key]}&`;
+            url += `${key}=${assertVariable(urlOptions[key])}&`;
         });
 
         return url.slice(0, -1);

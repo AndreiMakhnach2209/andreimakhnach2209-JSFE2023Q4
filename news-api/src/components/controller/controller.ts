@@ -1,5 +1,6 @@
 import { ResponseEndpoint, ResponseMinorEndpoint } from '../../types/index';
 import AppLoader from './appLoader';
+import { assertVariable } from '../../modules/assertions';
 
 class AppController extends AppLoader {
     public getSources(callback: (data: ResponseMinorEndpoint) => void): void {
@@ -27,7 +28,7 @@ class AppController extends AppLoader {
                                     {
                                         endpoint: 'everything',
                                         options: {
-                                            sources: sourceId,
+                                            sources: assertVariable(sourceId),
                                         },
                                     },
                                     callback

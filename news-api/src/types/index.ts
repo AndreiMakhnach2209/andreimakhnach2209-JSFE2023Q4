@@ -97,4 +97,4 @@ export type ResponseMinorEndpoint = Readonly<RewritableResponseMinorEndpoint>;
 
 export type ResponseEndpointTypes = ResponseEndpoint | ResponseMinorEndpoint;
 
-export type OptionsForLoader = Record<string, string | undefined | null>;
+export type OptionsForLoader = Record<string, string>;
