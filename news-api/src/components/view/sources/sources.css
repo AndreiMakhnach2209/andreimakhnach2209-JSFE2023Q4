@@ -1,11 +1,38 @@
+body {
+    position: relative;
+}
+
 .sources {
+    box-sizing: border-box;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: 100%;
-    height: 120px;
-    overflow: auto;
+    height: 60px;
     align-items: center;
+    align-content: start;
     font: 300 1em 'Fira Sans', sans-serif;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.more-sources{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.no-display{
+    display: none;
+}
+
+.sources__opened { 
+    position: absolute;
+    min-height: 100%;
+    height: auto;
+    z-index: 5;
+    background-color: #000000c0;
+    top: 0;
+    padding-top: 130px;
 }
 
 .source__item {
@@ -31,4 +58,17 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+.close-btn {
+    width: 30px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 6;
+    transition: 0.25s;
+}
+
+.close-btn:hover {
+    transform: translateY(-0.25em);
 }
