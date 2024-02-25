@@ -1,6 +1,6 @@
 type Status = 'ok' | 'error';
 
-interface Source {
+export interface Source {
     id: string | null;
     name: string;
     description?: string;
@@ -86,3 +86,5 @@ export interface ResponseEndpoint extends ResponseMinorEndpoint {
     totalResults?: number;
     articles?: Article[];
 }
+
+export type optionsForLoader = Record<string, string>;
