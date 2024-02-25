@@ -1,6 +1,6 @@
 type Status = 'ok' | 'error';
 
-export interface Source {
+interface RewritableSource {
     id: string | null;
     name: string;
     description?: string;
@@ -64,8 +64,8 @@ export interface Source {
         | 'za';
 }
 
-export interface Article {
-    source: Source;
+interface RewritableArticle {
+    source: Pick<RewritableSource, 'id' | 'name'>;
     author: string;
     title: string;
     description: string;
@@ -75,17 +75,25 @@ export interface Article {
     content: string;
 }
 
-export interface ResponseMinorEndpoint {
+interface RewritableResponseMinorEndpoint {
     status: Status;
     code?: string; // in case of request error
     message?: string; // in case of request error
     sources?: Source[]; // in case of correct request
 }
 
-export interface ResponseEndpoint extends ResponseMinorEndpoint {
+interface RewritableResponseEndpoint extends Pick<RewritableResponseMinorEndpoint, 'status'> {
     totalResults?: number;
     articles?: Article[];
 }
+
+export type Source = Readonly<RewritableSource>;
+
+export type Article = Readonly<RewritableArticle>;
+
+export type ResponseEndpoint = Readonly<RewritableResponseEndpoint>;
+
+export type ResponseMinorEndpoint = Readonly<RewritableResponseMinorEndpoint>;
 
 export type ResponseEndpointTypes = ResponseEndpoint | ResponseMinorEndpoint;
 
