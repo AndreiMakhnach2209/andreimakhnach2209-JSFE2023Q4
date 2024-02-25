@@ -1,7 +1,8 @@
+import { ResponseEndpoint, ResponseMinorEndpoint } from '../../types/index';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-    public getSources(callback: <T>(data?: T) => void): void {
+    public getSources(callback: (data: ResponseMinorEndpoint) => void): void {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -10,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews(e: MouseEvent, callback: <T>(data?: T) => void): void {
+    public getNews(e: Event, callback: (data: ResponseEndpoint) => void): void {
         let target: EventTarget | null = e.target;
         const newsContainer: EventTarget | null = e.currentTarget;
 

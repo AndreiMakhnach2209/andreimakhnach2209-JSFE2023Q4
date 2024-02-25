@@ -1,4 +1,4 @@
-import { ResponseEndpoint, ResponseMinorEndpoint, OptionsForLoader } from '../../types/index';
+import { ResponseEndpoint, ResponseMinorEndpoint, OptionsForLoader, ResponseEndpointTypes } from '../../types/index';
 
 class Loader {
     constructor(
@@ -8,7 +8,7 @@ class Loader {
 
     protected getResp(
         { endpoint, options = {} }: { endpoint: string; options?: OptionsForLoader },
-        callback: <T>(data?: T) => void = () => {
+        callback: <T extends ResponseEndpointTypes>(data: T) => void = () => {
             console.error('No callback for GET response');
         }
     ): void {
@@ -36,7 +36,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: <T>(data: T) => void, options: OptionsForLoader = {}) {
+    private load(
+        method: string,
+        endpoint: string,
+        callback: <T extends ResponseEndpointTypes>(data: T) => void,
+        options: OptionsForLoader = {}
+    ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())

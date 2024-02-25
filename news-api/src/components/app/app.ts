@@ -2,15 +2,15 @@ import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
 class App {
-    constructor() {
-        this.controller = new AppController();
-        this.view = new AppView();
-    }
+    private controller = new AppController();
+    private view = new AppView();
 
-    start() {
+    constructor() {}
+
+    public start() {
         document
             .querySelector('.sources')
-            .addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
+            ?.addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
         this.controller.getSources((data) => this.view.drawSources(data));
     }
 }
