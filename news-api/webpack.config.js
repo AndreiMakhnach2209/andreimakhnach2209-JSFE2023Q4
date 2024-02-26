@@ -1,3 +1,4 @@
+/*eslint-disable*/
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -15,6 +16,17 @@ const baseConfig = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.svg$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: path.join('icons', '[name].[contenthash][ext]'),
+                },
+            },
         ],
     },
     resolve: {
@@ -23,6 +35,7 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
+        assetModuleFilename: path.join('img', '[name].[contenthash][ext]'),
     },
     plugins: [
         new DotenvWebpackPlugin(),

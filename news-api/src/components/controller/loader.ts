@@ -26,13 +26,14 @@ class Loader {
     }
 
     private makeUrl(options: OptionsForLoader, endpoint: string): string {
+        console.log(endpoint, options);
         const urlOptions: OptionsForLoader = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
             url += `${key}=${assertVariable(urlOptions[key])}&`;
         });
-
+        console.log(url.slice(0, -1));
         return url.slice(0, -1);
     }
 
