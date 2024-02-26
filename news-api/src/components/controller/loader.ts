@@ -30,8 +30,8 @@ class Loader {
         const urlOptions: OptionsForLoader = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key) => {
-            url += `${key}=${assertVariable(urlOptions[key])}&`;
+        Object.entries(urlOptions).forEach((item) => {
+            url += `${item[0]}=${assertVariable(item[1])}&`;
         });
         console.log(url.slice(0, -1));
         return url.slice(0, -1);

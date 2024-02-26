@@ -97,4 +97,29 @@ export type ResponseMinorEndpoint = Readonly<RewritableResponseMinorEndpoint>;
 
 export type ResponseEndpointTypes = ResponseEndpoint | ResponseMinorEndpoint;
 
-export type OptionsForLoader = Record<string, string>;
+export type OptionsForLoader = RequestForEverything | RequestForSources;
+
+enum RequestParamForSources {
+    apiKey = 'apiKey',
+    category = 'category',
+    language = 'language',
+    country = 'country',
+}
+
+type RequestForSources = Partial<Record<RequestParamForSources, string>>;
+
+enum RequestParamForEverything {
+    apiKey = 'apiKey',
+    q = 'q',
+    searchIn = 'searchIn',
+    sources = 'sources',
+    domains = 'domains',
+    excludeDomains = 'excludeDomains',
+    from = 'from',
+    to = 'to',
+    language = 'language',
+    sortBy = 'sortBy',
+    pageSize = 'pageSize',
+    page = 'page',
+}
+type RequestForEverything = Partial<Record<RequestParamForEverything, string>>;
