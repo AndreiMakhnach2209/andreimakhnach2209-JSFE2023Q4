@@ -1,7 +1,3 @@
-body {
-    position: relative;
-}
-
 .sources {
     box-sizing: border-box;
     display: flex;

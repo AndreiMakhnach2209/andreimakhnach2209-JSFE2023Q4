@@ -2,10 +2,32 @@
 
 }
 
-.search__input {
+.search__input,
+.search__btn-submit {
+  background: #80808022;
+  border: 2px solid #30c5ff;
+  font: inherit;
+  line-height: 1;
+  padding: 1em 2em;
+  color: #70d6ff;
+  transition: 0.25s;
+  cursor: text;
+}
 
+.search__input::placeholder {
+  color: #70d6ff7c;
+}
+
+.search__form:hover *,
+.search__input:focus,
+.search__btn-submit:focus {
+  border-color: #3fcc59;
+  color: #69db7e;
+  box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+  transform: translateY(-0.25em);
 }
 
 .search__btn-submit{
-
+  background-color: transparent;
+  cursor: pointer;
 }

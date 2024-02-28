@@ -29,7 +29,7 @@ class Sources {
         closeBtn.addEventListener('click', collapseSources);
         document.querySelector('.sources')?.before(closeBtn);
 
-        document.querySelector('.header')?.append(form);
+        document.querySelector('.header__inner')?.append(form);
     }
 }
 
