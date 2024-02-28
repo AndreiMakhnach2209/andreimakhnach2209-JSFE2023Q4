@@ -11,6 +11,10 @@ class App {
         document
             .querySelector('.sources')
             ?.addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
+        document.querySelector('.header')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.controller.getNews(e, (data) => this.view.drawNews(data));
+        });
         this.controller.getSources((data) => this.view.drawSources(data));
     }
 }

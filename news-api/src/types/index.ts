@@ -124,4 +124,4 @@ enum RequestParamForEverything {
     pageSize = 'pageSize',
     page = 'page',
 }
-type RequestForEverything = Partial<Record<RequestParamForEverything, string>>;
+export type RequestForEverything = Partial<Record<RequestParamForEverything, string>>;
