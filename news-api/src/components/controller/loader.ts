@@ -1,4 +1,10 @@
-import { ResponseEndpoint, ResponseMinorEndpoint, OptionsForLoader, ResponseEndpointTypes } from '../../types/index';
+import {
+    ResponseEndpoint,
+    ResponseMinorEndpoint,
+    OptionsForLoader,
+    ResponseEndpointTypes,
+    Endpoint,
+} from '../../types/index';
 import { assertVariable } from '../../modules/assertions';
 class Loader {
     constructor(
@@ -7,7 +13,7 @@ class Loader {
     ) {}
 
     protected getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: OptionsForLoader },
+        { endpoint, options = {} }: { endpoint: Endpoint; options?: OptionsForLoader },
         callback: <T extends ResponseEndpointTypes>(data: T) => void = () => {
             console.error('No callback for GET response');
         }
@@ -39,7 +45,7 @@ class Loader {
 
     private load(
         method: string,
-        endpoint: string,
+        endpoint: Endpoint,
         callback: <T extends ResponseEndpointTypes>(data: T) => void,
         options: OptionsForLoader = {}
     ): void {

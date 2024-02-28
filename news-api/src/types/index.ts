@@ -99,6 +99,8 @@ export type ResponseEndpointTypes = ResponseEndpoint | ResponseMinorEndpoint;
 
 export type OptionsForLoader = RequestForEverything | RequestForSources;
 
+export type Endpoint = 'sources' | 'everything';
+
 enum RequestParamForSources {
     apiKey = 'apiKey',
     category = 'category',

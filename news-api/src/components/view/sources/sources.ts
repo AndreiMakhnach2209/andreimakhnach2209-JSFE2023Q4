@@ -1,7 +1,9 @@
 import './sources.css';
 import { Source } from '../../../types/index';
-import createElem from '../../../modules/createElement';
-import closeButton from '../../../modules/close-button';
+import closeButton from '../../elements/buttons/close-button';
+import { form } from '../../elements/formElements/search';
+import { btnMoreWpapper } from '../../elements/buttons/moreSourcesBtn';
+import { collapseSources } from '../../../modules/displayigSources';
 
 class Sources {
     public draw(data: Source[]) {
@@ -21,27 +23,14 @@ class Sources {
             });
         document.querySelector('.sources')?.append(fragment);
 
-        const btnMoreWpapper = createElem('div', ['more-sources']);
-        const btnMore = createElem('p', ['more-sources-text', 'source__item'], {}, 'View more Sources...');
-        btnMoreWpapper.append(btnMore);
         document.querySelector('.sources')?.after(btnMoreWpapper);
         const closeBtn: HTMLElement = closeButton();
         closeBtn.classList.add('close-btn', 'no-display');
         closeBtn.addEventListener('click', collapseSources);
         document.querySelector('.sources')?.before(closeBtn);
 
-        btnMore.addEventListener('click', () => {
-            document.querySelector('.sources')?.classList.add('sources__opened');
-            btnMoreWpapper.classList.add('no-display');
-            closeBtn.classList.remove('no-display');
-        });
+        document.querySelector('.header')?.append(form);
     }
 }
 
 export default Sources;
-
-function collapseSources(): void {
-    document.querySelector('.more-sources')?.classList.remove('no-display');
-    document.querySelector('.sources')?.classList.remove('sources__opened');
-    document.querySelector('.close-btn')?.classList.add('no-display');
-}
