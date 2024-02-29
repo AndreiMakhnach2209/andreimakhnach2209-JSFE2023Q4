@@ -1,67 +1,97 @@
 type Status = 'ok' | 'error';
 
+export enum Categories {
+    business = 'business',
+    entertainment = 'entertainment',
+    general = 'general',
+    health = 'health',
+    science = 'science',
+    sports = 'sports',
+    technology = 'technology',
+}
+
+export const enum Languages {
+    ar = 'ar',
+    de = 'de',
+    en = 'en',
+    es = 'es',
+    fr = 'fr',
+    he = 'he',
+    it = 'it',
+    nl = 'nl',
+    no = 'no',
+    pt = 'pt',
+    ru = 'ru',
+    sv = 'sv',
+    ud = 'ud',
+    zh = 'zh',
+}
+
+export const enum Countries {
+    ae = 'ae',
+    ar = 'ar',
+    at = 'at',
+    au = 'au',
+    be = 'be',
+    bg = 'bg',
+    br = 'br',
+    ca = 'ca',
+    ch = 'ch',
+    cn = 'cn',
+    co = 'co',
+    cu = 'cu',
+    cz = 'cz',
+    de = 'de',
+    eg = 'eg',
+    fr = 'fr',
+    gb = 'gb',
+    gr = 'gr',
+    hk = 'hk',
+    hu = 'hu',
+    id = 'id',
+    ie = 'ie',
+    il = 'il',
+    in = 'in',
+    it = 'it',
+    jp = 'jp',
+    kr = 'kr',
+    lt = 'lt',
+    lv = 'lv',
+    ma = 'ma',
+    mx = 'mx',
+    my = 'my',
+    ng = 'ng',
+    nl = 'nl',
+    no = 'no',
+    nz = 'nz',
+    ph = 'ph',
+    pl = 'pl',
+    pt = 'pt',
+    ro = 'ro',
+    rs = 'rs',
+    ru = 'ru',
+    sa = 'sa',
+    se = 'se',
+    sg = 'sg',
+    si = 'si',
+    sk = 'sk',
+    th = 'th',
+    tr = 'tr',
+    tw = 'tw',
+    ua = 'ua',
+    us = 'us',
+    ve = 've',
+    za = 'za',
+}
+
 interface RewritableSource {
     id: string | null;
     name: string;
     description?: string;
     url?: string;
-    category?: 'business' | 'entertainment' | 'general' | 'health' | 'science' | 'sports' | 'technology';
-    language?: 'ar' | 'de' | 'en' | 'es' | 'fr' | 'he' | 'it' | 'nl' | 'no' | 'pt' | 'ru' | 'sv' | 'ud' | 'zh';
-    country?:
-        | 'ae'
-        | 'ar'
-        | 'at'
-        | 'au'
-        | 'be'
-        | 'bg'
-        | 'br'
-        | 'ca'
-        | 'ch'
-        | 'cn'
-        | 'co'
-        | 'cu'
-        | 'cz'
-        | 'de'
-        | 'eg'
-        | 'fr'
-        | 'gb'
-        | 'gr'
-        | 'hk'
-        | 'hu'
-        | 'id'
-        | 'ie'
-        | 'il'
-        | 'in'
-        | 'it'
-        | 'jp'
-        | 'kr'
-        | 'lt'
-        | 'lv'
-        | 'ma'
-        | 'mx'
-        | 'my'
-        | 'ng'
-        | 'nl'
-        | 'no'
-        | 'nz'
-        | 'ph'
-        | 'pl'
-        | 'pt'
-        | 'ro'
-        | 'rs'
-        | 'ru'
-        | 'sa'
-        | 'se'
-        | 'sg'
-        | 'si'
-        | 'sk'
-        | 'th'
-        | 'tr'
-        | 'tw'
-        | 'ua'
-        | 'us'
-        | 've'
-        | 'za';
+    category?: Categories;
+    language?: Languages;
+    country?: Countries;
 }
 
 interface RewritableArticle {
@@ -77,9 +107,9 @@ interface RewritableArticle {
 
 interface RewritableResponseMinorEndpoint {
     status: Status;
-    code?: string; // in case of request error
-    message?: string; // in case of request error
-    sources?: Source[]; // in case of correct request
+    code?: string;
+    message?: string;
+    sources?: Source[];
 }
 
 interface RewritableResponseEndpoint extends Pick<RewritableResponseMinorEndpoint, 'status'> {
@@ -101,7 +131,7 @@ export type OptionsForLoader = RequestForEverything | RequestForSources;
 
 export type Endpoint = 'sources' | 'everything';
 
-enum RequestParamForSources {
+const enum RequestParamForSources {
     apiKey = 'apiKey',
     category = 'category',
     language = 'language',
@@ -110,7 +140,7 @@ enum RequestParamForSources {
 
 type RequestForSources = Partial<Record<RequestParamForSources, string>>;
 
-enum RequestParamForEverything {
+const enum RequestParamForEverything {
     apiKey = 'apiKey',
     q = 'q',
     searchIn = 'searchIn',

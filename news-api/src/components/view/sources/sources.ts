@@ -4,6 +4,7 @@ import closeButton from '../../elements/buttons/close-button';
 import { form } from '../../elements/formElements/search';
 import { btnMoreWpapper } from '../../elements/buttons/moreSourcesBtn';
 import { collapseSources } from '../../../modules/displayigSources';
+import { container as controlls } from '../../elements/formElements/controllPanel';
 
 class Sources {
     public draw(data: Source[]) {
@@ -30,6 +31,7 @@ class Sources {
         document.querySelector('.sources')?.before(closeBtn);
 
         document.querySelector('.header__inner')?.append(form);
+        document.querySelector('.header')?.append(controlls);
     }
 }
 

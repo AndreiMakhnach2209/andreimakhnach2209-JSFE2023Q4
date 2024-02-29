@@ -1,0 +1,36 @@
+.controlls {
+  width: 100%;
+}
+
+.controlls__categories{
+  display: flex;
+  border: 2px solid #30c5ff;
+  font: inherit;
+}
+
+.categories__title{
+  color: #70d6ff;
+}
+
+.categories__name{
+  flex-basis: 100%;
+  background: none;
+  border: 2px solid #30c5ff;
+  font: inherit;
+  text-align: center;
+  line-height: 1;
+  margin: 5px;
+  padding: 0.2em;
+  color: #70d6ff;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.categories__name:has(.categories__radio:checked){
+  border-color: #3fcc59;
+  color: #69db7e;
+}
+
+.categories__radio {
+  display: none;
+}
