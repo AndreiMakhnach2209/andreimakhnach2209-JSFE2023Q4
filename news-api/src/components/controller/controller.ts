@@ -7,10 +7,24 @@ class AppController extends AppLoader {
     private optionForSources: RequestForSources = {};
 
     public getSources(e: Event | null, callback: (data: ResponseMinorEndpoint) => void): void {
-        if (e && e.target instanceof HTMLElement) {
-            if (e.target.dataset.value?.toLowerCase() !== 'all')
-                this.optionForSources.category = e.target.dataset.value?.toLowerCase();
-            else delete this.optionForSources.category;
+        const target = e?.target;
+        if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement) {
+            switch (target.name) {
+                case 'category':
+                    {
+                        if (target.dataset.value?.toLowerCase() !== 'all')
+                            this.optionForSources[target.name] = target.dataset.value?.toLowerCase();
+                        else delete this.optionForSources.category;
+                    }
+                    break;
+                case 'country':
+                    {
+                        if (target.dataset.value?.toLowerCase() !== 'all')
+                            this.optionForSources[target.name] = target.value.toLowerCase();
+                        else delete this.optionForSources.category;
+                    }
+                    break;
+            }
         }
         super.getResp(
             {

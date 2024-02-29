@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.controlls__categories{
+.controlls__fieldset {
   display: flex;
   border: 2px solid #30c5ff;
   font: inherit;
