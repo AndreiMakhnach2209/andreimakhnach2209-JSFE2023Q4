@@ -18,10 +18,11 @@ class AppController extends AppLoader {
                     }
                     break;
                 case 'country':
+                case 'language':
                     {
-                        if (target.dataset.value?.toLowerCase() !== 'all')
+                        if (target.value.toLowerCase() !== 'all')
                             this.optionForSources[target.name] = target.value.toLowerCase();
-                        else delete this.optionForSources.category;
+                        else delete this.optionForSources[target.name];
                     }
                     break;
             }

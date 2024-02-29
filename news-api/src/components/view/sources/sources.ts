@@ -11,6 +11,8 @@ class Sources {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
         document.querySelectorAll('.sources *')?.forEach((item) => item.remove());
+        document.querySelector('.sources')?.addEventListener('click', collapseSources);
+
         if (sourceItemTemp)
             data.forEach((item: Source) => {
                 const sourceClone = sourceItemTemp.content.cloneNode(true);

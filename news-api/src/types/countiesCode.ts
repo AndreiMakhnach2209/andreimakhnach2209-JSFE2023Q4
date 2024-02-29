@@ -1,4 +1,4 @@
-export const enum countriesCode {
+export const enum CountriesCode {
     af = 'afghanistan',
     ax = 'aland islands',
     al = 'albania',

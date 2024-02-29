@@ -8,5 +8,8 @@ export default function (list: Record<string, string>, name: string): HTMLElemen
         const optionElement = createElement('option', ['option'], { label: list[key], value: key });
         selectElement.append(optionElement);
     });
-    return selectElement;
+    const label = createElement('label', ['controlls__label'], {}, `Select the source ${name}:`);
+    label.append(selectElement);
+
+    return label;
 }

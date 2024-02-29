@@ -1,6 +1,6 @@
 import createElement from '../../../modules/createElement';
 import './controllPanel.css';
-import { Categories, Countries } from '../../../types/index';
+import { Categories, Countries, Languages } from '../../../types/index';
 import createSelectElement from './select';
 
 export const container = createElement('form', ['controlls'], { name: 'controlls' });
@@ -21,10 +21,10 @@ categoriesWrap.append(categoriesLegend);
 });
 
 const selectWrap = createElement('fieldset', ['select_wrap', 'controlls__fieldset']);
-const labelCoutries = createElement('label', ['controlls__label'], {}, 'Select the source country:');
-const selectCounries = createSelectElement(Countries, 'country');
-labelCoutries.append(selectCounries);
 
-selectWrap.append(labelCoutries);
+const selectCounries = createSelectElement(Countries, 'country');
+const selectLanguages = createSelectElement(Languages, 'language');
+
+selectWrap.append(selectCounries, selectLanguages);
 
 container.append(categoriesWrap, selectWrap);
