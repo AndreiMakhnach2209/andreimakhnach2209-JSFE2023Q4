@@ -138,7 +138,7 @@ const enum RequestParamForSources {
     country = 'country',
 }
 
-type RequestForSources = Partial<Record<RequestParamForSources, string>>;
+export type RequestForSources = Partial<Record<RequestParamForSources, string>>;
 
 const enum RequestParamForEverything {
     apiKey = 'apiKey',

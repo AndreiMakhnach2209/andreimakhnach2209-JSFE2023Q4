@@ -1,14 +1,21 @@
-import { ResponseEndpoint, ResponseMinorEndpoint, RequestForEverything } from '../../types/index';
+import { ResponseEndpoint, ResponseMinorEndpoint, RequestForEverything, RequestForSources } from '../../types/index';
 import AppLoader from './appLoader';
 import { assertVariable } from '../../modules/assertions';
 
 class AppController extends AppLoader {
-    private optionForSearch: RequestForEverything = {};
+    private optionForNews: RequestForEverything = {};
+    private optionForSources: RequestForSources = {};
 
-    public getSources(callback: (data: ResponseMinorEndpoint) => void): void {
+    public getSources(e: Event | null, callback: (data: ResponseMinorEndpoint) => void): void {
+        if (e && e.target instanceof HTMLElement) {
+            if (e.target.dataset.value?.toLowerCase() !== 'all')
+                this.optionForSources.category = e.target.dataset.value?.toLowerCase();
+            else delete this.optionForSources.category;
+        }
         super.getResp(
             {
                 endpoint: 'sources',
+                options: this.optionForSources,
             },
             callback
         );
@@ -21,12 +28,8 @@ class AppController extends AppLoader {
         switch (e.type) {
             case 'submit':
                 if (target instanceof HTMLFormElement) {
-                    const formdata: FormData = new FormData(target);
-                    const data: Partial<Record<string, string>> = {};
-                    formdata.forEach((value: FormDataEntryValue, key: string) => {
-                        if (typeof value === 'string') data[key] = value;
-                    });
-                    if (data.text_input) this.optionForSearch.q = data.text_input;
+                    const data = getDataForm(target);
+                    if (data.text_input) this.optionForNews.q = data.text_input;
                 }
                 break;
 
@@ -39,7 +42,7 @@ class AppController extends AppLoader {
                             newsContainer.getAttribute('data-source') !== sourceId
                         ) {
                             newsContainer.setAttribute('data-source', sourceId);
-                            this.optionForSearch.sources = assertVariable(sourceId);
+                            this.optionForNews.sources = assertVariable(sourceId);
                         }
                     }
                     if (target instanceof Node) target = target.parentNode;
@@ -47,11 +50,10 @@ class AppController extends AppLoader {
                 break;
         }
 
-        console.log(this.optionForSearch);
         super.getResp(
             {
                 endpoint: 'everything',
-                options: this.optionForSearch,
+                options: this.optionForNews,
             },
             callback
         );
@@ -60,3 +62,12 @@ class AppController extends AppLoader {
 }
 
 export default AppController;
+
+function getDataForm(form: HTMLFormElement): Partial<Record<string, string>> {
+    const formdata: FormData = new FormData(form);
+    const data: Partial<Record<string, string>> = {};
+    formdata.forEach((value: FormDataEntryValue, key: string) => {
+        if (typeof value === 'string') data[key] = value;
+    });
+    return data;
+}

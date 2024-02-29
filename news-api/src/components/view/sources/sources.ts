@@ -10,7 +10,7 @@ class Sources {
     public draw(data: Source[]) {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
-
+        document.querySelectorAll('.sources *')?.forEach((item) => item.remove());
         if (sourceItemTemp)
             data.forEach((item: Source) => {
                 const sourceClone = sourceItemTemp.content.cloneNode(true);

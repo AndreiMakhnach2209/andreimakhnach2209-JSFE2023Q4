@@ -32,7 +32,6 @@ class Loader {
     }
 
     private makeUrl(options: OptionsForLoader, endpoint: string): string {
-        console.log(endpoint, options);
         const urlOptions: OptionsForLoader = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
