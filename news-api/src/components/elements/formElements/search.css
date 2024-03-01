@@ -43,3 +43,10 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+@media screen and (max-width: 980px) {
+  .header__inner {
+    flex-basis: 100%;
+    flex-shrink: 0;
+  }
+}

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
+  transition: 0.5s;
 }
 
 .controlls__fieldset {
@@ -46,4 +47,11 @@
 
 .categories__radio {
   display: none;
+}
+
+@media screen and (max-width: 980px) {
+  .controlls{
+    position: absolute;
+    right: -110%;
+  }
 }
