@@ -42,7 +42,6 @@ class AppController extends AppLoader {
         if (target instanceof HTMLFormElement)
             if (target instanceof HTMLFormElement) {
                 const data = getDataForm(target);
-                console.log(data);
                 if (data.text_input) this.optionForNews.q = data.text_input;
                 else {
                     delete this.optionForNews.q;

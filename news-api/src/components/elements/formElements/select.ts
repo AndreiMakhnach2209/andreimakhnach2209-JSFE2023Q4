@@ -8,7 +8,7 @@ export default function (list: Record<string, string>, name: string, inner: stri
         const optionElement = createElement('option', ['option'], { label: list[key], value: key });
         selectElement.append(optionElement);
     });
-    const label = createElement('label', ['controlls__label'], {}, `Select the ${inner} ${name}:`);
+    const label = createElement('label', ['select__label'], {}, `Select the ${inner} ${name}:`);
     label.append(selectElement);
 
     return label;

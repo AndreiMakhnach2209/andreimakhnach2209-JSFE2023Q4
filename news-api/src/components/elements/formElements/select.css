@@ -1,3 +1,19 @@
 .input_select {
-  
+  color: #30c5ff;
+  background-color: transparent;
+  border: 2px solid #30c5ff;
+  cursor: pointer;
+}
+
+.option {
+  color: #30c5ff;
+  background-color: #000000dd;
+  border: 1px dashed #30c5ff;
+  cursor: pointer;
+}
+
+.select__label {
+  font: inherit;
+  line-height: 1;
+  color: #70d6ff;
 }

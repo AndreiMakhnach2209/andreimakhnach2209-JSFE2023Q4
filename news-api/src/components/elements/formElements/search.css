@@ -1,5 +1,12 @@
 .search__form {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
 
+.search__fieldset {
+  grid-column: span 2;
+  border: 2px solid #30c5ff;
+  margin: 0;
 }
 
 .search__input,
@@ -8,19 +15,24 @@
   border: 2px solid #30c5ff;
   font: inherit;
   line-height: 1;
-  padding: 1em 2em;
+  padding: 0.2em 0.5em;
   color: #70d6ff;
   transition: 0.25s;
   cursor: text;
+}
+
+.search__btn-submit {
+  cursor: pointer;
 }
 
 .search__input::placeholder {
   color: #70d6ff7c;
 }
 
-.search__form:hover *,
 .search__input:focus,
-.search__btn-submit:focus {
+.search__btn-submit:focus,
+.search__input:hover,
+.search__btn-submit:hover {
   border-color: #3fcc59;
   color: #69db7e;
   box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
