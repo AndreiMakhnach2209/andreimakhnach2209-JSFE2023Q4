@@ -1,5 +1,4 @@
 .more-sources{
-  height: 60px;
   display: flex;
   justify-content: center;
 }
@@ -11,9 +10,10 @@
 .sources__opened { 
   position: absolute;
   min-height: 100%;
+  min-width: 100%;
   height: auto;
   z-index: 5;
-  background-color: #000000c0;
+  background-color: #000000f0;
   top: 0;
   padding-top: 130px;
 }

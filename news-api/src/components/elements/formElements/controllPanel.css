@@ -8,6 +8,7 @@
 
 .controlls__fieldset {
   display: flex;
+  gap: 5px;
   border: 2px solid #30c5ff;
   font: inherit;
 }
@@ -49,9 +50,42 @@
   display: none;
 }
 
+.burger_btn {
+  width: 30px;
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 4;
+}
+
+.controlls_active {
+  right: 0;
+}
+
 @media screen and (max-width: 980px) {
   .controlls{
     position: absolute;
+    min-height: 100%;
     right: -110%;
+    padding-top: 60px;
+    justify-content: start;
+    background-color: #17181c;
+  }
+
+  .categories__name {
+    flex-basis: auto;
+  }
+
+  .controlls__fieldset {
+    flex-wrap: wrap;
+  }
+
+  .controlls_active {
+    right: 0;
+  }
+
+  .burger_btn{
+    display: flex;
   }
 }

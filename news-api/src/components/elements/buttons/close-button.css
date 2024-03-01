@@ -1,8 +1,8 @@
-.container {
+.close-btn__container {
   aspect-ratio: 1;
 }
 
-.line {
+.close-btn__line {
   width: 100%;
   height: 0;
   border: 2px solid var(--border-dark, #30c5ff);
@@ -11,16 +11,16 @@
   transition: 0.5s;
 }
 
-.line:first-child {
+.close-btn__line:first-child {
   transform: rotate(45deg) translateX(2px);
 }
 
-.line:last-child {
+.close-btn__line:last-child {
   transform: rotate(-45deg) translateX(2px);
 }
 
 @media (hover:hover) {
-  .container:hover * {
+  .close-btn__container:hover * {
     border-color: #3fcc59;
     color: #69db7e;
     box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;

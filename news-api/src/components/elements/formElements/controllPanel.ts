@@ -2,6 +2,7 @@ import createElement from '../../../modules/createElement';
 import './controllPanel.css';
 import { Categories, Countries, Languages } from '../../../types/index';
 import createSelectElement from './select';
+import createBurgerBtn from '../buttons/burger-btn';
 
 export const container = createElement('form', ['controlls'], { name: 'controlls' });
 
@@ -28,3 +29,10 @@ const selectLanguages = createSelectElement(Languages, 'language');
 selectWrap.append(selectCounries, selectLanguages);
 
 container.append(categoriesWrap, selectWrap);
+
+const burgerBtn = createBurgerBtn('div');
+burgerBtn.classList.add('burger_btn');
+burgerBtn.addEventListener('click', () => {
+    container.classList.toggle('controlls_active');
+});
+document.querySelector('header')?.prepend(burgerBtn);
