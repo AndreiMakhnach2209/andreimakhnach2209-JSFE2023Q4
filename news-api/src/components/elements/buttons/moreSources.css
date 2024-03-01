@@ -1,6 +1,7 @@
 .more-sources{
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .no-display{
