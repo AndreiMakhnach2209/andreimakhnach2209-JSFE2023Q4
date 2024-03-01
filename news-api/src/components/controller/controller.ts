@@ -39,30 +39,28 @@ class AppController extends AppLoader {
     public getNews(e: Event, callback: (data: ResponseEndpoint) => void): void {
         let target: EventTarget | null = assertVariable(e.target);
         const newsContainer: EventTarget | null = assertVariable(e.currentTarget);
-
-        switch (e.type) {
-            case 'submit':
-                if (target instanceof HTMLFormElement) {
-                    const data = getDataForm(target);
-                    if (data.text_input) this.optionForNews.q = data.text_input;
+        if (target instanceof HTMLFormElement)
+            if (target instanceof HTMLFormElement) {
+                const data = getDataForm(target);
+                console.log(data);
+                if (data.text_input) this.optionForNews.q = data.text_input;
+                else {
+                    delete this.optionForNews.q;
+                    return;
                 }
-                break;
+                if (data.language !== 'all') this.optionForNews.language = data.language;
+                else delete this.optionForNews.language;
+            }
 
-            case 'click':
-                while (target !== newsContainer) {
-                    if (target instanceof HTMLElement && target.classList.contains('source__item')) {
-                        const sourceId: string = assertVariable(target.getAttribute('data-source-id'));
-                        if (
-                            newsContainer instanceof HTMLElement &&
-                            newsContainer.getAttribute('data-source') !== sourceId
-                        ) {
-                            newsContainer.setAttribute('data-source', sourceId);
-                            this.optionForNews.sources = assertVariable(sourceId);
-                        }
-                    }
-                    if (target instanceof Node) target = target.parentNode;
+        while (target !== newsContainer) {
+            if (target instanceof HTMLElement && target.classList.contains('source__item')) {
+                const sourceId: string = assertVariable(target.getAttribute('data-source-id'));
+                if (newsContainer instanceof HTMLElement && newsContainer.getAttribute('data-source') !== sourceId) {
+                    newsContainer.setAttribute('data-source', sourceId);
+                    this.optionForNews.sources = assertVariable(sourceId);
                 }
-                break;
+            }
+            if (target instanceof Node) target = target.parentNode;
         }
 
         super.getResp(
