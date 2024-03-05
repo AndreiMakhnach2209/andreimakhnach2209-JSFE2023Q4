@@ -4,6 +4,7 @@ import {
     OptionsForLoader,
     ResponseEndpointTypes,
     Endpoint,
+    ErrorCodes,
 } from '../../types/index';
 import { assertVariable } from '../../modules/assertions';
 class Loader {
@@ -23,7 +24,7 @@ class Loader {
 
     private errorHandler(response: Response): Response | never {
         if (!response.ok) {
-            if (response.status === 401 || response.status === 404)
+            if (Object.values(ErrorCodes).includes(response.status))
                 console.log(`Sorry, but there is ${response.status} error: ${response.statusText}`);
             throw Error(response.statusText);
         }

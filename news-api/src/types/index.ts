@@ -158,3 +158,8 @@ const enum RequestParamForEverything {
     page = 'page',
 }
 export type RequestForEverything = Partial<Record<RequestParamForEverything, string>>;
+
+export enum ErrorCodes {
+    unauthorized = 401,
+    notFound = 404,
+}
