@@ -38,7 +38,6 @@ class Loader {
         Object.entries(urlOptions).forEach((item) => {
             url += `${item[0]}=${assertVariable(item[1])}&`;
         });
-        console.log(url.slice(0, -1));
         return url.slice(0, -1);
     }
 
