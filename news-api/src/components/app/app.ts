@@ -12,13 +12,13 @@ class App {
     public start() {
         document
             .querySelector('.sources')
-            ?.addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
-        searchForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.controller.getNews(e, (data) => this.view.drawNews(data));
+            ?.addEventListener('click', (event) => this.controller.getNews(event, (data) => this.view.drawNews(data)));
+        searchForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            this.controller.getNews(event, (data) => this.view.drawNews(data));
         });
-        categoriesForm.addEventListener('change', (e) => {
-            this.controller.getSources(e, (data) => this.view.drawSources(data));
+        categoriesForm.addEventListener('change', (event) => {
+            this.controller.getSources(event, (data) => this.view.drawSources(data));
         });
         this.controller.getSources(null, (data) => this.view.drawSources(data));
     }

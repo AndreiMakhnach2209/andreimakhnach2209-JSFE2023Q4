@@ -21,14 +21,14 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    private errorHandler(res: Response): Response | never {
-        if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
-                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
-            throw Error(res.statusText);
+    private errorHandler(response: Response): Response | never {
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 404)
+                console.log(`Sorry, but there is ${response.status} error: ${response.statusText}`);
+            throw Error(response.statusText);
         }
 
-        return res;
+        return response;
     }
 
     private makeUrl(options: OptionsForLoader, endpoint: string): string {
@@ -50,7 +50,7 @@ class Loader {
     ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
-            .then((res: Response) => res.json())
+            .then((response: Response) => response.json())
             .then((data: ResponseEndpoint | ResponseMinorEndpoint) => callback(data))
             .catch((err: Error) => console.error(err));
     }

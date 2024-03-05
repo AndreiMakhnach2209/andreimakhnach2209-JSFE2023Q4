@@ -6,8 +6,8 @@ class AppController extends AppLoader {
     private optionForNews: RequestForEverything = {};
     private optionForSources: RequestForSources = {};
 
-    public getSources(e: Event | null, callback: (data: ResponseMinorEndpoint) => void): void {
-        const target = e?.target;
+    public getSources(event: Event | null, callback: (data: ResponseMinorEndpoint) => void): void {
+        const target = event?.target;
         if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement) {
             switch (target.name) {
                 case 'category':
@@ -36,9 +36,9 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews(e: Event, callback: (data: ResponseEndpoint) => void): void {
-        let target: EventTarget | null = assertVariable(e.target);
-        const newsContainer: EventTarget | null = assertVariable(e.currentTarget);
+    public getNews(event: Event, callback: (data: ResponseEndpoint) => void): void {
+        let target: EventTarget | null = assertVariable(event.target);
+        const newsContainer: EventTarget | null = assertVariable(event.currentTarget);
         if (target instanceof HTMLFormElement)
             if (target instanceof HTMLFormElement) {
                 const data = getDataForm(target);
