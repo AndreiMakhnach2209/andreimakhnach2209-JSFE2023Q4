@@ -1,5 +1,6 @@
 import { ClassList } from '../../types/index';
 import Listener from '../../types/listener';
+import saveToLocalStorage from '../../utilits/saveFormDataToLocalStorage';
 import BaseElement from '../baseElement';
 
 export default class BaseForm extends BaseElement<'form'> {
@@ -12,4 +13,8 @@ export default class BaseForm extends BaseElement<'form'> {
     eventType: keyof HTMLElementEventMap,
     callback: (event: Event) => void
   ) => new Listener(eventType, callback, this.element);
+
+  public toLocalStorage() {
+    saveToLocalStorage(this.element);
+  }
 }
