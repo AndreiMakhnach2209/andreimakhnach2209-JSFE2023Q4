@@ -1,4 +1,5 @@
 import { ClassList } from '../../types/index';
+import Listener from '../../types/listener';
 import BaseElement from '../baseElement';
 
 export default class TextInput extends BaseElement<'input'> {
@@ -22,6 +23,14 @@ export default class TextInput extends BaseElement<'input'> {
     this.element.required = isRequired;
   }
 
+  public set pattern(regExp: string) {
+    this.element.pattern = regExp;
+  }
+
+  public set minLength(minLength: number) {
+    this.element.minLength = minLength;
+  }
+
   public createLabel(title: string, classList: ClassList) {
     this.label = document.createElement('label');
     this.label.textContent = title;
@@ -33,4 +42,9 @@ export default class TextInput extends BaseElement<'input'> {
     if (this.label) return this.label;
     return this.element;
   }
+
+  public addEventListener = (
+    eventType: keyof HTMLElementEventMap,
+    callback: (event: Event) => void
+  ) => new Listener(eventType, callback, this.element);
 }

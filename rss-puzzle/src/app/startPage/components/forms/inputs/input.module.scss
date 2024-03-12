@@ -8,10 +8,18 @@
   padding: 10px;
   color: $textDark;
 
+  &:invalid {
+    border: 1px dashed red;
+  }
+
+
   &:hover,
   &:focus {
     border: 2px solid $borderDark;
     cursor: pointer;
+    &:invalid {
+      border-color: red;
+    }
   }
   &::placeholder {
     color: $textGray;
