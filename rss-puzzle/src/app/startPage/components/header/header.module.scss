@@ -1,0 +1,10 @@
+@use '../../../../styles/color' as *;
+
+.header {
+  position: absolute;
+  top: 15%;
+  padding: 20px 50px;
+  border-radius: 20px;
+  background-color: $fieldBackgrnd;
+  color: $textDark;
+}

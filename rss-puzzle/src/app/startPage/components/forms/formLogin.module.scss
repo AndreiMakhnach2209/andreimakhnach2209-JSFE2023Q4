@@ -1,0 +1,16 @@
+@use '../../../../styles/color' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 35%;
+  width: 25%;
+  position: relative;
+  top: 10%;
+  padding: 3%;
+  justify-content: center;
+  gap:2rem;
+  & * {
+    transition: 0.25s;
+  }
+}

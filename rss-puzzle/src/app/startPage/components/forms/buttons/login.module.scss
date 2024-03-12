@@ -1,0 +1,17 @@
+@use '../../../../../styles/color' as *;
+
+.button {
+  height: 2rem;
+  background-color: $buttonsColor;
+  color: $textLight;
+  border: none;
+  border-radius: 10px;
+  &:hover {
+    background-color: $buttonsHover;
+    cursor: pointer;
+  }
+  &:disabled {
+    background-color: $disabledColor;
+    cursor: not-allowed;
+  }
+}

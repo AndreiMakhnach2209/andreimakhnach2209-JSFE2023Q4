@@ -5,29 +5,22 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'airbnb-base',
+    'airbnb-typescript/base',
     'plugin:@typescript-eslint/recommended',
-    'airbnb',
     'prettier',
-  ],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{ts,cts}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+    project: '**/tsconfig.json',
   },
+  ignorePatterns: ['webpack.config.js', '.eslintrc.js'],
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     'no-console': 'warn',
+    "import/prefer-default-export": "off",
     'prettier/prettier': 'error',
   },
 };
