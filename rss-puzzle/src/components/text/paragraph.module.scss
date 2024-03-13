@@ -1,0 +1,7 @@
+@use '../../styles/color' as *;
+
+.paragraph {
+  font-family: 'Roboto';
+  font-size: medium;
+  color: $textDark;
+}

@@ -3,8 +3,9 @@
 .header {
   position: absolute;
   top: 15%;
+  max-width: 80%;
   padding: 20px 50px;
   border-radius: 20px;
-  background-color: $fieldBackgrnd;
+  background-color: $background;
   color: $textDark;
 }
