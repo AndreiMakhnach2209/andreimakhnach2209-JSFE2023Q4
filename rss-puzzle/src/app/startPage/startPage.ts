@@ -1,14 +1,13 @@
-import Container from '../../components/container';
 import { formLogin } from './components/forms/formLogin';
 import styles from './startPage.module.scss';
+import baseStyles from '../../components/page/page.module.scss';
 import { header } from './components/header/header';
+import Page from '../../components/page/page';
 
-export default class StartPage extends Container {
-  constructor() {
-    super([styles.container], header.node, formLogin.node);
-  }
+const startPage = new Page(
+  [styles.container, baseStyles.page],
+  header.node,
+  formLogin.node
+);
 
-  public start() {
-    document.querySelector('body')?.append(this.element);
-  }
-}
+export { startPage };
