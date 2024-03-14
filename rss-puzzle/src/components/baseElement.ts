@@ -1,6 +1,8 @@
 import { ClassList } from '../types/index';
 
-export default class BaseElement<T extends keyof HTMLElementTagNameMap> {
+export default abstract class BaseElement<
+  T extends keyof HTMLElementTagNameMap,
+> {
   protected element: HTMLElementTagNameMap[T];
 
   constructor(tagName: T, classList: ClassList, ...children: HTMLElement[]) {

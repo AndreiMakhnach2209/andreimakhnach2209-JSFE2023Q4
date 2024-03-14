@@ -1,0 +1,14 @@
+@use '../../../../../styles/color' as *;
+@use '../../../../../styles/animations' as *;
+
+.greeting {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: $background;
+  animation: greeting 1s 1s linear both;
+}

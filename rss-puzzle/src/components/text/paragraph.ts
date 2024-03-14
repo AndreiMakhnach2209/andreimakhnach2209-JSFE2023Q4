@@ -1,13 +1,9 @@
 import { ClassList } from '../../types/index';
-import BaseElement from '../baseElement';
+import BaseTextElement from '../baseTextElement';
 import styles from './paragraph.module.scss';
 
-export default class Paragraph extends BaseElement<'p'> {
+export default class Paragraph extends BaseTextElement<'p'> {
   constructor(classList: ClassList) {
     super('p', [styles.paragraph, ...classList]);
-  }
-
-  public set text(txt: string) {
-    this.element.textContent = txt;
   }
 }
