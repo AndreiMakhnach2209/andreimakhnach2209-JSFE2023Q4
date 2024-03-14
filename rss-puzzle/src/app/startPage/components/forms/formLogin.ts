@@ -13,9 +13,5 @@ const formLogin = new BaseForm(
 );
 
 formLogin.addEventListener('input', validate);
-formLogin.addEventListener('submit', (event) => {
-  event.preventDefault();
-  formLogin.toLocalStorage();
-});
 
 export { formLogin };

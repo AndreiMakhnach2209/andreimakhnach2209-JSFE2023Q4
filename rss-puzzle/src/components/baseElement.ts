@@ -22,4 +22,12 @@ export default abstract class BaseElement<
   public deleteNode() {
     this.element.remove();
   }
+
+  public addClass(...classList: ClassList) {
+    this.element.classList.add(...classList);
+  }
+
+  public append(...children: HTMLElement[]) {
+    this.element.append(...children);
+  }
 }

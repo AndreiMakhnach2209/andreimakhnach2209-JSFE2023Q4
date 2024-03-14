@@ -1,14 +1,6 @@
-import Caption from '../../../../../components/tittles/caption';
-import loadDataFromLocalStorage from '../../../../../utilits/loadUserData';
+import Greeting from '../../../../../components/tittles/greeting';
 import styles from './greeting.module.scss';
 
-const greeting = new Caption('h3', [styles.greeting]);
-loadDataFromLocalStorage()
-  .then((user) => {
-    greeting.text = `Hello, ${user.firstName} ${user.surname}!`;
-  })
-  .catch(() => {
-    throw new Error('Error loading user data');
-  });
+const greeting = new Greeting([styles.greeting]);
 
 export { greeting };

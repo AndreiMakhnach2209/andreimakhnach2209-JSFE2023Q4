@@ -1,13 +1,10 @@
-import { ClassList } from '../../types/index';
 import Listener from '../../types/listener';
 import BaseElement from '../baseElement';
+import styless from './button.module.scss';
 
 export default class Button extends BaseElement<'input'> {
-  constructor(
-    classList: ClassList,
-    type: 'button' | 'submit' | 'reset' | 'image' = 'button'
-  ) {
-    super('input', classList);
+  constructor(type: 'button' | 'submit' | 'reset' | 'image' = 'button') {
+    super('input', [styless.button]);
     this.element.type = type;
   }
 

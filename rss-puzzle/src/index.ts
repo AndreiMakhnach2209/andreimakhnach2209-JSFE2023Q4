@@ -10,7 +10,9 @@ if (localStorage.getItem('firstName') && localStorage.getItem('surname'))
   gamePage.start();
 else startPage.start();
 
-formLogin.addEventListener('submit', () => {
+formLogin.addEventListener('submit', (event) => {
+  event.preventDefault();
+  formLogin.toLocalStorage();
   if (formLogin.node instanceof HTMLFormElement) formLogin.node.reset();
   startPage.stop();
   gamePage.start();
