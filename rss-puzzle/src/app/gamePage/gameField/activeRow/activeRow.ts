@@ -4,6 +4,8 @@ import { sourceBlock } from '../components/puzzle';
 import styles from './activeRow.module.scss';
 
 export class ActiveRow extends Container {
+  public static numberOfWordsInRound = 10;
+
   public wordCollection: Word[] = [];
 
   constructor(words: string) {
@@ -55,6 +57,6 @@ export class ActiveRow extends Container {
     const parent = this.element.offsetParent;
     const parentHeight = parent?.clientHeight;
     if (parentHeight) this.element.style.height = `${parentHeight / 10}px`;
-    return parentHeight ? parentHeight / 10 : 0;
+    return parentHeight ? parentHeight / ActiveRow.numberOfWordsInRound : 0;
   }
 }

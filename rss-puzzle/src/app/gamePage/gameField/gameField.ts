@@ -23,22 +23,38 @@ export default class GameField extends Container {
     this.data = gettingData(level).rounds[round];
   }
 
-  public addNextActiveRow() {
-    this.activeRow = new ActiveRow(
-      this.data.words[this.roundNumber].textExample
-    );
+  public addNextActiveRow(wordsNumber: number = this.wordsNumber) {
+    const example = this.data.words[wordsNumber].textExample;
+    this.activeRow = new ActiveRow(example);
     if (this.hint instanceof BaseTextElement)
-      this.hint.text = this.data.words[this.roundNumber].textExampleTranslate;
+      this.hint.text = this.data.words[wordsNumber].textExampleTranslate;
     puzzleBlock.node.append(this.activeRow.node);
-    this.activeRow.fixHeigth();
-    this.activeRow.wordCollection.forEach((word) => {
-      word.fixWidth();
-      word.setHeight(this.activeRow?.fixHeigth());
-      window.addEventListener('resize', () => {
-        word.setHeight(this.activeRow?.fixHeigth());
-      });
-    });
+    this.sizeSinchro(example);
     this.activeRow.toSource();
     this.wordsNumber += 1;
+  }
+
+  private sizeSinchro(example: string) {
+    this.activeRow?.fixHeigth();
+    const numberOfCharInExample = example
+      .split('')
+      .filter((char) => char !== ' ').length;
+    this.activeRow?.wordCollection.forEach((word) => {
+      const numberOfCharInWord = word.textContent.length;
+      word.setHeight(this.activeRow?.fixHeigth());
+      if (this.activeRow)
+        word.setWidth(
+          this.activeRow.node.clientWidth *
+            (numberOfCharInWord / numberOfCharInExample)
+        );
+      window.addEventListener('resize', () => {
+        word.setHeight(this.activeRow?.fixHeigth());
+        if (this.activeRow)
+          word.setWidth(
+            this.activeRow.node.clientWidth *
+              (numberOfCharInWord / numberOfCharInExample)
+          );
+      });
+    });
   }
 }

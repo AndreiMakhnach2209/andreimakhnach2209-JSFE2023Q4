@@ -11,11 +11,17 @@ export default class Word extends Container {
     this.append(this.textNode);
   }
 
-  public fixWidth() {
-    this.element.style.width = `${this.element.clientWidth}px`;
+  public setWidth(width: number = 0) {
+    this.element.style.width = `${width}px`;
   }
 
   public setHeight(height: number = 0) {
     this.element.style.height = `${height}px`;
+  }
+
+  public get textContent() {
+    return this.textNode.node.textContent
+      ? this.textNode.node.textContent
+      : ' ';
   }
 }
