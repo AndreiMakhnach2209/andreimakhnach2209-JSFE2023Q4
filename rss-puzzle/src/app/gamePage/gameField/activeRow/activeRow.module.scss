@@ -24,3 +24,12 @@
 .selected span{
   border: 1px dashed $borderDark;
 }
+
+.disabled * {
+  border: none;
+  &:hover {
+    cursor: default;  
+    background-color: $background;
+    color: $textDark;
+  }
+}

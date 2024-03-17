@@ -7,9 +7,9 @@ import { sourceBlock, puzzleBlock, hint } from './components/puzzle';
 import BaseTextElement from '../../../components/baseTextElement';
 
 export default class GameField extends Container {
-  private wordsNumber: number = 0;
+  public wordsNumber: number = 0;
 
-  private roundNumber: number;
+  public numberOfrounds: number;
 
   private data: Round;
 
@@ -19,8 +19,9 @@ export default class GameField extends Container {
 
   constructor(level: number, round: number) {
     super([styles.gameField], hint, puzzleBlock, sourceBlock);
-    this.roundNumber = round;
+    puzzleBlock.clearNode();
     this.data = gettingData(level).rounds[round];
+    this.numberOfrounds = gettingData(level).rounds.length;
   }
 
   public addNextActiveRow(wordsNumber: number = this.wordsNumber) {

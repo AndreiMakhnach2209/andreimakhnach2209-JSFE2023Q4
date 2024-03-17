@@ -45,6 +45,10 @@ export default abstract class BaseElement<
     });
   }
 
+  public before(...children: BaseElement<keyof HTMLElementTagNameMap>[]) {
+    children.forEach((item) => this.element.before(item.node));
+  }
+
   public addEventListener = (
     eventType: keyof HTMLElementEventMap,
     callback: (event: Event) => void,
