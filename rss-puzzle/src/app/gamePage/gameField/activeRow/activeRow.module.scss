@@ -33,3 +33,13 @@
     color: $textDark;
   }
 }
+
+.emptyCard {
+  border: none;
+  background-color: #332a1d9f;
+  &:hover{
+    cursor: default;
+    background-color: #332a1d9f;
+    color: $textDark;
+  }
+}

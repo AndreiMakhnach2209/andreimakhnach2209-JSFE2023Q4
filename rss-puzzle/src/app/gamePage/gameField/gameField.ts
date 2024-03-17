@@ -41,17 +41,17 @@ export default class GameField extends Container {
       .split('')
       .filter((char) => char !== ' ').length;
     this.activeRow?.wordCollection.forEach((word) => {
-      const numberOfCharInWord = word.textContent.length;
-      word.setHeight(this.activeRow?.fixHeigth());
+      const numberOfCharInWord = word ? word.textContent.length : 1;
+      word?.setHeight(this.activeRow?.fixHeigth());
       if (this.activeRow)
-        word.setWidth(
+        word?.setWidth(
           this.activeRow.node.clientWidth *
             (numberOfCharInWord / numberOfCharInExample)
         );
       window.addEventListener('resize', () => {
-        word.setHeight(this.activeRow?.fixHeigth());
+        word?.setHeight(this.activeRow?.fixHeigth());
         if (this.activeRow)
-          word.setWidth(
+          word?.setWidth(
             this.activeRow.node.clientWidth *
               (numberOfCharInWord / numberOfCharInExample)
           );

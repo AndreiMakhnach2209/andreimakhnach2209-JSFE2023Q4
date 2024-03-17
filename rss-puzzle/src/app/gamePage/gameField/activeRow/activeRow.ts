@@ -1,3 +1,4 @@
+import BaseElement from '../../../../components/baseElement';
 import Container from '../../../../components/container';
 import Word from '../../../../components/word/word';
 import WordCollection from '../../../../components/word/wordCollection';
@@ -12,17 +13,40 @@ export class ActiveRow extends Container {
 
   private wordCollectionLenght: number;
 
-  private disabled = false;
+  private isDisable = false;
 
   constructor(private words: string) {
-    console.log(words);
     super([styles.wordRow]);
     this.wordCollection = new WordCollection(
       ...words.split(' ').map((word) => new Word(word))
     );
     this.wordCollectionLenght = this.wordCollection.length;
     this.wordCollection.forEach((card) => {
-      this.append(card);
+      if (card) this.append(card);
+    });
+  }
+
+  public append(
+    ...children: (BaseElement<keyof HTMLElementTagNameMap> | null)[]
+  ): void {
+    children.forEach((item) => {
+      if (item) this.element.append(item.node);
+      else {
+        const emptyCard = new Word('-');
+        emptyCard.addClass(styles.emptyCard);
+        const widthEmpty = () =>
+          (this.element.clientWidth -
+            this.wordCollection.reduce(
+              (summ: number, word) => (word ? word.node.clientWidth : 1),
+              0
+            )) /
+          this.wordCollectionLenght;
+        emptyCard.node.style.width = `${widthEmpty()}px`;
+        this.element.append(emptyCard.node);
+        window.addEventListener('resize', () => {
+          emptyCard.node.style.width = `${widthEmpty()}px`;
+        });
+      }
     });
   }
 
@@ -32,20 +56,26 @@ export class ActiveRow extends Container {
       () => {
         word.addClass(styles.moving);
         word.removeClass(styles.selected);
-        this.append(word);
-        this.wordCollection.push(word);
-        if (this.exampleTest()) {
+        const indexNull = this.wordCollection.indexOf(null);
+        if (indexNull === -1) {
+          this.append(word);
+          this.wordCollection.push(word);
+        } else {
+          this.wordCollection[indexNull] = word;
+          word.addEventListener('animationend', () => this.update(), true);
+        }
+        if (this.exampleTest() && word) {
           continueBtn.disabled = false;
           this.disabled = true;
-          this.addClass(styles.disabled);
         } else
           word.addEventListener(
             'click',
             () => {
-              if (!this.disabled) {
+              if (!this.isDisable) {
                 word.addClass(styles.movingReverse, styles.selected);
                 sourceBlock.append(word);
                 this.wordCollection.remove(word);
+                this.update();
                 this.moving(word);
               }
             },
@@ -59,10 +89,15 @@ export class ActiveRow extends Container {
     );
   }
 
+  private update() {
+    this.clearNode();
+    this.append(...this.wordCollection);
+  }
+
   public toSource() {
     while (this.wordCollection.length)
       this.wordCollection.forEach((word, index) => {
-        if (Math.random() < 0.5) {
+        if (Math.random() < 0.5 && word) {
           sourceBlock.append(word);
           this.wordCollection.splice(index, 1);
           this.moving(word);
@@ -81,9 +116,17 @@ export class ActiveRow extends Container {
     if (
       this.wordCollection.length === this.wordCollectionLenght &&
       this.words ===
-        this.wordCollection.map((word) => word.textContent).join(' ')
+        this.wordCollection.map((word) => word?.textContent).join(' ')
     )
       return true;
     return false;
+  }
+
+  private set disabled(value: boolean) {
+    this.addClass(styles.disabled);
+    this.isDisable = true;
+    window.addEventListener('resize', () => {
+      this.element.style.height = `${this.fixHeigth()}px`;
+    });
   }
 }
