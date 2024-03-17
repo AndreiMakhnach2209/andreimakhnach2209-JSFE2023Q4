@@ -1,4 +1,3 @@
-import Listener from '../../types/listener';
 import BaseElement from '../baseElement';
 import styless from './button.module.scss';
 
@@ -15,9 +14,4 @@ export default class Button extends BaseElement<'input'> {
   public set text(text: string) {
     this.element.value = text;
   }
-
-  public addEventListener = (
-    eventType: keyof HTMLElementEventMap,
-    callback: (event: Event) => void
-  ) => new Listener(eventType, callback, this.element);
 }

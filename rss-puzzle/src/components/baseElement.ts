@@ -1,13 +1,20 @@
 import { ClassList } from '../types/index';
+import Listener from '../types/listener';
 
 export default abstract class BaseElement<
   T extends keyof HTMLElementTagNameMap,
 > {
   protected element: HTMLElementTagNameMap[T];
 
-  constructor(tagName: T, classList: ClassList, ...children: HTMLElement[]) {
+  public children: BaseElement<keyof HTMLElementTagNameMap>[] = [];
+
+  constructor(
+    tagName: T,
+    classList: ClassList,
+    ...children: BaseElement<keyof HTMLElementTagNameMap>[]
+  ) {
     this.element = document.createElement(tagName);
-    if (children) this.element.append(...children);
+    if (children) this.append(...children);
     this.element.classList.add(...classList);
   }
 
@@ -27,7 +34,20 @@ export default abstract class BaseElement<
     this.element.classList.add(...classList);
   }
 
-  public append(...children: HTMLElement[]) {
-    this.element.append(...children);
+  public removeClass(...classList: ClassList) {
+    this.element.classList.remove(...classList);
   }
+
+  public append(...children: BaseElement<keyof HTMLElementTagNameMap>[]) {
+    children.forEach((child) => {
+      this.children.push(child);
+      this.element.append(child.node);
+    });
+  }
+
+  public addEventListener = (
+    eventType: keyof HTMLElementEventMap,
+    callback: (event: Event) => void,
+    isOnce?: boolean | undefined
+  ) => new Listener(eventType, callback, this.element, isOnce);
 }

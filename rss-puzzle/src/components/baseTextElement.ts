@@ -1,6 +1,6 @@
 import BaseElement from './baseElement';
 
-export default abstract class BaseTextElement<
+export default class BaseTextElement<
   T extends keyof HTMLElementTagNameMap,
 > extends BaseElement<T> {
   public set text(txt: string) {

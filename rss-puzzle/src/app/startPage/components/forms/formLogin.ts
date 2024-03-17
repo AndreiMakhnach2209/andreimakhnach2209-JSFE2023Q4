@@ -7,9 +7,9 @@ import { firstNameInput, surnameInput } from './inputs/textInputs';
 const formLogin = new BaseForm(
   'login',
   [styles.form],
-  firstNameInput.node,
-  surnameInput.node,
-  loginBtn.node
+  firstNameInput,
+  surnameInput,
+  loginBtn
 );
 
 formLogin.addEventListener('input', validate);

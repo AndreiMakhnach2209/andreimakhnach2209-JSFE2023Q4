@@ -1,0 +1,22 @@
+@use '../../../../styles/color' as *;
+@use '../../../../styles/animations' as *;
+
+.wordRow{
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  width: 100%;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: $background;
+}
+
+.moving{
+  position: absolute;
+  animation: cardMoving 0.5s ease-out;
+}
+
+.movingReverse{
+  position: absolute;
+  animation: cardMoving 0.5s reverse;
+}

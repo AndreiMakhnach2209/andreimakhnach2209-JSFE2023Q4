@@ -1,3 +1,15 @@
+@use '../../styles/animations' as *;
+
 .gamePage {
   flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.noDisplay {
+  display: none;
 }

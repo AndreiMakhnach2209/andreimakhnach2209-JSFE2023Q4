@@ -1,0 +1,18 @@
+@use '../../styles/color' as *;
+
+.wordCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  padding: 0 10px;
+  border: 2px solid $borderDark;
+  color: $textDark;
+  background-color: $fieldBackgrnd;
+  transition: 0.25s;
+  &:hover {
+    color: $textLight;
+    background-color: $buttonsHover;
+  }
+}

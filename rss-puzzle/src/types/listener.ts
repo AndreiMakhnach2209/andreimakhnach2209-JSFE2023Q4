@@ -2,8 +2,9 @@ export default class Listener {
   constructor(
     eventType: keyof HTMLElementEventMap,
     callback: (event: Event) => void,
-    element: HTMLElement
+    element: HTMLElement,
+    isOnse?: boolean
   ) {
-    element.addEventListener(eventType, callback);
+    element.addEventListener(eventType, callback, { once: isOnse });
   }
 }

@@ -1,5 +1,4 @@
 import { ClassList } from '../../types/index';
-import Listener from '../../types/listener';
 import BaseElement from '../baseElement';
 
 export default class TextInput extends BaseElement<'input'> {
@@ -42,9 +41,4 @@ export default class TextInput extends BaseElement<'input'> {
     if (this.label) return this.label;
     return this.element;
   }
-
-  public addEventListener = (
-    eventType: keyof HTMLElementEventMap,
-    callback: (event: Event) => void
-  ) => new Listener(eventType, callback, this.element);
 }

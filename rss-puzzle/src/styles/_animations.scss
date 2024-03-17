@@ -17,5 +17,23 @@
   100% {
     top: 0;
   }
-  
+}
+
+@keyframes cardMoving {
+  0% {
+    scale: 1;
+    bottom: 0;
+    left: 50%;
+  }
+  50% {
+    scale: 2;
+    bottom: 40%;
+    left: 50%
+  }
+  100% {
+    scale: 1;
+    bottom: 60%;
+    left: 50%;
+  }
+
 }
