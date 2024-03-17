@@ -35,5 +35,17 @@
     bottom: 60%;
     left: 50%;
   }
+}
 
+@keyframes scaling {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 2;
+  }
+  100% {
+    scale: 1;
+  }
+  
 }

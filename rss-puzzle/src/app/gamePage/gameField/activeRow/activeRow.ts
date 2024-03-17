@@ -25,8 +25,9 @@ export class ActiveRow extends Container {
     this.wordCollection.forEach((card) => {
       if (card) this.append(card);
     });
+    checkBtn.removeClass(styles.noDisplay);
     checkBtn.addEventListener('click', () => {
-      this.checking();
+      if (!this.isDisable) this.checking();
     });
   }
 
@@ -77,6 +78,8 @@ export class ActiveRow extends Container {
         }
         if (this.exampleTest() && word) {
           continueBtn.disabled = false;
+          checkBtn.disabled = true;
+          checkBtn.addClass(styles.noDisplay);
           this.disabled = true;
         } else
           word.addEventListener(
@@ -146,7 +149,7 @@ export class ActiveRow extends Container {
     });
   }
 
-  public checking() {
+  private checking() {
     const wordsExample = this.example.split(' ');
     this.wordCollection.forEach((word, index) => {
       if (word?.textContent === wordsExample[index])
