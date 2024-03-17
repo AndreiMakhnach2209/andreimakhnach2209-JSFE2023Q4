@@ -36,10 +36,21 @@
 
 .emptyCard {
   border: none;
-  background-color: #332a1d9f;
+  margin: 3px;
+  background-color: #332a1d65;
   &:hover{
     cursor: default;
-    background-color: #332a1d9f;
+    background-color: #332a1d65;
     color: $textDark;
   }
+}
+
+.correct {
+  transition: all 0.5s;
+  box-shadow: 0 0 15px 10px green inset;
+}
+
+.incorrect {
+  transition: all 0.5s;
+  box-shadow: 0 0 15px 10px red inset;
 }

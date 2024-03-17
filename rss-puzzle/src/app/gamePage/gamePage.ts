@@ -8,6 +8,7 @@ import { continueBtn } from './components/continueBtn/continueBtn';
 import { ClassList } from '../../types/index';
 import BaseElement from '../../components/baseElement';
 import { ActiveRow } from './gameField/activeRow/activeRow';
+import { checkBtn } from './components/checkBtn/checkBtn';
 
 class GamePage extends Page {
   public gameField: GameField;
@@ -55,7 +56,7 @@ startBtn.addEventListener('click', () => {
     () => {
       startBtn.addClass(styles.noDisplay);
       startBtn.removeClass(styles.hidden);
-      gamePage.append(gamePage.gameField, continueBtn);
+      gamePage.append(gamePage.gameField, continueBtn, checkBtn);
       gamePage.gameField.addNextActiveRow();
     },
     true

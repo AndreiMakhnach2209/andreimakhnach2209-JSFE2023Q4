@@ -2,6 +2,7 @@ import BaseElement from '../../../../components/baseElement';
 import Container from '../../../../components/container';
 import Word from '../../../../components/word/word';
 import WordCollection from '../../../../components/word/wordCollection';
+import { checkBtn } from '../../components/checkBtn/checkBtn';
 import { continueBtn } from '../../components/continueBtn/continueBtn';
 import { sourceBlock } from '../components/puzzle';
 import styles from './activeRow.module.scss';
@@ -15,14 +16,17 @@ export class ActiveRow extends Container {
 
   private isDisable = false;
 
-  constructor(private words: string) {
+  constructor(private example: string) {
     super([styles.wordRow]);
     this.wordCollection = new WordCollection(
-      ...words.split(' ').map((word) => new Word(word))
+      ...example.split(' ').map((word) => new Word(word))
     );
     this.wordCollectionLenght = this.wordCollection.length;
     this.wordCollection.forEach((card) => {
       if (card) this.append(card);
+    });
+    checkBtn.addEventListener('click', () => {
+      this.checking();
     });
   }
 
@@ -64,6 +68,13 @@ export class ActiveRow extends Container {
           this.wordCollection[indexNull] = word;
           word.addEventListener('animationend', () => this.update(), true);
         }
+
+        if (
+          this.wordCollection.filter((item) => item).length ===
+          this.wordCollectionLenght
+        ) {
+          checkBtn.disabled = false;
+        }
         if (this.exampleTest() && word) {
           continueBtn.disabled = false;
           this.disabled = true;
@@ -73,6 +84,8 @@ export class ActiveRow extends Container {
             () => {
               if (!this.isDisable) {
                 word.addClass(styles.movingReverse, styles.selected);
+                word.removeClass(styles.correct, styles.incorrect);
+                checkBtn.disabled = true;
                 sourceBlock.append(word);
                 this.wordCollection.remove(word);
                 this.update();
@@ -115,7 +128,7 @@ export class ActiveRow extends Container {
   private exampleTest() {
     if (
       this.wordCollection.length === this.wordCollectionLenght &&
-      this.words ===
+      this.example ===
         this.wordCollection.map((word) => word?.textContent).join(' ')
     )
       return true;
@@ -127,6 +140,18 @@ export class ActiveRow extends Container {
     this.isDisable = true;
     window.addEventListener('resize', () => {
       this.element.style.height = `${this.fixHeigth()}px`;
+    });
+    this.wordCollection.forEach((word) => {
+      word?.removeClass(styles.correct, styles.incorrect);
+    });
+  }
+
+  public checking() {
+    const wordsExample = this.example.split(' ');
+    this.wordCollection.forEach((word, index) => {
+      if (word?.textContent === wordsExample[index])
+        word.addClass(styles.correct);
+      else word?.addClass(styles.incorrect);
     });
   }
 }
