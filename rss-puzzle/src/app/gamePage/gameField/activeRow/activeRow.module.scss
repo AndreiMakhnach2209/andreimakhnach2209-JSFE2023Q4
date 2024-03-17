@@ -20,3 +20,7 @@
   position: absolute;
   animation: cardMoving 0.5s reverse;
 }
+
+.selected span{
+  border: 1px dashed $borderDark;
+}

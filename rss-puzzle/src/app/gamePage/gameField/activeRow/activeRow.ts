@@ -24,11 +24,12 @@ export class ActiveRow extends Container {
       'click',
       () => {
         word.addClass(styles.moving);
+        word.removeClass(styles.selected);
         this.append(word);
         word.addEventListener(
           'click',
           () => {
-            word.addClass(styles.movingReverse);
+            word.addClass(styles.movingReverse, styles.selected);
             sourceBlock.append(word);
             this.moving(word);
           },
