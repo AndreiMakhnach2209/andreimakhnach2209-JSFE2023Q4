@@ -1,12 +1,14 @@
 @use '../../../../styles/color' as *;
 @use '../../../../styles/animations' as *;
 
+$borderDashed: 1px dashed $borderDark;
+
 .wordRow{
   display: flex;
   justify-content: stretch;
   align-items: center;
   width: 100%;
-  border: 1px dashed $borderDark;
+  border: $borderDashed;
   border-radius: 5px;
   background-color: $background;
 }
@@ -25,8 +27,10 @@
   border: 1px dashed $borderDark;
 }
 
-.disabled * {
+.disabled div {
   border: none;
+  border-top: $borderDashed;
+  border-bottom: $borderDashed;
   &:hover {
     cursor: default;  
     background-color: $background;

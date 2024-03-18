@@ -2,6 +2,7 @@ import BaseElement from '../../../../components/baseElement';
 import Container from '../../../../components/container';
 import Word from '../../../../components/word/word';
 import WordCollection from '../../../../components/word/wordCollection';
+import { autoCompleteBtn } from '../../components/autoCompleteBtn/autoCompleteBtn';
 import { checkBtn } from '../../components/checkBtn/checkBtn';
 import { continueBtn } from '../../components/continueBtn/continueBtn';
 import { sourceBlock } from '../components/puzzle';
@@ -29,6 +30,14 @@ export class ActiveRow extends Container {
     checkBtn.addEventListener('click', () => {
       if (!this.isDisable) this.checking();
     });
+    autoCompleteBtn.addEventListener(
+      'click',
+      () => {
+        this.autoComlete();
+      },
+      true
+    );
+    sourceBlock.children = [];
   }
 
   public append(
@@ -110,15 +119,16 @@ export class ActiveRow extends Container {
     this.append(...this.wordCollection);
   }
 
-  public toSource() {
+  public toSource(isRandom: boolean = false) {
     while (this.wordCollection.length)
       this.wordCollection.forEach((word, index) => {
-        if (Math.random() < 0.5 && word) {
-          sourceBlock.append(word);
+        if (Math.random() < 0.5 || isRandom) {
+          if (word) sourceBlock.append(word);
           this.wordCollection.splice(index, 1);
-          this.moving(word);
+          if (!this.isDisable && word) this.moving(word);
         }
       });
+    this.update();
   }
 
   public fixHeigth() {
@@ -156,5 +166,33 @@ export class ActiveRow extends Container {
         word.addClass(styles.correct);
       else word?.addClass(styles.incorrect);
     });
+  }
+
+  private autoComlete() {
+    this.disabled = true;
+    this.toSource(true);
+    const wordCards = sourceBlock.children;
+    this.example.split(' ').forEach((word, index) => {
+      for (let i = 0; i < wordCards.length; i += 1) {
+        const card = wordCards[i];
+        if (card instanceof Word && card.textContent === word) {
+          card.addEventListener(
+            'animationend',
+            () => {
+              card.removeClass(styles.moving);
+              this.node.append(card.node.cloneNode(true));
+              card.deleteNode();
+            },
+            true
+          );
+          setTimeout(() => card.addClass(styles.moving), 200 * index);
+          wordCards.splice(i, 1);
+          break;
+        }
+      }
+    });
+    checkBtn.addClass(styles.noDisplay);
+    checkBtn.disabled = true;
+    continueBtn.disabled = false;
   }
 }
