@@ -4,20 +4,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   position: relative;
   height: 100%;
   min-width: fit-content;
   padding: 0 10px;
   border: 2px solid $borderDark;
+  font-size: 1rem;
   color: $textDark;
   background-color: $fieldBackgrnd;
   transition: background-color 0.25s;
+  transition: transform 0.3s;
   &:hover {
     color: $textLight;
     background-color: $buttonsHover;
-    cursor: pointer;
+    cursor: move;
     & span {
       user-select: none;
     };
   }
+}
+
+.hidden {
+  transition: 10ms;
+  opacity: 0;
 }

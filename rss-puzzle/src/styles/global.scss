@@ -5,6 +5,12 @@
 
 html {
   font-family: 'Roboto';
+  @media screen and (max-width: 1024px) {
+    font-size: 80%;
+  }
+  @media screen and (max-width: 900px) {
+    font-size: 62.5%;
+  }
 }
 
 body {

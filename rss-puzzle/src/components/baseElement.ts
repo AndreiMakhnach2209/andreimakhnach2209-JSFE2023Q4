@@ -16,6 +16,19 @@ export default abstract class BaseElement<
     this.element = document.createElement(tagName);
     if (children) this.append(...children);
     this.element.classList.add(...classList);
+
+    const childListObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.removedNodes.forEach((removeNode) => {
+          this.children.forEach((child, index) => {
+            if (removeNode === child.node) {
+              this.children.splice(index, 1);
+            }
+          });
+        });
+      });
+    });
+    childListObserver.observe(this.element, { childList: true });
   }
 
   public get node(): HTMLElementTagNameMap[T] | HTMLElement {

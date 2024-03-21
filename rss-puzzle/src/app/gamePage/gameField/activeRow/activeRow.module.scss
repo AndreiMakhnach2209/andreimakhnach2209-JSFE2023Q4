@@ -39,6 +39,7 @@ $borderDashed: 1px dashed $borderDark;
 }
 
 .emptyCard {
+  flex-shrink: 1;
   border: none;
   margin: 3px;
   background-color: #332a1d65;
@@ -62,3 +63,4 @@ $borderDashed: 1px dashed $borderDark;
 .noDisplay {
   display: none;
 }
+

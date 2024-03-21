@@ -3,12 +3,12 @@ import Container from '../container';
 import styles from './word.module.scss';
 
 export default class Word extends Container {
-  private textNode = new BaseTextElement('span', []);
-
   constructor(private text: string) {
     super([styles.wordCard]);
-    this.textNode.text = text;
-    this.append(this.textNode);
+    const textNode = new BaseTextElement('span', []);
+    textNode.text = text;
+    this.append(textNode);
+    this.element.draggable = true;
   }
 
   public setWidth(width: number = 0) {
@@ -20,8 +20,6 @@ export default class Word extends Container {
   }
 
   public get textContent() {
-    return this.textNode.node.textContent
-      ? this.textNode.node.textContent
-      : ' ';
+    return this.text;
   }
 }

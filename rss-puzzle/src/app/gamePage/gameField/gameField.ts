@@ -46,7 +46,8 @@ export default class GameField extends Container {
       if (this.activeRow)
         word?.setWidth(
           this.activeRow.node.clientWidth *
-            (numberOfCharInWord / numberOfCharInExample)
+            (numberOfCharInWord / numberOfCharInExample) -
+            2
         );
       window.addEventListener('resize', () => {
         word?.setHeight(this.activeRow?.fixHeigth());
