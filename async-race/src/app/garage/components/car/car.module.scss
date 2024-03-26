@@ -1,0 +1,12 @@
+.car {
+  max-width: 100px;
+  max-height: 80%;
+}
+.carWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 100%;
+  max-width: fit-content;
+}

@@ -1,5 +1,3 @@
-
-/*eslint-disable*/
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
@@ -27,14 +25,14 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: path.join('icons', '[name].[contenthash][ext]'),
-        }
+        },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
           filename: path.join('fonts', '[name].[contenthash][ext]'),
-        }
+        },
       },
     ],
   },
@@ -59,7 +57,7 @@ module.exports = {
       },
     }),
   ],
-   devServer: {
+  devServer: {
     watchFiles: path.join(__dirname, 'src'),
   },
 };

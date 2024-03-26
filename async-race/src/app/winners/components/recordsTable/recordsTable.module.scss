@@ -1,0 +1,26 @@
+
+.table {
+  max-width: 500px;
+  $borderType: solid whitesmoke;
+  border-collapse: collapse;
+  border: 3px $borderType;
+  .head {
+    max-height: 60px;
+    border: 1px $borderType;
+    border-bottom: 3px $borderType;
+  }
+  .cell {
+    text-align: center;
+    max-height: 50px;
+    border: 1px $borderType;
+  }
+}
+
+.car {
+  margin: auto;
+  max-width: 70px;
+  max-height: 45px;
+  span {
+    display: none;
+  }
+}

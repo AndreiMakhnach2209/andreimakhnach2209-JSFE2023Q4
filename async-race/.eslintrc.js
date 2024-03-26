@@ -10,17 +10,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     "prettier",
   ],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
-  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -32,7 +21,7 @@ module.exports = {
   rules: {
     'no-console': 'warn',
     'import/prefer-default-export': 'off',
-    'max-lines-per-function' : ["error", {"max": 2, "skipBlankLines": true}],
+    'max-lines-per-function' : ["warn", {"max": 40, "skipBlankLines": true}],
     'prettier/prettier': 'error',
   },
 };

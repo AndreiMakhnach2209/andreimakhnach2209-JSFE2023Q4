@@ -1,0 +1,10 @@
+.garage {
+  display: flex;
+  flex-direction: column;
+}
+
+.track {
+  width: 100%;
+  max-height: 10%;
+  border-bottom: 10px dashed white;
+}
