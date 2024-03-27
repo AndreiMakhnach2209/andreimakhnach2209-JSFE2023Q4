@@ -1,0 +1,14 @@
+.formCar{
+  display: flex;
+  align-items: center;
+  height: 25px;
+  gap: 2px;
+  .textInput {
+    height: 100%;
+    max-width: 100px;
+  }
+
+  .colorInput {
+    height: 100%;
+  }
+}

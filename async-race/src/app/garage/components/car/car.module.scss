@@ -1,12 +1,51 @@
-.car {
-  max-width: 100px;
-  max-height: 80%;
-}
+
 .carWrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-areas: 
+    "btnsRow     btnsRow  btnsRow  btnsRow"
+    "carName     carName  carName  carName"
+    "btnsColoumn carImage carImage carImage"
+    "btnsColoumn carImage carImage carImage"
+    "btnsColoumn carImage carImage carImage";
   max-height: 100%;
   max-width: fit-content;
+  
+  .carImage {
+    grid-area: carImage;
+    max-width: 120px;
+    max-height: 100%;
+  }
+
+  .btnsRow {
+    grid-area: btnsRow;
+    display: flex;
+    gap: 2px;
+
+    input {
+      height: 15px;
+      font-size: 0.5rem;
+    }
+  }
+
+  .engineBtns {
+    grid-area: btnsColoumn;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    input {
+      height: 15px;
+      width: 40px;
+      font-size: 0.5rem;
+    }
+  }
+
+  .carName {
+    grid-area: carName;
+    padding-top: 3px;
+    padding-left: 10px;
+    font-size: 0.7rem;
+  }
 }
