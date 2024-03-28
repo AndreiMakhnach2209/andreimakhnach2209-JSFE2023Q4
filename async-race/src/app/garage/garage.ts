@@ -3,6 +3,7 @@ import { CarInfo } from '../../types/index';
 import View from '../../types/view/view';
 import createElement from '../../utilits/creatingElement';
 import dataRecesive from '../../utilits/formHandler';
+import generateCarData from '../../utilits/generateCarData';
 import Car from './components/car/car';
 import ControlPanel from './components/controlPanel/controlPanel';
 import styles from './garage.module.scss';
@@ -116,14 +117,20 @@ export default class Garage extends View {
 
     this.btnNextPage.addEventListener('click', () => this.nextPage());
     this.btnPreviousPage.addEventListener('click', () => this.prevPage());
+
+    this.controlPanel.generateBtn.addEventListener('click', () => {
+      this.addCar(...generateCarData(100));
+    });
   }
 
-  private async addCar(carData: CarInfo) {
+  private async addCar(...carsData: CarInfo[]) {
     try {
-      await fetch(`http://127.0.0.1:3000/garage`, {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ name: carData.name, color: carData.color }),
+      carsData.forEach(async (carData) => {
+        await fetch(`http://127.0.0.1:3000/garage`, {
+          method: 'POST',
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify({ name: carData.name, color: carData.color }),
+        });
       });
     } catch (error) {
       console.warn('Server is not available!');
@@ -147,7 +154,7 @@ export default class Garage extends View {
     this.viewContent();
   }
 
-  private async removeCar(carId: number) {
+  private async removeCar(carId: number | undefined) {
     try {
       await fetch(`http://127.0.0.1:3000/garage/${carId}`, {
         method: 'DELETE',

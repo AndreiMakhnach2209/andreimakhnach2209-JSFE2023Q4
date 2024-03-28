@@ -1,7 +1,7 @@
 export interface CarInfo {
   name: string;
   color: string;
-  id: number;
+  id?: number;
 }
 
 export interface CarRecord {
