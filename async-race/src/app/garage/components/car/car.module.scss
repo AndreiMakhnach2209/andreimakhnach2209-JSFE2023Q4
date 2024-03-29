@@ -12,10 +12,13 @@
   max-height: 100%;
   max-width: fit-content;
   
-  .carImage {
+  .carImageWrap{
+    position: relative;
     grid-area: carImage;
-    max-width: 120px;
-    max-height: 100%;
+    .carImage {
+      max-width: 120px;
+      max-height: 100%;
+    }
   }
 
   .btnsRow {
@@ -46,6 +49,7 @@
     grid-area: carName;
     padding-top: 3px;
     padding-left: 10px;
+    text-align: center;
     font-size: 0.7rem;
   }
 }

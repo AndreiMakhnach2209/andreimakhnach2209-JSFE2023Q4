@@ -10,15 +10,25 @@ export default class ControlPanel extends HTMLElement {
 
   public raceBtn = new Button('RACE', 'button');
 
+  public resetBtn = new Button('RESET', 'button');
+
   public generateBtn = new Button('GENERATE', 'button');
 
   constructor() {
     super();
     this.className = styles.controlPanel;
+    this.resetBtn.disabled = true;
     this.append(
       this.createForm,
       this.updateForm,
-      createElement('div', [styles.btnsRow], {}, this.generateBtn, this.raceBtn)
+      createElement(
+        'div',
+        [styles.btnsRow],
+        {},
+        this.raceBtn,
+        this.resetBtn,
+        this.generateBtn
+      )
     );
   }
 }

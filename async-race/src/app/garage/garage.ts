@@ -7,6 +7,7 @@ import generateCarData from '../../utilits/generateCarData';
 import Car from './components/car/car';
 import ControlPanel from './components/controlPanel/controlPanel';
 import styles from './garage.module.scss';
+import finishFlag from '../../assets/images/BSicon_RACE.svg';
 
 export default class Garage extends View {
   private btnNextPage = new Button('NEXT');
@@ -76,7 +77,18 @@ export default class Garage extends View {
 
   private createTrack(carInfo: CarInfo) {
     const car = new Car(carInfo);
-    this.element.append(createElement('div', [styles.track], {}, car));
+    this.element.append(
+      createElement(
+        'div',
+        [styles.track],
+        {},
+        car,
+        createElement('img', [styles.flag], {
+          src: finishFlag,
+          alt: 'finish',
+        })
+      )
+    );
     const observer = new MutationObserver((mutations) => {
       switch (mutations[0].attributeName) {
         case 'data-removed':
@@ -86,13 +98,20 @@ export default class Garage extends View {
           this.controlPanel.updateForm.fill(carInfo);
           this.controlPanel.updateForm.idPseudoInput.value = `${carInfo.id}`;
           break;
+        case 'disabled':
+          if (mutations[0].target === car.startBtn)
+            this.controlPanel.raceBtn.disabled = this.stateRaceBtn();
+          if (mutations[0].target === car.stopBtn)
+            this.controlPanel.resetBtn.disabled = this.stateResetBtn();
+          break;
         default:
           break;
       }
     });
     observer.observe(car, {
       attributes: true,
-      attributeFilter: ['data-removed', 'data-selected'],
+      subtree: true,
+      attributeFilter: ['data-removed', 'data-selected', 'disabled'],
     });
   }
 
@@ -121,6 +140,11 @@ export default class Garage extends View {
     this.controlPanel.generateBtn.addEventListener('click', () => {
       this.addCar(...generateCarData(100));
     });
+
+    this.controlPanel.raceBtn.addEventListener('click', () => this.startRace());
+    this.controlPanel.resetBtn.addEventListener('click', () =>
+      this.resetRace()
+    );
   }
 
   private async addCar(...carsData: CarInfo[]) {
@@ -176,5 +200,33 @@ export default class Garage extends View {
   private prevPage() {
     this.page -= 1;
     this.viewContent();
+  }
+
+  private startRace() {
+    const cars = this.element.getElementsByTagName('custom-car');
+    Object.values(cars).forEach((car) => {
+      if (car instanceof Car) car.startEngine();
+    });
+  }
+
+  private resetRace() {
+    const cars = this.element.getElementsByTagName('custom-car');
+    Object.values(cars).forEach((car) => {
+      if (car instanceof Car && !car.stopBtn.disabled) car.stop();
+    });
+  }
+
+  private stateRaceBtn() {
+    const startBtns = this.element.querySelectorAll(
+      '[name=startEngine]'
+    ) as unknown as HTMLButtonElement[];
+    return !Object.values(startBtns).every((item) => !item.disabled);
+  }
+
+  private stateResetBtn() {
+    const stopBtns = this.element.querySelectorAll(
+      '[name=stopEngine]'
+    ) as unknown as HTMLButtonElement[];
+    return !Object.values(stopBtns).some((item) => !item.disabled);
   }
 }

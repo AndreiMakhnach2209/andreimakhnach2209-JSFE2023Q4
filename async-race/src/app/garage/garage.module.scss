@@ -9,8 +9,16 @@
 }
 
 .track {
+  position: relative;
   width: 100%;
   height: 80px;
   margin: 10px 0;
   border-bottom: 10px dashed white;
+
+  .flag {
+    position: absolute;
+    top: 0;
+    right: 100px;
+    height: 50px;
+  }
 }

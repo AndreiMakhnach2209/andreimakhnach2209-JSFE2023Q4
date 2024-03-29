@@ -9,3 +9,8 @@ export interface CarRecord {
   wins: number;
   time: number;
 }
+
+export interface DriveData {
+  velocity: number;
+  distance: number;
+}
