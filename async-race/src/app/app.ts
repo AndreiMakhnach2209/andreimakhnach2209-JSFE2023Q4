@@ -25,6 +25,10 @@ export default class App {
       this.garage.element,
       this.winners.element
     );
+
+    this.garage.element.addEventListener('race', ((event: CustomEvent) => {
+      this.winners.updateRecords(event.detail.id, event.detail.time);
+    }) as EventListener);
   }
 
   private toGarage() {

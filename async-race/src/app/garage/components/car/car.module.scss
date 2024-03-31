@@ -16,7 +16,7 @@
     position: relative;
     grid-area: carImage;
     .carImage {
-      max-width: 120px;
+      max-width: 80px;
       max-height: 100%;
     }
   }
@@ -50,6 +50,6 @@
     padding-top: 3px;
     padding-left: 10px;
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 }

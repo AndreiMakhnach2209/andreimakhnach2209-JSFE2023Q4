@@ -1,4 +1,3 @@
-import Button from '../../components/buttons';
 import { CarInfo } from '../../types/index';
 import View from '../../types/view/view';
 import createElement from '../../utilits/creatingElement';
@@ -10,17 +9,9 @@ import styles from './garage.module.scss';
 import finishFlag from '../../assets/images/BSicon_RACE.svg';
 
 export default class Garage extends View {
-  private btnNextPage = new Button('NEXT');
-
-  private btnPreviousPage = new Button('PREV');
-
   private totalNuberofCars = createElement('p');
 
-  private numberPage = createElement('p');
-
   private controlPanel = new ControlPanel();
-
-  private page = 1;
 
   private static limitOfCarsOnPage = 7;
 
@@ -48,16 +39,14 @@ export default class Garage extends View {
     this.init();
   }
 
-  private async viewContent() {
+  protected async viewContent() {
+    super.viewContent();
     try {
       const response = await fetch(
         `http://127.0.0.1:3000/garage?_page=${this.page}&_limit=${Garage.limitOfCarsOnPage}`
       );
       const totalNumsCars = response.headers.get('X-Total-Count');
       this.totalNuberofCars.textContent = `Garage (${totalNumsCars})`;
-      this.numberPage.innerText = `Page#${this.page}`;
-
-      this.btnPreviousPage.disabled = this.page === 1;
       this.btnNextPage.disabled = !(
         this.page <
         Number(totalNumsCars) / Garage.limitOfCarsOnPage
@@ -134,9 +123,6 @@ export default class Garage extends View {
       this.controlPanel.updateForm.reset();
     });
 
-    this.btnNextPage.addEventListener('click', () => this.nextPage());
-    this.btnPreviousPage.addEventListener('click', () => this.prevPage());
-
     this.controlPanel.generateBtn.addEventListener('click', () => {
       this.addCar(...generateCarData(100));
     });
@@ -192,20 +178,29 @@ export default class Garage extends View {
     this.viewContent();
   }
 
-  private nextPage() {
-    this.page += 1;
-    this.viewContent();
-  }
-
-  private prevPage() {
-    this.page -= 1;
-    this.viewContent();
-  }
-
   private startRace() {
-    const cars = this.element.getElementsByTagName('custom-car');
-    Object.values(cars).forEach((car) => {
-      if (car instanceof Car) car.startEngine();
+    const cars = this.element.getElementsByTagName(
+      'custom-car'
+    ) as unknown as Car[];
+    const promises = Object.values(cars).map((car) => car.startEngine());
+    Promise.any(promises).then((firstCar) => {
+      const winner = firstCar as Car;
+      const greeting = createElement('p');
+      greeting.textContent = `${winner.carInfo.name} winns [${(winner.time / 1000).toFixed(2)}s]`;
+      const greetingWrap = createElement(
+        'div',
+        [styles.greeting],
+        {},
+        greeting
+      );
+      this.element.append(greetingWrap);
+      greetingWrap.addEventListener('click', () => greetingWrap.remove());
+      winner.dispatchEvent(
+        new CustomEvent('race', {
+          bubbles: true,
+          detail: { id: winner.carInfo.id, time: winner.time },
+        })
+      );
     });
   }
 

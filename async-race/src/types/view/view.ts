@@ -1,14 +1,26 @@
+import Button from '../../components/buttons';
 import createElement from '../../utilits/creatingElement';
 import styles from './view.module.scss';
 
 export default class View {
+  protected btnNextPage = new Button('NEXT');
+
+  protected btnPreviousPage = new Button('PREV');
+
+  protected numberPage = createElement('p');
+
   public element: HTMLElement;
+
+  protected page = 1;
 
   constructor(classList?: string[]) {
     this.element = createElement('div', [
       styles.container,
       ...(classList ?? []),
     ]);
+
+    this.btnNextPage.addEventListener('click', () => this.nextPage());
+    this.btnPreviousPage.addEventListener('click', () => this.prevPage());
   }
 
   hidde() {
@@ -17,5 +29,20 @@ export default class View {
 
   shows() {
     this.element.classList.remove(styles.hidden);
+  }
+
+  protected nextPage() {
+    this.page += 1;
+    this.viewContent();
+  }
+
+  protected prevPage() {
+    this.page -= 1;
+    this.viewContent();
+  }
+
+  protected async viewContent() {
+    this.numberPage.innerText = `Page#${this.page}`;
+    this.btnPreviousPage.disabled = this.page === 1;
   }
 }

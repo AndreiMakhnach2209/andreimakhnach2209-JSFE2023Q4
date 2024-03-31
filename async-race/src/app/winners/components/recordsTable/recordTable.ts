@@ -40,6 +40,11 @@ export default class RecordsTable extends HTMLTableElement {
     });
     this.tBodies?.item(0)?.append(createElement('tr', [], {}, ...rowContent));
   }
+
+  public clearTable() {
+    const rows = this.tBodies?.item(0)?.getElementsByTagName('tr');
+    if (rows) Object.values(rows).forEach((row) => row.remove());
+  }
 }
 
 customElements.define('custom-table', RecordsTable, { extends: 'table' });

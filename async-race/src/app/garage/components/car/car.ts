@@ -15,7 +15,7 @@ export default class Car extends HTMLElement {
 
   private carImageWrap = createElement('div', [styles.carImageWrap]);
 
-  private time = 0;
+  public time = 0;
 
   private animationID: number | undefined;
 
@@ -23,7 +23,7 @@ export default class Car extends HTMLElement {
 
   private distance: number = 0;
 
-  constructor(private carInfo: CarInfo) {
+  constructor(public carInfo: CarInfo) {
     super();
     this.className = styles.carWrap;
     this.carImageWrap.innerHTML = `<svg class=${styles.carImage} fill=${carInfo.color} stroke=#ffffff stroke-width=2><use xlink:href=${carIcon}#93123_car></use></svg>`;
@@ -74,10 +74,19 @@ export default class Car extends HTMLElement {
       this.stopBtn.disabled = false;
       const { distance, velocity } = (await response.json()) as DriveData;
       this.time = distance / velocity;
-      this.drive();
+      return await new Promise((resolve) => {
+        this.drive()
+          .then(() => resolve(this))
+          .catch((error) => {
+            console.warn(error);
+          });
+      });
     } catch (error) {
       console.warn(error);
       this.startBtn.disabled = false;
+      return await new Promise((resolve, reject) => {
+        reject(error);
+      });
     }
   }
 
@@ -100,18 +109,14 @@ export default class Car extends HTMLElement {
   }
 
   private async drive() {
-    try {
-      this.animation(this.time);
-      const response = await fetch(
-        `http://127.0.0.1:3000/engine?id=${this.carInfo.id}&status=drive`,
-        { method: 'PATCH' }
-      );
-      if (response.status === 500 && this.animationID) {
-        cancelAnimationFrame(this.animationID);
-        throw new Error(`Engine trouble: ${this.carInfo.name} is stopped`);
-      }
-    } catch (error) {
-      console.warn(error);
+    this.animation(this.time);
+    const response = await fetch(
+      `http://127.0.0.1:3000/engine?id=${this.carInfo.id}&status=drive`,
+      { method: 'PATCH' }
+    );
+    if (response.status === 500 && this.animationID) {
+      cancelAnimationFrame(this.animationID);
+      throw new Error(`Engine trouble: ${this.carInfo.name} is stopped`);
     }
   }
 
