@@ -9,10 +9,13 @@ export default class RecordsTable extends HTMLTableElement {
     this.className = styles.table;
     this.createTHead();
     this.createTBody();
-    const titles = ['Number', 'Car', 'Name', 'Winns', 'Best time (sec)'].map(
+    const titles = ['Number', 'Car', 'Name', 'Wins', 'Best time (sec)'].map(
       (text) => {
-        const thElement = createElement('th', [styles.head]);
-        thElement.textContent = text;
+        const textElement = createElement('span');
+        textElement.textContent = text;
+        const thElement = createElement('th', [styles.head], {}, textElement);
+        if (text === 'Wins') thElement.dataset.sortable = 'wins';
+        if (text === 'Best time (sec)') thElement.dataset.sortable = 'time';
         return thElement;
       }
     );

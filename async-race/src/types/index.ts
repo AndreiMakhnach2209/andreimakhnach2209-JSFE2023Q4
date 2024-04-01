@@ -14,3 +14,8 @@ export interface DriveData {
   velocity: number;
   distance: number;
 }
+
+export interface SortParams {
+  sort: 'id' | 'wins' | 'time';
+  order: 'ASC' | 'DESC';
+}

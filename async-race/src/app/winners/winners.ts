@@ -1,4 +1,4 @@
-import { CarRecord } from '../../types/index';
+import { CarRecord, SortParams } from '../../types/index';
 import View from '../../types/view/view';
 import createElement from '../../utilits/creatingElement';
 import RecordsTable from './components/recordsTable/recordTable';
@@ -10,6 +10,8 @@ export default class Winners extends View {
   private totalNuberofWinns = createElement('p');
 
   private static limitOfWinnersToPage = 10;
+
+  private sortParams: SortParams = { sort: 'id', order: 'ASC' };
 
   constructor() {
     super([styles.winners]);
@@ -26,14 +28,40 @@ export default class Winners extends View {
       this.recordsTable
     );
     this.viewContent();
+    this.init();
+  }
+
+  private init() {
+    document.addEventListener('DOMContentLoaded', () => {
+      const sortableHeadCells = document.querySelectorAll('[data-sortable]');
+      sortableHeadCells.forEach((headCell, index, headCells) => {
+        headCell.addEventListener('click', (event) => {
+          headCells.forEach((item) => item.removeAttribute('data-order'));
+          const currentTarget = event.currentTarget as HTMLElement;
+          if (this.sortParams?.sort === currentTarget.dataset.sortable)
+            if (this.sortParams?.order === 'ASC') {
+              this.sortParams.order = 'DESC';
+              currentTarget.dataset.order = 'desc';
+            } else this.sortParams = { sort: 'id', order: 'ASC' };
+          else {
+            this.sortParams = {
+              sort: currentTarget.dataset.sortable,
+              order: 'ASC',
+            } as SortParams;
+            currentTarget.dataset.order = 'asc';
+          }
+          this.viewContent();
+        });
+      });
+    });
   }
 
   protected async viewContent() {
     super.viewContent();
     this.recordsTable.clearTable();
-    const response = await fetch(
-      `http://127.0.0.1:3000/winners?_page=${this.page}&_limit=${Winners.limitOfWinnersToPage}`
-    );
+    let url = `http://127.0.0.1:3000/winners?_page=${this.page}&_limit=${Winners.limitOfWinnersToPage}`;
+    url += `&_sort=${this.sortParams.sort}&_order=${this.sortParams.order}`;
+    const response = await fetch(url);
     const totalNumsOfWinns = response.headers.get('X-Total-Count');
     this.totalNuberofWinns.textContent = `Winners (${totalNumsOfWinns})`;
     this.btnNextPage.disabled = !(
@@ -43,7 +71,7 @@ export default class Winners extends View {
 
     const winns = (await response.json()) as CarRecord[];
     winns.forEach((winner: CarRecord, index) => {
-      this.recordsTable.addRow(winner, index);
+      this.recordsTable.addRow(winner, index + (this.page - 1) * 10);
     });
   }
 

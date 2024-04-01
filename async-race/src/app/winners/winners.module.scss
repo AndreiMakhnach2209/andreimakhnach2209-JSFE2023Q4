@@ -2,3 +2,25 @@
   display: flex;
   flex-direction: column;
 }
+
+[data-sortable] {
+  cursor: pointer;
+
+  &:hover {
+    color: #75c1ff;
+  }
+}
+
+[data-order=asc] {
+  & span::after {
+    color: #75c1ff;
+    content: "\2191";
+  }
+}
+
+[data-order=desc] {
+  & span::after {
+    color: #75c1ff;
+    content: "\2193";
+  }
+}
