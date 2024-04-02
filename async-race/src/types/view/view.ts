@@ -42,7 +42,8 @@ export default class View {
   }
 
   protected async viewContent() {
+    this.btnNextPage.disabled = true;
+    this.btnPreviousPage.disabled = true;
     this.numberPage.innerText = `Page#${this.page}`;
-    this.btnPreviousPage.disabled = this.page === 1;
   }
 }

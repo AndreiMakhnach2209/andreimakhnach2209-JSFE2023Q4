@@ -23,25 +23,29 @@ export default class RecordsTable extends HTMLTableElement {
   }
 
   public async addRow(winnerInfo: CarRecord, index: number) {
-    const response = await fetch(
-      `http://127.0.0.1:3000/garage/${winnerInfo.id}`
-    );
-    const carInfo = await response.json();
-    const rowContent = [
-      index + 1,
-      new Car(carInfo),
-      carInfo.name,
-      winnerInfo.wins,
-      winnerInfo.time,
-    ].map((item) => {
-      const cell = createElement('td', [styles.cell]);
-      if (item instanceof Car) {
-        cell.append(item);
-        item.classList.add(styles.car);
-      } else cell.textContent = item;
-      return cell;
-    });
-    this.tBodies?.item(0)?.append(createElement('tr', [], {}, ...rowContent));
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:3000/garage/${winnerInfo.id}`
+      );
+      const carInfo = await response.json();
+      const rowContent = [
+        index + 1,
+        new Car(carInfo),
+        carInfo.name,
+        winnerInfo.wins,
+        winnerInfo.time,
+      ].map((item) => {
+        const cell = createElement('td', [styles.cell]);
+        if (item instanceof Car) {
+          cell.append(item);
+          item.classList.add(styles.car);
+        } else cell.textContent = item;
+        return cell;
+      });
+      this.tBodies?.item(0)?.append(createElement('tr', [], {}, ...rowContent));
+    } catch {
+      console.warn('Server is not avialable');
+    }
   }
 
   public clearTable() {

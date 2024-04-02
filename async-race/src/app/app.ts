@@ -43,6 +43,7 @@ export default class App {
     this.btnGarage.disabled = false;
     this.winners.shows();
     this.garage.hidde();
+    this.winners.viewContent();
   }
 
   public start() {

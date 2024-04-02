@@ -27,7 +27,6 @@ export default class Winners extends View {
       createElement('div', [], {}, this.btnPreviousPage, this.btnNextPage),
       this.recordsTable
     );
-    this.viewContent();
     this.init();
   }
 
@@ -56,23 +55,29 @@ export default class Winners extends View {
     });
   }
 
-  protected async viewContent() {
-    super.viewContent();
-    this.recordsTable.clearTable();
-    let url = `http://127.0.0.1:3000/winners?_page=${this.page}&_limit=${Winners.limitOfWinnersToPage}`;
-    url += `&_sort=${this.sortParams.sort}&_order=${this.sortParams.order}`;
-    const response = await fetch(url);
-    const totalNumsOfWinns = response.headers.get('X-Total-Count');
-    this.totalNuberofWinns.textContent = `Winners (${totalNumsOfWinns})`;
-    this.btnNextPage.disabled = !(
-      this.page <
-      Number(totalNumsOfWinns) / Winners.limitOfWinnersToPage
-    );
+  public async viewContent() {
+    try {
+      super.viewContent();
+      this.recordsTable.clearTable();
+      let url = `http://127.0.0.1:3000/winners?_page=${this.page}&_limit=${Winners.limitOfWinnersToPage}`;
+      url += `&_sort=${this.sortParams.sort}&_order=${this.sortParams.order}`;
+      const response = await fetch(url);
+      const totalNumsOfWinns = response.headers.get('X-Total-Count');
+      this.totalNuberofWinns.textContent = `Winners (${totalNumsOfWinns})`;
 
-    const winns = (await response.json()) as CarRecord[];
-    winns.forEach((winner: CarRecord, index) => {
-      this.recordsTable.addRow(winner, index + (this.page - 1) * 10);
-    });
+      const winns = (await response.json()) as CarRecord[];
+      winns.forEach((winner: CarRecord, index) => {
+        this.recordsTable.addRow(winner, index + (this.page - 1) * 10);
+      });
+
+      this.btnNextPage.disabled = !(
+        this.page <
+        Number(totalNumsOfWinns) / Winners.limitOfWinnersToPage
+      );
+      this.btnPreviousPage.disabled = this.page === 1;
+    } catch {
+      console.warn('Server is not available!');
+    }
   }
 
   public async updateRecords(id: number, timeMs: number) {
@@ -85,8 +90,8 @@ export default class Winners extends View {
       }
       const winnerInfo = (await response.json()) as CarRecord;
       this.updateWinner(winnerInfo, currentTime);
-    } catch (error) {
-      console.warn(error);
+    } catch {
+      console.warn('This is new winner!');
     }
   }
 
@@ -108,14 +113,18 @@ export default class Winners extends View {
   }
 
   private async updateWinner(winnerInfo: CarRecord, currentTime: number) {
-    await fetch(`http://127.0.0.1:3000/winners/${winnerInfo.id}`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        wins: winnerInfo.wins + 1,
-        time: winnerInfo.time > currentTime ? currentTime : winnerInfo.time,
-      }),
-    });
-    this.viewContent();
+    try {
+      await fetch(`http://127.0.0.1:3000/winners/${winnerInfo.id}`, {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({
+          wins: winnerInfo.wins + 1,
+          time: winnerInfo.time > currentTime ? currentTime : winnerInfo.time,
+        }),
+      });
+      this.viewContent();
+    } catch {
+      console.warn('Server is not available!');
+    }
   }
 }

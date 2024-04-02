@@ -15,6 +15,8 @@ export default class Garage extends View {
 
   private static limitOfCarsOnPage = 7;
 
+  private isRaceReset = false;
+
   constructor() {
     super([styles.garage]);
     const statisticsWrap = createElement(
@@ -47,10 +49,6 @@ export default class Garage extends View {
       );
       const totalNumsCars = response.headers.get('X-Total-Count');
       this.totalNuberofCars.textContent = `Garage (${totalNumsCars})`;
-      this.btnNextPage.disabled = !(
-        this.page <
-        Number(totalNumsCars) / Garage.limitOfCarsOnPage
-      );
 
       const cars = (await response.json()) as CarInfo[];
       document
@@ -59,6 +57,11 @@ export default class Garage extends View {
       cars.forEach((carInfo) => {
         this.createTrack(carInfo);
       });
+      this.btnNextPage.disabled = !(
+        this.page <
+        Number(totalNumsCars) / Garage.limitOfCarsOnPage
+      );
+      this.btnPreviousPage.disabled = this.page === 1;
     } catch (error) {
       console.warn('Server is not available!');
     }
@@ -131,20 +134,26 @@ export default class Garage extends View {
     this.controlPanel.resetBtn.addEventListener('click', () =>
       this.resetRace()
     );
+
+    [this.btnNextPage, this.btnPreviousPage].forEach((button) => {
+      button.addEventListener('click', async () => {
+        if (!this.isRaceReset) this.resetRace();
+      });
+    });
   }
 
   private async addCar(...carsData: CarInfo[]) {
-    try {
-      carsData.forEach(async (carData) => {
+    carsData.forEach(async (carData) => {
+      try {
         await fetch(`http://127.0.0.1:3000/garage`, {
           method: 'POST',
           headers: { 'Content-type': 'application/json' },
           body: JSON.stringify({ name: carData.name, color: carData.color }),
         });
-      });
-    } catch (error) {
-      console.warn('Server is not available!');
-    }
+      } catch (error) {
+        console.warn('Server is not available!');
+      }
+    });
     this.viewContent();
   }
 
@@ -178,36 +187,42 @@ export default class Garage extends View {
     this.viewContent();
   }
 
-  private startRace() {
+  private async startRace() {
+    this.isRaceReset = false;
     const cars = this.element.getElementsByTagName(
       'custom-car'
     ) as unknown as Car[];
     const promises = Object.values(cars).map((car) => car.startEngine());
-    Promise.any(promises).then((firstCar) => {
-      const winner = firstCar as Car;
-      const greeting = createElement('p');
-      greeting.textContent = `${winner.carInfo.name} winns [${(winner.time / 1000).toFixed(2)}s]`;
-      const greetingWrap = createElement(
-        'div',
-        [styles.greeting],
-        {},
-        greeting
-      );
-      this.element.append(greetingWrap);
-      greetingWrap.addEventListener('click', () => greetingWrap.remove());
-      winner.dispatchEvent(
-        new CustomEvent('race', {
-          bubbles: true,
-          detail: { id: winner.carInfo.id, time: winner.time },
-        })
-      );
-    });
+    Promise.any(promises)
+      .then((firstCar) => {
+        const winner = firstCar as Car;
+        if (!this.isRaceReset && winner.dataset.finished) {
+          const greeting = createElement('p');
+          greeting.textContent = `${winner.carInfo.name} won the race [${(winner.time / 1000).toFixed(2)}s]`;
+          const greetingWrap = createElement(
+            'div',
+            [styles.greeting],
+            {},
+            greeting
+          );
+          this.element.append(greetingWrap);
+          greetingWrap.addEventListener('click', () => greetingWrap.remove());
+          winner.dispatchEvent(
+            new CustomEvent('race', {
+              bubbles: true,
+              detail: { id: winner.carInfo.id, time: winner.time },
+            })
+          );
+        }
+      })
+      .catch((error) => console.warn(error));
   }
 
   private resetRace() {
+    this.isRaceReset = true;
     const cars = this.element.getElementsByTagName('custom-car');
     Object.values(cars).forEach((car) => {
-      if (car instanceof Car && !car.stopBtn.disabled) car.stop();
+      if (car instanceof Car) car.stop();
     });
   }
 

@@ -77,12 +77,11 @@ export default class Car extends HTMLElement {
       return await new Promise((resolve) => {
         this.drive()
           .then(() => resolve(this))
-          .catch((error) => {
-            console.warn(error);
+          .catch((error: Error) => {
+            console.warn(error.message);
           });
       });
     } catch (error) {
-      console.warn(error);
       this.startBtn.disabled = false;
       return await new Promise((resolve, reject) => {
         reject(error);
@@ -95,7 +94,10 @@ export default class Car extends HTMLElement {
 
     const callback = (time: number) => {
       let timeFraction = (time - start) / duration;
-      if (timeFraction > 1) timeFraction = 1;
+      if (timeFraction >= 1) {
+        timeFraction = 1;
+        this.dataset.finished = 'true';
+      }
 
       this.progress = timeFraction;
 
@@ -118,11 +120,13 @@ export default class Car extends HTMLElement {
       cancelAnimationFrame(this.animationID);
       throw new Error(`Engine trouble: ${this.carInfo.name} is stopped`);
     }
+    if (response.status === 404) this.stop();
   }
 
   public async stop() {
     try {
       this.stopBtn.disabled = true;
+      this.removeAttribute('data-finished');
       const response = await fetch(
         `http://127.0.0.1:3000/engine?id=${this.carInfo.id}&status=stopped`,
         { method: 'PATCH' }
@@ -133,9 +137,8 @@ export default class Car extends HTMLElement {
         this.progress = 0;
         this.setTranslate();
       }
-    } catch (error) {
-      console.warn(error);
-      this.stopBtn.disabled = false;
+    } catch {
+      console.warn('Server is not available!');
     }
   }
 
