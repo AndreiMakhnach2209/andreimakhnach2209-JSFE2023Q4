@@ -4,6 +4,7 @@ import TextInput from '../../../components/input';
 import createElement from '../../../utilits/createElement';
 import styles from './login.module.scss';
 import showValidityMessage from '../../../utilits/validateInput';
+import validate from '../../../utilits/validateForm';
 
 const [nameInput, passwordInput, submitBtn, infobtn] = [
   new TextInput('Имя', 'text'),
@@ -22,6 +23,8 @@ passwordInput.pattern = '(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*[0-9]).*';
 passwordInput.addEventListener('input', showValidityMessage);
 passwordInput.minLength = 6;
 
+submitBtn.disabled = true;
+
 const formLogin = createElement(
   'form',
   [styles.form],
@@ -31,6 +34,9 @@ const formLogin = createElement(
   submitBtn,
   infobtn
 );
+
+formLogin.addEventListener('input', validate);
+
 const modalLogin = new ModalContainer(formLogin);
 
 export { modalLogin };
