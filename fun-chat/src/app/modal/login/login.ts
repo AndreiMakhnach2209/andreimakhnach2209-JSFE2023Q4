@@ -6,6 +6,8 @@ import styles from './login.module.scss';
 import showValidityMessage from '../../../utilits/validateInput';
 import validate from '../../../utilits/validateForm';
 import dataRecesive from '../../../utilits/formHandler';
+import Socket from '../../socket/socket';
+import { RequestToServer, RequestTypes } from '../../../types/types';
 
 const [nameInput, passwordInput, submitBtn, infobtn] = [
   new TextInput('Имя', 'text'),
@@ -15,7 +17,7 @@ const [nameInput, passwordInput, submitBtn, infobtn] = [
 ];
 
 nameInput.required = true;
-nameInput.name = 'userName';
+nameInput.name = 'login';
 nameInput.addEventListener('input', showValidityMessage);
 nameInput.minLength = 3;
 nameInput.maxLength = 20;
@@ -42,11 +44,17 @@ const modalLogin = new ModalContainer(formLogin);
 
 formLogin.addEventListener('submit', (event) => {
   event.preventDefault();
-  const userData = dataRecesive(formLogin);
+  const userData = dataRecesive(formLogin) as Record<string, string>;
   Object.entries(userData).forEach(([key, value]) => {
-    sessionStorage.setItem(key, value as string);
+    sessionStorage.setItem(key, value);
   });
   modalLogin.hide();
+  const request: RequestToServer = {
+    id: 'authUser',
+    type: RequestTypes.USER_LOGIN,
+    payload: userData,
+  };
+  Socket.chat.send(JSON.stringify(request));
 });
 
 formLogin.addEventListener('input', validate);
