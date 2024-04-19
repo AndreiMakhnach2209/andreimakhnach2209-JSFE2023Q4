@@ -34,10 +34,14 @@ passwordInput.minLength = 6;
 
 submitBtn.disabled = true;
 
+const legend = createElement('legend', [styles.legend]);
+legend.textContent = 'Авторизация пользователя';
+
 const formLogin = createElement(
   'form',
   [styles.form],
   { name: 'login' },
+  legend,
   nameInput,
   passwordInput,
   submitBtn,
