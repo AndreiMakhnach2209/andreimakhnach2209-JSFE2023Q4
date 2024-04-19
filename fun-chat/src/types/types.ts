@@ -43,7 +43,11 @@ export interface MessagePayload {
 
 interface BaseRequest {
   id: string | null;
-  payload: { user?: UserPayload; message?: MessagePayload } | null;
+  payload: {
+    user?: UserPayload;
+    message?: MessagePayload;
+    users?: UserPayload[];
+  } | null;
 }
 export interface RequestToServer extends BaseRequest {
   type: RequestTypes;
