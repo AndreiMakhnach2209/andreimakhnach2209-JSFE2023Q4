@@ -3,10 +3,12 @@ import styles from './input.module.scss';
 export default class TextInput extends HTMLInputElement {
   constructor(
     innerText: string = 'Введитие текст',
-    type: 'text' | 'password' = 'text'
+    type: 'text' | 'password' = 'text',
+    className?: string
   ) {
     super();
     this.className = styles.input;
+    this.classList.add(className ?? styles.input);
     this.type = type;
     this.placeholder = innerText;
   }
