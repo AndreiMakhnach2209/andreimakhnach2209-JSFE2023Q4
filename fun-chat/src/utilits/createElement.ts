@@ -2,7 +2,7 @@ export default function createElement(
   tagName: keyof HTMLElementTagNameMap = 'div',
   classList?: string[],
   attributes?: Record<string, string>,
-  ...children: HTMLElement[]
+  ...children: (HTMLElement | string)[]
 ) {
   const element = document.createElement(tagName);
   element.classList.add(...(classList ?? []));

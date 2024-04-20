@@ -56,25 +56,12 @@ formLogin.addEventListener('submit', (event) => {
   Object.entries(userData).forEach(([key, value]) => {
     sessionStorage.setItem(key, value);
   });
-  modalLogin.hide();
   const request: RequestToServer = {
     id: 'authUser',
     type: RequestTypes.USER_LOGIN,
     payload: { user: userData },
   };
-  const requestUserActive: RequestToServer = {
-    id: 'activeUser',
-    type: RequestTypes.USER_ACTIVE,
-    payload: null,
-  };
-  const requestUserInactive = {
-    id: 'inactiveUser',
-    type: RequestTypes.USER_INACTIVE,
-    payload: null,
-  };
   Socket.chat.send(JSON.stringify(request));
-  Socket.chat.send(JSON.stringify(requestUserActive));
-  Socket.chat.send(JSON.stringify(requestUserInactive));
 });
 
 formLogin.addEventListener('input', validate);

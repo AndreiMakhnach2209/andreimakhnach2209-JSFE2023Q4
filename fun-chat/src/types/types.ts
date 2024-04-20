@@ -47,6 +47,7 @@ interface BaseRequest {
     user?: UserPayload;
     message?: MessagePayload;
     users?: UserPayload[];
+    error?: string;
   } | null;
 }
 export interface RequestToServer extends BaseRequest {
