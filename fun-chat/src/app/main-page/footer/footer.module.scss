@@ -1,0 +1,22 @@
+.footer {
+  height: 50px;
+  margin-top: auto;
+
+  .footerInner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .githubLink {
+      .linkImage {
+        filter: invert(1);
+      }
+    }
+
+    .linkSchool {
+      .logoSchool {
+        max-height: 50px;
+      }
+    }
+  }
+}

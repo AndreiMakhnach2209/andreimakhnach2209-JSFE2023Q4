@@ -7,7 +7,11 @@ import showValidityMessage from '../../../utilits/validateInput';
 import validate from '../../../utilits/validateForm';
 import dataRecesive from '../../../utilits/formHandler';
 import Socket from '../../socket/socket';
-import { RequestToServer, RequestTypes } from '../../../types/types';
+import {
+  RequestToServer,
+  RequestTypes,
+  UserPayload,
+} from '../../../types/types';
 
 const [nameInput, passwordInput, submitBtn, infobtn] = [
   new TextInput('Имя', 'text'),
@@ -30,10 +34,14 @@ passwordInput.minLength = 6;
 
 submitBtn.disabled = true;
 
+const legend = createElement('legend', [styles.legend]);
+legend.textContent = 'Авторизация пользователя';
+
 const formLogin = createElement(
   'form',
   [styles.form],
   { name: 'login' },
+  legend,
   nameInput,
   passwordInput,
   submitBtn,
@@ -44,15 +52,14 @@ const modalLogin = new ModalContainer(formLogin);
 
 formLogin.addEventListener('submit', (event) => {
   event.preventDefault();
-  const userData = dataRecesive(formLogin) as Record<string, string>;
+  const userData = dataRecesive(formLogin) as unknown as UserPayload;
   Object.entries(userData).forEach(([key, value]) => {
     sessionStorage.setItem(key, value);
   });
-  modalLogin.hide();
   const request: RequestToServer = {
     id: 'authUser',
     type: RequestTypes.USER_LOGIN,
-    payload: userData,
+    payload: { user: userData },
   };
   Socket.chat.send(JSON.stringify(request));
 });

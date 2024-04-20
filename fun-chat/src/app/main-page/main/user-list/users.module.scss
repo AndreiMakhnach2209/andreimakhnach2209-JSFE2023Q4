@@ -1,0 +1,26 @@
+.list {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 32%;
+  border: 1px solid black;
+  overflow: scroll;
+
+  .input {
+    position: sticky;
+    transform: translateX(-30px);
+    width: 100%;
+    margin: 10px;
+    background-color: white;
+  }
+
+  .active::marker {
+    color: green;
+    font-size: 24px;
+  }
+
+  .offline::marker {
+    color: red;
+    font-size: 24px;
+  }
+}
