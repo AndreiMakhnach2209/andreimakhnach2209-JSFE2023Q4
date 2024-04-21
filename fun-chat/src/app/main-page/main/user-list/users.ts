@@ -10,7 +10,8 @@ export default class Users {
   private static input = new TextInput(
     'Введите имя пользователя',
     'text',
-    styles.input
+    styles.input,
+    'userSearch'
   );
 
   private static privateNode: HTMLUListElement = createElement(

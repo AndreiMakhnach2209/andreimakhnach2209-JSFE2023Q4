@@ -5,6 +5,7 @@ import {
 } from '../../types/types';
 import Footer from '../main-page/footer/footer';
 import Header from '../main-page/header/header';
+import Dialogue from '../main-page/main/user-dialogue/dialogue';
 import Users from '../main-page/main/user-list/users';
 import ModalMessage from '../modal/error/error';
 import { modalLogin } from '../modal/login/login';
@@ -35,6 +36,12 @@ Socket.chat.addEventListener('message', async ({ data }) => {
     case RequestTypes.USER_ACTIVE:
     case RequestTypes.USER_INACTIVE:
       Users.addUser(...(msg.payload?.users || []));
+      break;
+    case RequestTypes.MSG_FROM_USER:
+      Dialogue.showMessage(msg.payload?.messages);
+      break;
+    case RequestTypes.MSG_SEND:
+      Dialogue.addMessage(msg.payload?.message);
       break;
     case ResponseTypes.ERROR:
       document.body.append(new ModalMessage(msg.payload?.error));
