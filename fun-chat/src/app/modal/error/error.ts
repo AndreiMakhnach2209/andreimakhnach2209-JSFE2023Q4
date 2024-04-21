@@ -17,6 +17,7 @@ export default class ModalMessage extends ModalContainer {
       closeBtn
     );
     this.append(message);
+    setTimeout(() => closeBtn.focus(), 500);
   }
 }
 
