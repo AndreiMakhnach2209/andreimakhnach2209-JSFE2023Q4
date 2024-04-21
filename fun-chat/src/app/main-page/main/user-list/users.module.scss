@@ -14,6 +14,11 @@
     background-color: white;
   }
 
+  .contact {
+    user-select: none;
+    cursor: pointer;
+  }
+
   .active::marker {
     color: green;
     font-size: 24px;

@@ -1,6 +1,7 @@
 import TextInput from '../../../../components/input';
 import { UserPayload } from '../../../../types/types';
 import createElement from '../../../../utilits/createElement';
+import Dialogue from '../user-dialogue/dialogue';
 import styles from './users.module.scss';
 
 export default class Users {
@@ -41,7 +42,8 @@ export default class Users {
     userList.forEach((user) => {
       if (sessionStorage.getItem('login') !== user.login) {
         const style = user.isLogined ? styles.active : styles.offline;
-        const contact = createElement('li', [style]);
+        const contact = createElement('li', [style, styles.contact]);
+        contact.addEventListener('click', () => Dialogue.open(user));
         contact.textContent = user.login;
         this.privateNode.append(contact);
       }
