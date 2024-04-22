@@ -11,27 +11,31 @@ import ModalMessage from '../modal/error/error';
 import { modalLogin } from '../modal/login/login';
 import Socket from './socket';
 
+function openMainPage(msg: ResponseFromServer) {
+  modalLogin.hide();
+  new Header(msg).insert();
+  new Footer().insert();
+  Socket.chat.send(
+    JSON.stringify({
+      id: 'activeUser',
+      type: RequestTypes.USER_ACTIVE,
+      payload: null,
+    })
+  );
+  Socket.chat.send(
+    JSON.stringify({
+      id: 'inactiveUser',
+      type: RequestTypes.USER_INACTIVE,
+      payload: null,
+    })
+  );
+}
+
 Socket.chat.addEventListener('message', async ({ data }) => {
   const msg = (await JSON.parse(data)) as ResponseFromServer;
   switch (msg.type) {
     case RequestTypes.USER_LOGIN:
-      modalLogin.hide();
-      new Header(msg).insert();
-      new Footer().insert();
-      Socket.chat.send(
-        JSON.stringify({
-          id: 'activeUser',
-          type: RequestTypes.USER_ACTIVE,
-          payload: null,
-        })
-      );
-      Socket.chat.send(
-        JSON.stringify({
-          id: 'inactiveUser',
-          type: RequestTypes.USER_INACTIVE,
-          payload: null,
-        })
-      );
+      openMainPage(msg);
       break;
     case RequestTypes.USER_ACTIVE:
     case RequestTypes.USER_INACTIVE:
@@ -39,6 +43,15 @@ Socket.chat.addEventListener('message', async ({ data }) => {
       break;
     case RequestTypes.MSG_FROM_USER:
       Dialogue.showMessage(msg.payload?.messages);
+      if (msg.id)
+        Users.updateCounter(
+          msg.id,
+          msg.payload?.messages?.filter(
+            (message) =>
+              !message.status?.isReaded &&
+              message.from !== sessionStorage.getItem('login')
+          ).length
+        );
       break;
     case RequestTypes.MSG_SEND:
       Dialogue.addMessage(msg.payload?.message);

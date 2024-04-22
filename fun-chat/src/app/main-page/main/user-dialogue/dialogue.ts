@@ -84,7 +84,7 @@ export default class Dialogue {
       this.messageForm
     );
     const request: RequestToServer = {
-      id: 'message_history',
+      id: user.login,
       type: RequestTypes.MSG_FROM_USER,
       payload: {
         user: {
