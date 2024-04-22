@@ -21,6 +21,7 @@ const [nameInput, passwordInput, submitBtn, infobtn] = [
 ];
 
 nameInput.required = true;
+nameInput.autofocus = true;
 nameInput.name = 'login';
 nameInput.addEventListener('input', showValidityMessage);
 nameInput.minLength = 3;

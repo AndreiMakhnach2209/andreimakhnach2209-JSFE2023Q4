@@ -1,15 +1,22 @@
 import TextInput from '../../../../components/input';
-import { UserPayload } from '../../../../types/types';
+import {
+  RequestToServer,
+  RequestTypes,
+  UserPayload,
+} from '../../../../types/types';
 import createElement from '../../../../utilits/createElement';
+import Socket from '../../../socket/socket';
+import Dialogue from '../user-dialogue/dialogue';
 import styles from './users.module.scss';
 
 export default class Users {
-  private static privateList: UserPayload[] = [];
+  private static userList: UserPayload[] = [];
 
   private static input = new TextInput(
     'Введите имя пользователя',
     'text',
-    styles.input
+    styles.input,
+    'userSearch'
   );
 
   private static privateNode: HTMLUListElement = createElement(
@@ -23,7 +30,7 @@ export default class Users {
     Users.input.addEventListener('input', ({ target }) => {
       const search = target as HTMLInputElement;
       Users.view(
-        Users.privateList.filter((user) =>
+        Users.userList.filter((user) =>
           user.login.toLowerCase().includes(search.value.toLowerCase())
         )
       );
@@ -36,28 +43,54 @@ export default class Users {
     });
   }
 
-  private static view(userList = this.privateList) {
+  private static view(userList = this.userList) {
     this.clear();
     userList.forEach((user) => {
       if (sessionStorage.getItem('login') !== user.login) {
         const style = user.isLogined ? styles.active : styles.offline;
-        const contact = createElement('li', [style]);
+        const contact = createElement('li', [style, styles.contact]);
+        contact.addEventListener('click', () => Dialogue.open(user));
         contact.textContent = user.login;
-        this.privateNode.append(contact);
+        contact.dataset.login = user.login;
+        this.privateNode.append(
+          createElement('div', [styles.contactWrap], {}, contact)
+        );
       }
     });
   }
 
   public static addUser(...users: UserPayload[]) {
-    this.privateList.push(...users);
+    this.userList.push(...users);
+    users.forEach((user) => {
+      const request: RequestToServer = {
+        id: user.login,
+        type: RequestTypes.MSG_FROM_USER,
+        payload: {
+          user: {
+            login: user.login,
+          },
+        },
+      };
+      if (user.login !== sessionStorage.getItem('login'))
+        Socket.chat.send(JSON.stringify(request));
+    });
     this.view();
-  }
-
-  public static get list() {
-    return this.privateList;
   }
 
   public static get node() {
     return this.privateNode;
+  }
+
+  public static updateCounter(login: string, counter: number | undefined) {
+    const contact = document.querySelector(`[data-login="${login}"]`);
+    const countNode = createElement(
+      'span',
+      [styles.counter],
+      {},
+      counter?.toString() || ''
+    );
+    if (counter && contact?.nextSibling)
+      contact.nextSibling.replaceWith(countNode);
+    else if (counter !== 0) contact?.after(countNode);
   }
 }

@@ -1,0 +1,47 @@
+.message {
+  position: relative;
+  align-self: flex-start;
+  width: 80%;
+  padding: 5px 5px 20px 5px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-radius: 10px;
+  border: 1px dashed #000;
+  box-shadow: 0 0 5px 1px #000;
+
+  .messageDate {
+    position: absolute;
+    right: 10px;
+    &::after {
+      content: 'Отправлено';
+      margin-left: 20px;
+      opacity: 0.6;
+    }
+  }
+}
+
+[data-outcoming='true'] {
+  align-self: flex-end;
+  background-color: #00000020;
+}
+
+[data-is-delivered='true'] {
+  .messageDate::after {
+    content: 'Доставлено';
+  }
+}
+[data-is-readed='true'] {
+  .messageDate::after {
+    content: 'Прочитано';
+  }
+}
+[data-is-edited='true'] {
+  .messageDate::after {
+    content: 'Изменено';
+  }
+}
+[data-is-deleted='true'] {
+  .messageDate::after {
+    content: 'Удалено';
+  }
+}
