@@ -38,9 +38,12 @@ export default class Users {
   }
 
   private static clear() {
-    Object.values(this.node.getElementsByTagName('li')).forEach((item) => {
-      item.remove();
-    });
+    while (!(this.node.lastChild instanceof HTMLInputElement))
+      this.node.lastChild?.remove();
+  }
+
+  public static reset() {
+    this.userList.length = 0;
   }
 
   private static view(userList = this.userList) {

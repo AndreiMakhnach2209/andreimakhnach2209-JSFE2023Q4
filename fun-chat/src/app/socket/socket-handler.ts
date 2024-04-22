@@ -8,11 +8,11 @@ import Header from '../main-page/header/header';
 import Dialogue from '../main-page/main/user-dialogue/dialogue';
 import Users from '../main-page/main/user-list/users';
 import ModalMessage from '../modal/error/error';
-import { modalLogin } from '../modal/login/login';
+import ModalLogin from '../modal/login/login';
 import Socket from './socket';
 
 function openMainPage(msg: ResponseFromServer) {
-  modalLogin.hide();
+  ModalLogin.close();
   new Header(msg).insert();
   new Footer().insert();
   Socket.chat.send(

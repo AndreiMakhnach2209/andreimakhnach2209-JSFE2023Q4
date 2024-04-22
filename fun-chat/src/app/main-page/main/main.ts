@@ -10,8 +10,10 @@ export default class Main extends HTMLDivElement {
     this.append(Users.node, Dialogue.node);
   }
 
-  public insert() {
+  public init() {
     document.body.append(createElement('main', [styles.main], {}, this));
+    Users.init();
+    Dialogue.init();
   }
 }
 

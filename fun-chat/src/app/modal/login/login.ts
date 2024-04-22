@@ -12,6 +12,7 @@ import {
   RequestTypes,
   UserPayload,
 } from '../../../types/types';
+import Main from '../../main-page/main/main';
 
 export default class ModalLogin extends ModalContainer {
   private formLogin = createElement('form', [styles.form], {
@@ -65,6 +66,7 @@ export default class ModalLogin extends ModalContainer {
       Object.entries(userData).forEach(([key, value]) => {
         sessionStorage.setItem(key, value);
       });
+      new Main().init();
       const request: RequestToServer = {
         id: 'authUser',
         type: RequestTypes.USER_LOGIN,
