@@ -45,7 +45,7 @@ export default class Dialogue {
     new Button('Отправить', 'submit', true)
   ) as HTMLFormElement;
 
-  private static login: string | null = null;
+  public static login: string | null = null;
 
   public static init() {
     this.messageInput.required = true;
@@ -83,16 +83,7 @@ export default class Dialogue {
       this.messagesContainer,
       this.messageForm
     );
-    const request: RequestToServer = {
-      id: user.login,
-      type: RequestTypes.MSG_FROM_USER,
-      payload: {
-        user: {
-          login: user.login,
-        },
-      },
-    };
-    Socket.chat.send(JSON.stringify(request));
+    Socket.messagesFrom(user.login);
   }
 
   public static showMessage(messages?: MessagePayload[]) {
@@ -108,5 +99,11 @@ export default class Dialogue {
 
   public static addMessage(message: MessagePayload | undefined) {
     this.messagesContainer.append(new Message(message));
+  }
+
+  public static updateCurrentDialogue(users: UserPayload[] | undefined) {
+    users?.forEach((user) => {
+      if (Dialogue.login === user.login) Dialogue.open(user);
+    });
   }
 }
