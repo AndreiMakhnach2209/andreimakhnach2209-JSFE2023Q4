@@ -50,12 +50,14 @@ export default class Users {
         const contact = createElement('li', [style, styles.contact]);
         contact.addEventListener('click', () => {
           Dialogue.open(user);
+          this.updateActiveContact();
         });
         contact.textContent = user.login;
         contact.dataset.login = user.login;
         this.privateNode.append(
           createElement('div', [styles.contactWrap], {}, contact)
         );
+        this.updateActiveContact();
       }
     });
   }
@@ -83,5 +85,17 @@ export default class Users {
     if (counter && contact?.nextSibling)
       contact.nextSibling.replaceWith(countNode);
     else if (counter !== 0) contact?.after(countNode);
+  }
+
+  private static updateActiveContact() {
+    Users.privateNode
+      .querySelector(`.${styles.activeContact}`)
+      ?.classList.remove(styles.activeContact);
+    Users.privateNode
+      .querySelectorAll(`.${styles.contact}`)
+      .forEach((contact) => {
+        if (contact.textContent === Dialogue.login)
+          contact.classList.add(styles.activeContact);
+      });
   }
 }
