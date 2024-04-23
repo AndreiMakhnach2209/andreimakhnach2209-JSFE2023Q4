@@ -1,9 +1,5 @@
 import TextInput from '../../../../components/input';
-import {
-  RequestToServer,
-  RequestTypes,
-  UserPayload,
-} from '../../../../types/types';
+import { UserPayload } from '../../../../types/types';
 import createElement from '../../../../utilits/createElement';
 import Socket from '../../../socket/socket';
 import Dialogue from '../user-dialogue/dialogue';
@@ -52,7 +48,9 @@ export default class Users {
       if (sessionStorage.getItem('login') !== user.login) {
         const style = user.isLogined ? styles.active : styles.offline;
         const contact = createElement('li', [style, styles.contact]);
-        contact.addEventListener('click', () => Dialogue.open(user));
+        contact.addEventListener('click', () => {
+          Dialogue.open(user);
+        });
         contact.textContent = user.login;
         contact.dataset.login = user.login;
         this.privateNode.append(
@@ -65,17 +63,7 @@ export default class Users {
   public static addUser(...users: UserPayload[]) {
     this.userList.push(...users);
     users.forEach((user) => {
-      const request: RequestToServer = {
-        id: user.login,
-        type: RequestTypes.MSG_FROM_USER,
-        payload: {
-          user: {
-            login: user.login,
-          },
-        },
-      };
-      if (user.login !== sessionStorage.getItem('login'))
-        Socket.chat.send(JSON.stringify(request));
+      Socket.messagesFrom(user.login);
     });
     this.view();
   }
