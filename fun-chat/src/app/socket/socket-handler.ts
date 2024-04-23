@@ -15,31 +15,30 @@ Socket.chat.addEventListener('message', async ({ data }) => {
     case RequestTypes.USER_LOGIN:
       new Main().init(msg);
       break;
+    case RequestTypes.USER_LOGOUT:
+      Main.reset();
+      break;
     case RequestTypes.USER_ACTIVE:
     case RequestTypes.USER_INACTIVE:
       Dialogue.updateCurrentDialogue(msg.payload?.users);
-      Users.addUser(...(msg.payload?.users || []));
+      Users.addUsers(...(msg.payload?.users || []));
       break;
     case RequestTypes.MSG_FROM_USER:
-      if (msg.id === Dialogue.login)
-        Dialogue.showMessage(msg.payload?.messages);
-      if (msg.id)
-        Users.updateCounter(
-          msg.id,
-          msg.payload?.messages?.filter(
-            (message) =>
-              !message.status?.isReaded &&
-              message.from !== sessionStorage.getItem('login')
-          ).length
-        );
+      Dialogue.showMessage(msg);
+      Users.updateCounter(msg);
       break;
     case RequestTypes.MSG_SEND:
       Dialogue.addMessage(msg.payload?.message);
+      if (msg.payload?.message?.from)
+        Socket.messagesFrom(msg.payload?.message?.from);
       break;
     case ResponseTypes.USER_EXTERNAL_LOGIN:
     case ResponseTypes.USER_EXTERNAL_LOGOUT:
       Users.reset();
       Socket.updateUsers();
+      break;
+    case ResponseTypes.MSG_DELIVERED:
+      if (Dialogue.currentUser) Socket.messagesFrom(Dialogue.currentUser);
       break;
     case ResponseTypes.ERROR:
       document.body.append(new ModalMessage(msg.payload?.error));

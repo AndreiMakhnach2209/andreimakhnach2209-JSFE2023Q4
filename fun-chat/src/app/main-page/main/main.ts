@@ -1,4 +1,5 @@
 import { ResponseFromServer } from '../../../types/types';
+import clearBody from '../../../utilits/clear-body';
 import createElement from '../../../utilits/createElement';
 import ModalLogin from '../../modal/login/login';
 import Socket from '../../socket/socket';
@@ -23,6 +24,13 @@ export default class Main extends HTMLDivElement {
     new Header(msg).insert();
     new Footer().insert();
     Socket.updateUsers();
+  }
+
+  public static reset() {
+    Users.reset();
+    clearBody();
+    sessionStorage.clear();
+    document.body.append(new ModalLogin());
   }
 }
 

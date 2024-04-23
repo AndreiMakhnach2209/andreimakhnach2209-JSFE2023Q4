@@ -1,5 +1,5 @@
 import TextInput from '../../../../components/input';
-import { UserPayload } from '../../../../types/types';
+import { ResponseFromServer, UserPayload } from '../../../../types/types';
 import createElement from '../../../../utilits/createElement';
 import Socket from '../../../socket/socket';
 import Dialogue from '../user-dialogue/dialogue';
@@ -62,7 +62,7 @@ export default class Users {
     });
   }
 
-  public static addUser(...users: UserPayload[]) {
+  public static addUsers(...users: UserPayload[]) {
     this.userList.push(...users);
     users.forEach((user) => {
       Socket.messagesFrom(user.login);
@@ -74,8 +74,13 @@ export default class Users {
     return this.privateNode;
   }
 
-  public static updateCounter(login: string, counter: number | undefined) {
-    const contact = document.querySelector(`[data-login="${login}"]`);
+  public static updateCounter(msg: ResponseFromServer) {
+    const counter = msg.payload?.messages?.filter(
+      (message) =>
+        !message.status?.isReaded &&
+        message.from !== sessionStorage.getItem('login')
+    ).length;
+    const contact = document.querySelector(`[data-login="${msg.id}"]`);
     const countNode = createElement(
       'span',
       [styles.counter],
@@ -94,7 +99,7 @@ export default class Users {
     Users.privateNode
       .querySelectorAll(`.${styles.contact}`)
       .forEach((contact) => {
-        if (contact.textContent === Dialogue.login)
+        if (contact.textContent === Dialogue.currentUser)
           contact.classList.add(styles.activeContact);
       });
   }
