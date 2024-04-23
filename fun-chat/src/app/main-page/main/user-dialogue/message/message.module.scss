@@ -13,7 +13,6 @@
     position: absolute;
     right: 10px;
     &::after {
-      content: 'Отправлено';
       margin-left: 20px;
       opacity: 0.6;
     }
@@ -23,14 +22,17 @@
 [data-outcoming='true'] {
   align-self: flex-end;
   background-color: #00000020;
+  .messageDate::after {
+    content: 'Отправлено';
+  }
 }
 
-[data-is-delivered='true'] {
+[data-is-delivered='true'][data-outcoming='true'] {
   .messageDate::after {
     content: 'Доставлено';
   }
 }
-[data-is-readed='true'] {
+[data-is-readed='true'][data-outcoming='true'] {
   .messageDate::after {
     content: 'Прочитано';
   }
