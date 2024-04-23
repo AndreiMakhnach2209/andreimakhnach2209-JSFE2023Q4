@@ -98,7 +98,11 @@ export default class Dialogue {
   }
 
   public static addMessage(message: MessagePayload | undefined) {
-    this.messagesContainer.append(new Message(message));
+    const newMessage = new Message(message);
+    this.messagesContainer.append(newMessage);
+    newMessage.scrollIntoView({
+      behavior: Dialogue.login === message?.from ? 'smooth' : 'auto',
+    });
   }
 
   public static updateCurrentDialogue(users: UserPayload[] | undefined) {
