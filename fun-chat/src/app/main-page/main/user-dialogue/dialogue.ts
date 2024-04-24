@@ -15,40 +15,54 @@ import styles from './dialogue.module.scss';
 import Message from './message/message';
 
 export default class Dialogue {
-  public static node = createElement(
-    'div',
-    [styles.dialogue],
-    {},
-    createElement(
-      'p',
-      [styles.startMessage],
+  public static node: HTMLElement;
+
+  private static messagesContainer: HTMLElement;
+
+  static messageInput: TextInput;
+
+  static messageForm: HTMLFormElement;
+
+  static currentUser: string | null;
+
+  constructor() {
+    Dialogue.node = createElement(
+      'div',
+      [styles.dialogue],
       {},
-      'Выберите пользователя для получения и отправки сообщений'
-    )
-  );
+      createElement(
+        'p',
+        [styles.startMessage],
+        {},
+        'Выберите пользователя для получения и отправки сообщений'
+      )
+    );
 
-  private static messagesContainer = createElement('div', [styles.messages]);
+    Dialogue.messagesContainer = createElement('div', [styles.messages]);
 
-  private static messageInput = new TextInput(
-    'Введите здесь свое сообщение',
-    'textarea',
-    styles.messageInput,
-    'message'
-  );
+    Dialogue.messageInput = new TextInput(
+      'Введите здесь свое сообщение',
+      'textarea',
+      styles.messageInput,
+      'message'
+    );
 
-  private static messageForm = createElement(
-    'form',
-    [styles.messageForm],
-    {
-      name: 'messageForm',
-    },
-    this.messageInput,
-    new Button('Отправить', 'submit', true)
-  ) as HTMLFormElement;
+    Dialogue.messageForm = createElement(
+      'form',
+      [styles.messageForm],
+      {
+        name: 'messageForm',
+      },
+      Dialogue.messageInput,
+      new Button('Отправить', 'submit', true)
+    ) as HTMLFormElement;
 
-  public static currentUser: string | null = null;
+    Dialogue.currentUser = null;
 
-  public static init() {
+    Dialogue.init();
+  }
+
+  private static init() {
     this.messageInput.required = true;
     this.messageForm.addEventListener('input', validate);
     this.messageForm.addEventListener('submit', (event) => {

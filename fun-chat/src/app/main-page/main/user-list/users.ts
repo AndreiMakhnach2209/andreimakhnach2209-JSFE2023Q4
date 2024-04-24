@@ -6,21 +6,29 @@ import Dialogue from '../user-dialogue/dialogue';
 import styles from './users.module.scss';
 
 export default class Users {
-  private static userList: UserPayload[] = [];
+  private static userList: UserPayload[];
 
-  private static input = new TextInput(
-    'Введите имя пользователя',
-    'text',
-    styles.input,
-    'userSearch'
-  );
+  private static input: TextInput;
 
-  private static privateNode: HTMLUListElement = createElement(
-    'ul',
-    [styles.list],
-    {},
-    Users.input
-  ) as HTMLUListElement;
+  static privateNode: HTMLUListElement;
+
+  constructor() {
+    Users.userList = [];
+
+    Users.input = new TextInput(
+      'Введите имя пользователя',
+      'text',
+      styles.input,
+      'userSearch'
+    );
+
+    Users.privateNode = createElement(
+      'ul',
+      [styles.list],
+      {},
+      Users.input
+    ) as HTMLUListElement;
+  }
 
   public static init() {
     Users.input.addEventListener('input', ({ target }) => {

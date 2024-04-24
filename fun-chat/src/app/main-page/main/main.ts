@@ -13,13 +13,15 @@ export default class Main extends HTMLDivElement {
   constructor() {
     super();
     this.className = styles.mainInner;
-    this.append(Users.node, Dialogue.node);
+    this.append(
+      Object.getPrototypeOf(new Users()).constructor.node,
+      Object.getPrototypeOf(new Dialogue()).constructor.node
+    );
   }
 
   public init(msg: ResponseFromServer) {
     document.body.append(createElement('main', [styles.main], {}, this));
     Users.init();
-    Dialogue.init();
     ModalLogin.close();
     new Header(msg).insert();
     new Footer().insert();
