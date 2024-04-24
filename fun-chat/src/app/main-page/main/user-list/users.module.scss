@@ -1,11 +1,11 @@
 .list {
   position: relative;
-  flex-shrink: 0;
   flex-basis: 30%;
   margin: 0;
   height: 100%;
   border: 1px solid black;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   .input {
     position: sticky;
@@ -22,11 +22,16 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     .contact {
-      width: 100%;
+      width: 95%;
       min-height: 35px;
       padding: 2px 25px 2px 5px;
       user-select: none;
       cursor: pointer;
+      transition: 0.3s;
+      border-radius: 7px;
+      &:hover:not(.activeContact) {
+        box-shadow: 0 0 5px 0 #000;
+      }
     }
     .activeContact {
       font-weight: bold;

@@ -1,6 +1,7 @@
 .input {
   padding: 5px 15px;
   height: 45px;
+  border-radius: 10px;
 
   &:invalid {
     border: 1px dashed red;
