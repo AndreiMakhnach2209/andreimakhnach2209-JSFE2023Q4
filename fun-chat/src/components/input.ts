@@ -3,7 +3,7 @@ import styles from './input.module.scss';
 export default class TextInput extends HTMLInputElement {
   constructor(
     innerText: string = 'Введитие текст',
-    type: 'text' | 'password' | 'textarea' = 'text',
+    type: 'text' | 'password' = 'text',
     className?: string,
     name?: string
   ) {

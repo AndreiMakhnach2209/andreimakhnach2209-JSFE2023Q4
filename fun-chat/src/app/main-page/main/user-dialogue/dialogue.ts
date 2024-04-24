@@ -1,5 +1,4 @@
 import Button from '../../../../components/button';
-import TextInput from '../../../../components/input';
 import {
   MessagePayload,
   RequestToServer,
@@ -19,7 +18,7 @@ export default class Dialogue {
 
   private static messagesContainer: HTMLElement;
 
-  private static messageInput: TextInput;
+  private static messageInput: HTMLTextAreaElement;
 
   private static messageForm: HTMLFormElement;
 
@@ -42,21 +41,21 @@ export default class Dialogue {
     Dialogue.unreadedWrap = createElement('div', [styles.unreadedMessages]);
     Dialogue.messagesContainer = createElement('div', [styles.messages]);
 
-    Dialogue.messageInput = new TextInput(
-      'Введите здесь свое сообщение',
-      'textarea',
-      styles.messageInput,
-      'message'
-    );
+    Dialogue.messageInput = createElement('textarea', [styles.messageInput], {
+      name: 'message',
+      placeholder: 'Введите здесь свое сообщение',
+      autocomplete: 'off',
+    }) as HTMLTextAreaElement;
 
     Dialogue.messageForm = createElement(
       'form',
       [styles.messageForm],
       {
         name: 'messageForm',
+        id: 'messageForm',
       },
       Dialogue.messageInput,
-      new Button('Отправить', 'submit', true)
+      new Button('Отправить', 'submit', true, 'submitBtn')
     ) as HTMLFormElement;
 
     Dialogue.currentUser = null;
@@ -73,7 +72,7 @@ export default class Dialogue {
       const sendingText = dataRecesive(this.messageForm);
       this.messageForm.reset();
       (
-        this.messageForm.querySelector('[type="submit"') as HTMLInputElement
+        this.messageForm.elements.namedItem('submitBtn') as HTMLInputElement
       ).disabled = true;
       const request: RequestToServer = {
         id: 'sending_message',
@@ -92,6 +91,15 @@ export default class Dialogue {
 
     Dialogue.messagesContainer.addEventListener('click', () => {
       this.fixReadingState();
+    });
+
+    this.messageInput.addEventListener('keyup', (event) => {
+      if (
+        event instanceof KeyboardEvent &&
+        event.key === 'Enter' &&
+        !event.shiftKey
+      )
+        this.messageForm.dispatchEvent(new Event('submit'));
     });
   }
 
