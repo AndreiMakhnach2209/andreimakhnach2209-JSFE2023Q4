@@ -25,7 +25,7 @@ export default class Dialogue {
 
   public static currentUser: string | null;
 
-  private static unreadedMessages: Record<string, Message>;
+  private static unreadedWrap: HTMLElement;
 
   constructor() {
     Dialogue.node = createElement(
@@ -39,7 +39,7 @@ export default class Dialogue {
         'Выберите пользователя для получения и отправки сообщений'
       )
     );
-
+    Dialogue.unreadedWrap = createElement('div', [styles.unreadedMessages]);
     Dialogue.messagesContainer = createElement('div', [styles.messages]);
 
     Dialogue.messageInput = new TextInput(
@@ -62,13 +62,12 @@ export default class Dialogue {
     Dialogue.currentUser = null;
 
     Dialogue.init();
-
-    Dialogue.unreadedMessages = {};
   }
 
   private static init() {
     this.messageInput.required = true;
     this.messageForm.addEventListener('input', validate);
+
     this.messageForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const sendingText = dataRecesive(this.messageForm);
@@ -84,6 +83,15 @@ export default class Dialogue {
         },
       };
       Socket.chat.send(JSON.stringify(request));
+      this.fixReadingState();
+    });
+
+    Dialogue.messagesContainer.addEventListener('wheel', () => {
+      this.fixReadingState();
+    });
+
+    Dialogue.messagesContainer.addEventListener('click', () => {
+      this.fixReadingState();
     });
   }
 
@@ -112,13 +120,15 @@ export default class Dialogue {
 
   public static showMessage(msg: ResponseFromServer) {
     const messages = msg.payload?.messages;
+    this.unreadedWrap.innerHTML = '';
     if (msg.id === Dialogue.currentUser) {
       if (messages?.length) {
         this.messagesContainer.innerHTML = '';
         messages.forEach((message) => {
           this.addMessage(message);
         });
-        this.fixReadingState();
+        Dialogue.messagesContainer.append(Dialogue.unreadedWrap);
+        (this.messagesContainer.lastChild as HTMLElement).scrollIntoView(false);
       } else {
         this.messagesContainer.innerHTML = '<p>Здесь пока нет сообщений</p>';
       }
@@ -131,9 +141,17 @@ export default class Dialogue {
       message?.to === Dialogue.currentUser
     ) {
       const newMessage = new Message(message);
-      this.messagesContainer.append(newMessage);
-      if (message.id) this.unreadedMessages[message.id] = newMessage;
-      newMessage.scrollIntoView();
+      if (message.status?.isReaded || newMessage.dataset.outcoming) {
+        this.messagesContainer.append(newMessage);
+        newMessage.scrollIntoView();
+      }
+      if (
+        message.id &&
+        !message.status?.isReaded &&
+        !newMessage.dataset.outcoming
+      ) {
+        this.unreadedWrap.append(newMessage);
+      }
     }
   }
 
@@ -144,19 +162,21 @@ export default class Dialogue {
   }
 
   private static fixReadingState() {
-    (
-      Dialogue.node.querySelectorAll(
-        '[data-is-readed="false"]'
-      ) as NodeListOf<Message>
+    Object.values(
+      Dialogue.unreadedWrap.children as unknown as NodeListOf<Message>
     ).forEach((message) => {
       if (message.payload?.to === sessionStorage.getItem('login')) {
-        message.setAttribute('data-is-readed', 'true');
+        this.messagesContainer.append(message);
         Socket.fixReadingState(message.payload?.id);
       }
     });
   }
 
   public static getMessageById(id: string) {
-    return this.unreadedMessages[id];
+    return Object.values(
+      this.messagesContainer.querySelectorAll(
+        '[data-is-readed="false"]'
+      ) as unknown as Message
+    ).find((message) => message.payload.id === id);
   }
 }

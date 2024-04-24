@@ -19,12 +19,12 @@ export default function responseHandlerForMessage(msg: ResponseFromServer) {
         Socket.messagesFrom(msg.payload?.message?.from);
       break;
     case RequestTypes.MSG_READED:
+      if (Dialogue.getMessageById(msg.payload?.message?.id ?? ''))
+        Users.resetCounter();
       Dialogue.getMessageById(msg.payload?.message?.id ?? '')?.setAttribute(
         'data-is-readed',
         'true'
       );
-      if (Dialogue.getMessageById(msg.payload?.message?.id ?? ''))
-        Users.resetCounter();
       break;
     case ResponseTypes.MSG_DELIVERED:
       if (Dialogue.currentUser) Socket.messagesFrom(Dialogue.currentUser);
