@@ -19,11 +19,13 @@ export default class Dialogue {
 
   private static messagesContainer: HTMLElement;
 
-  static messageInput: TextInput;
+  private static messageInput: TextInput;
 
-  static messageForm: HTMLFormElement;
+  private static messageForm: HTMLFormElement;
 
-  static currentUser: string | null;
+  public static currentUser: string | null;
+
+  private static unreadedMessages: Record<string, Message>;
 
   constructor() {
     Dialogue.node = createElement(
@@ -60,6 +62,8 @@ export default class Dialogue {
     Dialogue.currentUser = null;
 
     Dialogue.init();
+
+    Dialogue.unreadedMessages = {};
   }
 
   private static init() {
@@ -114,6 +118,7 @@ export default class Dialogue {
         messages.forEach((message) => {
           this.addMessage(message);
         });
+        this.fixReadingState();
       } else {
         this.messagesContainer.innerHTML = '<p>Здесь пока нет сообщений</p>';
       }
@@ -127,6 +132,7 @@ export default class Dialogue {
     ) {
       const newMessage = new Message(message);
       this.messagesContainer.append(newMessage);
+      if (message.id) this.unreadedMessages[message.id] = newMessage;
       newMessage.scrollIntoView();
     }
   }
@@ -135,5 +141,22 @@ export default class Dialogue {
     users?.forEach((user) => {
       if (Dialogue.currentUser === user.login) Dialogue.open(user);
     });
+  }
+
+  private static fixReadingState() {
+    (
+      Dialogue.node.querySelectorAll(
+        '[data-is-readed="false"]'
+      ) as NodeListOf<Message>
+    ).forEach((message) => {
+      if (message.payload?.to === sessionStorage.getItem('login')) {
+        message.setAttribute('data-is-readed', 'true');
+        Socket.fixReadingState(message.payload?.id);
+      }
+    });
+  }
+
+  public static getMessageById(id: string) {
+    return this.unreadedMessages[id];
   }
 }

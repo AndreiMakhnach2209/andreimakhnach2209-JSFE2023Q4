@@ -33,4 +33,17 @@ export default class Socket {
     if (login !== sessionStorage.getItem('login'))
       Socket.chat.send(JSON.stringify(request));
   }
+
+  public static fixReadingState(messageId: string | undefined) {
+    const request = {
+      id: `READ_STATE_FROM_${messageId}`,
+      type: RequestTypes.MSG_READED,
+      payload: {
+        message: {
+          id: messageId,
+        },
+      },
+    };
+    Socket.chat.send(JSON.stringify(request));
+  }
 }

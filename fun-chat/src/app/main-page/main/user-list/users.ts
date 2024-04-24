@@ -111,4 +111,10 @@ export default class Users {
           contact.classList.add(styles.activeContact);
       });
   }
+
+  public static resetCounter() {
+    this.privateNode
+      .querySelector(`.${styles.activeContact} + .${styles.counter}`)
+      ?.remove();
+  }
 }

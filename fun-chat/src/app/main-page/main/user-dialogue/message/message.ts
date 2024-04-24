@@ -5,10 +5,13 @@ import styles from './message.module.scss';
 export default class Message extends HTMLDivElement {
   private messageState = createElement();
 
+  public payload: MessagePayload | undefined;
+
   constructor(message?: MessagePayload) {
     super();
     this.className = styles.message;
     if (message) {
+      this.payload = message;
       if (message.from === sessionStorage.getItem('login'))
         this.dataset.outcoming = 'true';
       [
