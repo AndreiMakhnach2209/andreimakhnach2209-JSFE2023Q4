@@ -1,7 +1,7 @@
 import styles from './modal.module.scss';
 
 export default class ModalContainer extends HTMLDivElement {
-  constructor(...children: HTMLElement[]) {
+  constructor(...children: (HTMLElement | string)[]) {
     super();
     this.className = styles.modal;
     this.append(...children);

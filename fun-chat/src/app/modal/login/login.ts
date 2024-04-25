@@ -20,35 +20,42 @@ export default class ModalLogin extends ModalContainer {
 
   private static node: ModalLogin | undefined;
 
+  private nameInput = new TextInput('Имя', 'text');
+
+  private passwordInput = new TextInput('Пароль', 'password');
+
+  private submitBtn = new Button('Войти', 'submit');
+
+  private infobtn = new Button('Инфо');
+
   constructor() {
     super();
     if (ModalLogin.node) return;
     ModalLogin.node = this;
-    const [nameInput, passwordInput, submitBtn, infobtn] = [
-      new TextInput('Имя', 'text'),
-      new TextInput('Пароль', 'password'),
-      new Button('Войти', 'submit'),
-      new Button('Инфо'),
-    ];
+    this.nameInput.required = true;
+    this.nameInput.autofocus = true;
+    this.nameInput.name = 'login';
+    this.nameInput.addEventListener('input', showValidityMessage);
+    this.nameInput.minLength = 3;
+    this.nameInput.maxLength = 20;
 
-    nameInput.required = true;
-    nameInput.autofocus = true;
-    nameInput.name = 'login';
-    nameInput.addEventListener('input', showValidityMessage);
-    nameInput.minLength = 3;
-    nameInput.maxLength = 20;
+    this.passwordInput.required = true;
+    this.passwordInput.name = 'password';
+    this.passwordInput.pattern = '(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*[0-9]).*';
+    this.passwordInput.addEventListener('input', showValidityMessage);
+    this.passwordInput.minLength = 6;
 
-    passwordInput.required = true;
-    passwordInput.name = 'password';
-    passwordInput.pattern = '(?=.*[a-zа-я])(?=.*[A-ZА-Я])(?=.*[0-9]).*';
-    passwordInput.addEventListener('input', showValidityMessage);
-    passwordInput.minLength = 6;
-
-    submitBtn.disabled = true;
+    this.submitBtn.disabled = true;
 
     const legend = createElement('legend', [styles.legend]);
     legend.textContent = 'Авторизация пользователя';
-    this.formLogin.append(legend, nameInput, passwordInput, submitBtn, infobtn);
+    this.formLogin.append(
+      legend,
+      this.nameInput,
+      this.passwordInput,
+      this.submitBtn,
+      this.infobtn
+    );
     this.append(this.formLogin);
     this.formInit();
   }
@@ -59,7 +66,7 @@ export default class ModalLogin extends ModalContainer {
   }
 
   private formInit() {
-    this.formLogin.addEventListener('submit', (event) => {
+    this.formLogin.addEventListener('submit', async (event) => {
       event.preventDefault();
       const userData = dataRecesive(this.formLogin) as unknown as UserPayload;
       Object.entries(userData).forEach(([key, value]) => {
@@ -74,6 +81,16 @@ export default class ModalLogin extends ModalContainer {
     });
 
     this.formLogin.addEventListener('input', validate);
+    if (sessionStorage.getItem('login') && sessionStorage.getItem('password')) {
+      console.log(
+        sessionStorage.getItem('login'),
+        sessionStorage.getItem('password')
+      );
+      this.nameInput.value = sessionStorage.getItem('login') as string;
+      this.passwordInput.value = sessionStorage.getItem('password') as string;
+      Socket.chat.onopen = () =>
+        this.formLogin.dispatchEvent(new Event('submit', { cancelable: true }));
+    }
   }
 }
 
