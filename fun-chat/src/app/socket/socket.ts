@@ -46,4 +46,18 @@ export default class Socket {
     };
     Socket.chat.send(JSON.stringify(request));
   }
+
+  public static editMessage(text: string, id: string) {
+    const request = {
+      id,
+      type: RequestTypes.MSG_EDIT,
+      payload: {
+        message: {
+          id,
+          text,
+        },
+      },
+    };
+    Socket.chat.send(JSON.stringify(request));
+  }
 }

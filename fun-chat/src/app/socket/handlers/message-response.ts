@@ -29,6 +29,14 @@ export default function responseHandlerForMessage(msg: ResponseFromServer) {
     case ResponseTypes.MSG_DELIVERED:
       if (Dialogue.currentUser) Socket.messagesFrom(Dialogue.currentUser);
       break;
+    case RequestTypes.MSG_EDIT:
+      Dialogue.getMessageById(msg.payload?.message?.id ?? '').text.textContent =
+        msg.payload?.message?.text ?? null;
+      Dialogue.getMessageById(msg.payload?.message?.id ?? '')?.setAttribute(
+        'data-is-edited',
+        'true'
+      );
+      break;
     default:
       break;
   }

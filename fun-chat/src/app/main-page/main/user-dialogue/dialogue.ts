@@ -99,7 +99,9 @@ export default class Dialogue {
         event.key === 'Enter' &&
         !event.shiftKey
       )
-        this.messageForm.dispatchEvent(new Event('submit'));
+        this.messageForm.dispatchEvent(
+          new Event('submit', { cancelable: true })
+        );
     });
   }
 
@@ -183,8 +185,8 @@ export default class Dialogue {
   public static getMessageById(id: string) {
     return Object.values(
       this.messagesContainer.querySelectorAll(
-        '[data-is-readed="false"]'
+        '[data-is-readed]'
       ) as unknown as Message
-    ).find((message) => message.payload.id === id);
+    ).find((message) => message.payload.id === id) as Message;
   }
 }
