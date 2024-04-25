@@ -60,4 +60,17 @@ export default class Socket {
     };
     Socket.chat.send(JSON.stringify(request));
   }
+
+  public static deleteMessage(id: string) {
+    const request = {
+      id,
+      type: RequestTypes.MSG_DELETE,
+      payload: {
+        message: {
+          id,
+        },
+      },
+    };
+    Socket.chat.send(JSON.stringify(request));
+  }
 }

@@ -47,8 +47,11 @@ export default class Message extends HTMLDivElement {
       );
       this.text.textContent = message.text;
       this.append(this.editWrap, this.text, this.messageState);
-      this.editWrap.addEventListener('click', () => {
+      this.editBtn.addEventListener('click', () => {
         this.edit();
+      });
+      this.deleteBtn.addEventListener('click', () => {
+        this.delete();
       });
     }
   }
@@ -90,6 +93,11 @@ export default class Message extends HTMLDivElement {
         this.dataset.isEdited = 'true';
       }
     });
+  }
+
+  private delete() {
+    this.dataset.isDeleted = 'true';
+    if (this.payload?.id) Socket.deleteMessage(this.payload?.id);
   }
 }
 

@@ -37,6 +37,10 @@ export default function responseHandlerForMessage(msg: ResponseFromServer) {
         'true'
       );
       break;
+    case RequestTypes.MSG_DELETE:
+      Dialogue.getMessageById(msg.payload?.message?.id ?? '').innerHTML =
+        '<span> Сообщение удалено </span>';
+      break;
     default:
       break;
   }

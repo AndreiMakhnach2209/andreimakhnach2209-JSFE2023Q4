@@ -80,9 +80,7 @@
   }
 }
 [data-is-deleted='true'] {
-  .messageDate::before {
-    content: 'Удалено';
-  }
+  color: #00000066;
 }
 
 .textArea {
