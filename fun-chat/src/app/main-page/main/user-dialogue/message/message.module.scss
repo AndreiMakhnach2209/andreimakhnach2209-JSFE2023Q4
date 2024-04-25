@@ -12,6 +12,7 @@
   .messageDate {
     position: absolute;
     right: 10px;
+    font-size: 0.7rem;
     &::after {
       margin-left: 20px;
       opacity: 0.6;
@@ -32,8 +33,9 @@
     display: flex;
     justify-content: space-between;
     .btn {
-      height: 20px;
+      height: fit-content;
       margin-left: 10px;
+      padding: 0 5px;
       border-radius: 5px;
       border: 1px solid #00000066;
       font-size: 0.8rem;
@@ -46,10 +48,14 @@
       }
     }
     .editBtn::after {
+      display: inline-block;
+      height: 20px;
       content: url(../../../../../assets/img/edit_note_FILL0_wght400_GRAD0_opsz24.svg);
       vertical-align: middle;
     }
     .deleteBtn::after {
+      display: inline-block;
+      height: 20px;
       content: url(../../../../../assets/img/delete_FILL0_wght400_GRAD0_opsz24.svg);
       vertical-align: middle;
     }

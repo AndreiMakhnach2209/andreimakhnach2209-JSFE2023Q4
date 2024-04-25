@@ -39,17 +39,17 @@
     }
     .counter {
       position: absolute;
-      right: 5px;
+      right: 8px;
       top: 50%;
       transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      padding: 0.1rem;
+      width: 15px;
+      height: 15px;
+      padding: 0.2rem;
       border-radius: 50%;
       color: white;
       font-weight: bold;
       text-align: center;
-      background-color: #ff0000;
+      background-color: #ae0000;
     }
   }
   .active::marker {

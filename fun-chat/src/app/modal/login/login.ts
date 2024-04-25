@@ -66,7 +66,7 @@ export default class ModalLogin extends ModalContainer {
   }
 
   private formInit() {
-    this.formLogin.addEventListener('submit', async (event) => {
+    this.formLogin.addEventListener('submit', (event) => {
       event.preventDefault();
       const userData = dataRecesive(this.formLogin) as unknown as UserPayload;
       Object.entries(userData).forEach(([key, value]) => {
@@ -81,16 +81,6 @@ export default class ModalLogin extends ModalContainer {
     });
 
     this.formLogin.addEventListener('input', validate);
-    if (sessionStorage.getItem('login') && sessionStorage.getItem('password')) {
-      console.log(
-        sessionStorage.getItem('login'),
-        sessionStorage.getItem('password')
-      );
-      this.nameInput.value = sessionStorage.getItem('login') as string;
-      this.passwordInput.value = sessionStorage.getItem('password') as string;
-      Socket.chat.onopen = () =>
-        this.formLogin.dispatchEvent(new Event('submit', { cancelable: true }));
-    }
   }
 }
 
