@@ -25,6 +25,7 @@
   .messages {
     display: flex;
     flex-direction: column;
+    justify-content: end;
     overflow-y: scroll;
     width: 100%;
     height: calc(100% - 180px);
