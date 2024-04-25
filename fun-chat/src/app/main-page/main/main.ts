@@ -1,4 +1,5 @@
 import { ResponseFromServer } from '../../../types/types';
+import clearBody from '../../../utilits/clear-body';
 import createElement from '../../../utilits/createElement';
 import ModalLogin from '../../modal/login/login';
 import Socket from '../../socket/socket';
@@ -12,17 +13,26 @@ export default class Main extends HTMLDivElement {
   constructor() {
     super();
     this.className = styles.mainInner;
-    this.append(Users.node, Dialogue.node);
+    this.append(
+      Object.getPrototypeOf(new Users()).constructor.node,
+      Object.getPrototypeOf(new Dialogue()).constructor.node
+    );
   }
 
   public init(msg: ResponseFromServer) {
     document.body.append(createElement('main', [styles.main], {}, this));
     Users.init();
-    Dialogue.init();
     ModalLogin.close();
     new Header(msg).insert();
     new Footer().insert();
     Socket.updateUsers();
+  }
+
+  public static reset() {
+    Users.reset();
+    clearBody();
+    sessionStorage.clear();
+    document.body.append(new ModalLogin());
   }
 }
 

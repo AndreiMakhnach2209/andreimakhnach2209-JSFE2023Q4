@@ -13,9 +13,45 @@
     position: absolute;
     right: 10px;
     &::after {
-      content: 'Отправлено';
       margin-left: 20px;
       opacity: 0.6;
+    }
+    &::before {
+      margin-right: 20px;
+      opacity: 0.6;
+    }
+  }
+
+  .btnWrap {
+    display: none;
+  }
+}
+
+[data-outcoming='true'] {
+  .btnWrap {
+    display: flex;
+    justify-content: space-between;
+    .btn {
+      height: 20px;
+      margin-left: 10px;
+      border-radius: 5px;
+      border: 1px solid #00000066;
+      font-size: 0.8rem;
+      opacity: 0.6;
+      transition: 0.3s;
+      &:hover {
+        scale: 1.05;
+        box-shadow: 0 0 7px 0 #000;
+        cursor: pointer;
+      }
+    }
+    .editBtn::after {
+      content: url(../../../../../assets/img/edit_note_FILL0_wght400_GRAD0_opsz24.svg);
+      vertical-align: middle;
+    }
+    .deleteBtn::after {
+      content: url(../../../../../assets/img/delete_FILL0_wght400_GRAD0_opsz24.svg);
+      vertical-align: middle;
     }
   }
 }
@@ -23,25 +59,39 @@
 [data-outcoming='true'] {
   align-self: flex-end;
   background-color: #00000020;
+  .messageDate::after {
+    content: 'Отправлено';
+  }
 }
 
-[data-is-delivered='true'] {
+[data-is-delivered='true'][data-outcoming='true'] {
   .messageDate::after {
     content: 'Доставлено';
   }
 }
-[data-is-readed='true'] {
+[data-is-readed='true'][data-outcoming='true'] {
   .messageDate::after {
     content: 'Прочитано';
   }
 }
 [data-is-edited='true'] {
-  .messageDate::after {
+  .messageDate::before {
     content: 'Изменено';
   }
 }
 [data-is-deleted='true'] {
-  .messageDate::after {
-    content: 'Удалено';
-  }
+  color: #00000066;
+}
+
+.textArea {
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  z-index: 10;
+  padding: 20px;
+  border-radius: 7px;
+  box-shadow: 0 0 10px 0 #000;
+  background-color: #cdcdcd;
 }

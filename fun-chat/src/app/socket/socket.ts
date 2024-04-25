@@ -33,4 +33,44 @@ export default class Socket {
     if (login !== sessionStorage.getItem('login'))
       Socket.chat.send(JSON.stringify(request));
   }
+
+  public static fixReadingState(messageId: string | undefined) {
+    const request = {
+      id: `READ_STATE_FROM_${messageId}`,
+      type: RequestTypes.MSG_READED,
+      payload: {
+        message: {
+          id: messageId,
+        },
+      },
+    };
+    Socket.chat.send(JSON.stringify(request));
+  }
+
+  public static editMessage(text: string, id: string) {
+    const request = {
+      id,
+      type: RequestTypes.MSG_EDIT,
+      payload: {
+        message: {
+          id,
+          text,
+        },
+      },
+    };
+    Socket.chat.send(JSON.stringify(request));
+  }
+
+  public static deleteMessage(id: string) {
+    const request = {
+      id,
+      type: RequestTypes.MSG_DELETE,
+      payload: {
+        message: {
+          id,
+        },
+      },
+    };
+    Socket.chat.send(JSON.stringify(request));
+  }
 }

@@ -4,11 +4,8 @@ import {
   RequestTypes,
   ResponseFromServer,
 } from '../../../types/types';
-import clearBody from '../../../utilits/clear-body';
 import createElement from '../../../utilits/createElement';
-import ModalLogin from '../../modal/login/login';
 import Socket from '../../socket/socket';
-import Users from '../main/user-list/users';
 import styles from './header.module.scss';
 
 export default class Header extends HTMLDivElement {
@@ -32,10 +29,6 @@ export default class Header extends HTMLDivElement {
     };
     logoutBtn.addEventListener('click', () => {
       Socket.chat.send(JSON.stringify(request));
-      Users.reset();
-      clearBody();
-      sessionStorage.clear();
-      document.body.append(new ModalLogin());
     });
     this.className = styles.headerInner;
     this.append(userName, title, logoutBtn);
